@@ -1,0 +1,451 @@
+[
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Remote Ok",
+        "site_url": "https://remoteok.io/",
+        "iframe_able": true,
+        "tags": ["remote", "development", "coding"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://remoteok.io/remote-video-editing-jobs",
+            "https://remoteok.io/remote-customer-support+css-jobs"
+        ]
+    },
+    {
+        "main_category": "Software",
+        "type": "job-board",
+        "site_name": "CodePen Jobs",
+        "site_url": "https://codepen.io/jobs",
+        "iframe_able": true,
+        "tags": ["software", "remote"],
+        "searchable": true,
+        "search_query_examples": ["https://codepen.io/jobs.json"]
+    },
+    {
+        "main_category": "Software",
+        "type": "job-board",
+        "site_name": "GitHub Jobs",
+        "site_url": "https://jobs.github.com/positions",
+        "iframe_able": false,
+        "tags": ["software", "remote"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://jobs.github.com/positions?utf8=%E2%9C%93&description=React&location=",
+            "https://jobs.github.com/positions?utf8=%E2%9C%93&description=Java&location=San+Fransisco"
+        ]
+    },
+    {
+        "main_category": "Startups",
+        "type": "job-board",
+        "site_name": "Monday.vc",
+        "site_url": "https://www.monday.vc/jobs",
+        "iframe_able": true,
+        "tags": ["software", "remote", "startups", "venture backed"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://www.monday.vc/jobs?q=Dev%20Ops",
+            "https://www.monday.vc/jobs?q=Content%20Creator"
+        ]
+    },
+    {
+        "main_category": "Startups",
+        "type": "job-board",
+        "site_name": "TechStars",
+        "site_url": "https://jobs.techstars.com/",
+        "iframe_able": true,
+        "tags": ["software", "remote", "startups", "venture backed"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://jobs.techstars.com/?q=Intern",
+            "https://jobs.techstars.com/?t=1197&j=1064993781&l=90"
+        ]
+    },
+    {
+        "main_category": "Startups",
+        "type": "job-board",
+        "site_name": "YC Engineering Jobs",
+        "site_url": "https://www.workatastartup.com/",
+        "iframe_able": false,
+        "tags": [
+            "software",
+            "remote",
+            "startups",
+            "venture backed",
+            "yc",
+            "y combinator"
+        ],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Startups",
+        "type": "job-board",
+        "site_name": "YC Non-Engineering Jobs",
+        "site_url": "https://ycombinator.monday.vc/",
+        "iframe_able": false,
+        "tags": ["remote", "startups", "venture backed", "yc", "y combinator"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Career Builder",
+        "site_url": "https://www.careerbuilder.com/",
+        "iframe_able": false,
+        "tags": ["career", "all jobs", "corporate"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://www.careerbuilder.com/jobs?utf8=%E2%9C%93&keywords=Marketing&location=Austin+Tx",
+            "https://www.careerbuilder.com/jobs?utf8=%E2%9C%93&keywords=React&location=Denver%2C+CO"
+        ]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Indeed",
+        "site_url": "https://www.indeed.com/",
+        "iframe_able": false,
+        "tags": ["career", "all jobs", "corporate"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://www.indeed.com/q-full-stack-developer-l-College-Station,-TX-jobs.html",
+            "https://www.indeed.com/jobs?q=theater+teacher&l=Oregon"
+        ]
+    },
+    {
+        "main_category": "Startups",
+        "type": "company",
+        "site_name": "Twitch",
+        "site_url": "https://boards.greenhouse.io/twitch",
+        "iframe_able": true,
+        "tags": ["tech", "startups", "gaming", "video", "software"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Glassdoor",
+        "site_url": "https://www.glassdoor.com/index.htm",
+        "iframe_able": false,
+        "tags": ["career", "all jobs", "corporate"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://www.glassdoor.com/Job/react-native-jobs-SRCH_KO0,12.htm",
+            "https://www.glassdoor.com/Job/seattle-full-stack-web-dev-jobs-SRCH_IL.0,7_IC1150505_KE8,26.htm"
+        ]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "FlexJobs",
+        "site_url": "https://www.flexjobs.com/jobs/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://www.flexjobs.com/jobs/graphic-design",
+            "https://www.flexjobs.com/search?search=Full+Stack+Web+Developer&location=Denver%2C+CO"
+        ]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "We Work Remotely",
+        "site_url": "https://weworkremotely.com/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=React",
+            "https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=React+Native"
+        ]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Remote.co",
+        "site_url": "https://remote.co/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": true,
+        "search_query_examples": [
+            "https://remote.co/remote-jobs/search/?search_keywords=customer+service",
+            "https://remote.co/remote-jobs/search/?search_keywords=Tech+Sales"
+        ]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Virtual Vocation",
+        "site_url": "https://www.virtualvocations.com/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Pangian",
+        "site_url": "https://pangian.com/job-travel-remote/",
+        "iframe_able": true,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Remotive",
+        "site_url": "https://remotive.io/",
+        "iframe_able": true,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Working Nomads",
+        "site_url": "https://www.workingnomads.co/jobs",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Jobspresso",
+        "site_url": "https://jobspresso.co/remote-work/",
+        "iframe_able": true,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Eurpoe Remote",
+        "site_url": "https://europeremotely.com/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Outsourcely",
+        "site_url": "https://www.outsourcely.com/remote-workers",
+        "iframe_able": true,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Power To Fly",
+        "site_url": "https://powertofly.com/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Landing Jobs",
+        "site_url": "https://landing.jobs/",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Remote",
+        "type": "job-board",
+        "site_name": "Authentic Jobs",
+        "site_url": "https://authenticjobs.com/",
+        "iframe_able": true,
+        "tags": ["remote", "part-time", "freelance"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Design",
+        "type": "job-board",
+        "site_name": "Dribbble",
+        "site_url": "https://dribbble.com/jobs",
+        "iframe_able": false,
+        "tags": ["remote", "part-time", "freelance", "design", "graphics"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Software",
+        "type": "job-board",
+        "site_name": "Stack Overflow",
+        "site_url": "https://stackoverflow.com/jobs",
+        "iframe_able": false,
+        "tags": [
+            "software",
+            "part-time",
+            "freelance",
+            "software engineering",
+            "remote"
+        ],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "The Muse",
+        "site_url": "https://www.themuse.com/jobs",
+        "iframe_able": false,
+        "tags": ["career", "all jobs", "corporate"],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Idealist",
+        "site_url": "https://www.idealist.org/en/?searchMode=true&type=JOB",
+        "iframe_able": false,
+        "tags": ["career", "all jobs", "corporate", "internships", "startups"],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Crypto",
+        "type": "job-board",
+        "site_name": "Crytocurrency Jobs",
+        "site_url": "https://cryptocurrencyjobs.co/",
+        "iframe_able": true,
+        "tags": ["software", "startups"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Startups",
+        "type": "job-board",
+        "site_name": "F6S",
+        "site_url": "https://www.f6s.com/jobs?sort=newest",
+        "iframe_able": false,
+        "tags": ["software", "startups", "operations", ""],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Startups",
+        "type": "job-board",
+        "site_name": "Growth Hackers",
+        "site_url": "https://growthhackers.com/jobs/",
+        "iframe_able": false,
+        "tags": [
+            "software",
+            "startups",
+            "operations",
+            "growth hacker",
+            "growth"
+        ],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Software",
+        "type": "match-service",
+        "site_name": "Gun.io",
+        "site_url": "https://www.gun.io/",
+        "iframe_able": true,
+        "tags": ["software"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "US.jobs",
+        "site_url": "https://us.jobs/search",
+        "iframe_able": false,
+        "tags": ["all jobs", "career", "temporary", "minority"],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Software",
+        "type": "company",
+        "site_name": "GitLab",
+        "site_url": "https://boards.greenhouse.io/gitlab",
+        "iframe_able": true,
+        "tags": ["software"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Tech",
+        "type": "company",
+        "site_name": "WP Hired",
+        "site_url": "https://www.wphired.com/",
+        "iframe_able": false,
+        "tags": ["software", "sales", "customer service"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Health Care",
+        "type": "job-board",
+        "site_name": "Health Ecareers",
+        "site_url": "'https://www.healthecareers.com/search-jobs/",
+        "iframe_able": true,
+        "tags": ["health care", "medical", "nurse", "internship", "doctors"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Health Care",
+        "type": "job-board",
+        "site_name": "Gas Work",
+        "site_url": "'https://www.healthecareers.com/search-jobs/",
+        "iframe_able": true,
+        "tags": ["medical gas", "medical", "gas"],
+        "searchable": false,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Monster.com",
+        "site_url": "https://monster.com",
+        "iframe_able": false,
+        "tags": ["all jobs", "career", "corporate"],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Simply Hired",
+        "site_url": "https://www.simplyhired.com/",
+        "iframe_able": false,
+        "tags": ["all jobs", "career", "corporate"],
+        "searchable": true,
+        "search_query_examples": [""]
+    },
+    {
+        "main_category": "Job Boards",
+        "type": "job-board",
+        "site_name": "Zip Recruiter",
+        "site_url": "https://ziprecruiter.com/Jobs/Search",
+        "iframe_able": false,
+        "tags": ["all jobs", "career", "corporate"],
+        "searchable": true,
+        "search_query_examples": [""]
+    }
+]
