@@ -7,17 +7,26 @@ const StyledListItem = styled(List.Item)`
 `;
 
 const JobLink = props => {
+    const handleClick = event => {
+        if (props.site.iframe_able === true) {
+            props.updateMainURL(event.target.value);
+        } else {
+            console.log('cant open link here');
+        }
+    };
+
     return (
         <StyledListItem>
-            <List.Header
-                as="button"
-                value={props.site.site_url}
-                onClick={event => {
-                    props.updateMainURL(event);
-                }}
-            >
-                {props.site.site_name}
-            </List.Header>
+            <List.Item>
+                <button
+                    value={props.site.site_url}
+                    onClick={event => {
+                        handleClick(event);
+                    }}
+                >
+                    {props.site.site_name}
+                </button>
+            </List.Item>
         </StyledListItem>
     );
 };

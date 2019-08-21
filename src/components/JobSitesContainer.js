@@ -32,16 +32,12 @@ const JobSitesContainer = props => {
                         return returned;
                     }
                 })
-                .map(link => {
+                .map(site => {
                     return (
-                        <List.Item>
-                            <button
-                                value={link.site_url}
-                                onClick={event => props.updateMainURL(event)}
-                            >
-                                {link.site_name}
-                            </button>
-                        </List.Item>
+                        <JobLink
+                            site={site}
+                            updateMainURL={props.updateMainURL}
+                        />
                     );
                 })
                 .reduce((prev, curr) => [prev, curr], []);

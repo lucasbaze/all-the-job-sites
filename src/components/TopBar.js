@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Input } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Button, Input, Modal, Header } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const TopBarContainer = styled.div`
@@ -12,13 +12,24 @@ const TopBarContainer = styled.div`
 `;
 
 const TopBar = props => {
+    const [open, setOpen] = useState(false);
+
     return (
         <TopBarContainer>
             <div style={{ flex: 0.93, padding: '7px 15px' }}>
                 <Button.Group style={{ width: '100%' }}>
-                    <Button>Login</Button>
+                    <Button
+                        onClick={() => {
+                            setOpen(true);
+                            window.FB.AppEvents.logEvent(
+                                'Login Button Clicked'
+                            );
+                        }}
+                    >
+                        Login
+                    </Button>
                     <Button.Or />
-                    <Button>Sign Up</Button>
+                    <Button onClick={() => setOpen(true)}>Sign Up</Button>
                 </Button.Group>
             </div>
             <div
@@ -34,6 +45,7 @@ const TopBar = props => {
                     content="Saved Jobs"
                     icon="heart"
                     color="red"
+                    onClick={() => setOpen(true)}
                 />
                 <Input
                     action={{
@@ -41,6 +53,9 @@ const TopBar = props => {
                         labelPosition: 'left',
                         icon: 'save',
                         content: 'Save Pasted Link',
+                        onClick: function() {
+                            setOpen(true);
+                        },
                     }}
                     actionPosition="left"
                     placeholder="https://indeed.com/..."
@@ -48,6 +63,26 @@ const TopBar = props => {
                 />
                 <div>Logo</div>
             </div>
+            <Modal
+                size="small"
+                open={open}
+                onClose={() => setOpen(false)}
+                closeIcon
+            >
+                <Header icon="archive" content="Archive Old Messages" />
+                <Modal.Content>
+                    <p>Are you sure you want to delete your account</p>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button negative>No</Button>
+                    <Button
+                        positive
+                        icon="checkmark"
+                        labelPosition="right"
+                        content="Yes"
+                    />
+                </Modal.Actions>
+            </Modal>
         </TopBarContainer>
     );
 };
