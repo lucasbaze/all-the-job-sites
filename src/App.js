@@ -5,10 +5,12 @@ import TopBar from './components/TopBar.js';
 import Body from './components/Body.js';
 
 function App() {
+    const [currentSite, setCurrentSite] = useState({});
+
     return (
         <div className="App">
-            <TopBar />
-            <Body />
+            <TopBar setCurrentSite={setCurrentSite} />
+            <Body currentSite={currentSite} setCurrentSite={setCurrentSite} />
         </div>
     );
 }

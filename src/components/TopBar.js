@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input, Modal, Header } from 'semantic-ui-react';
+import { Button, Input, Modal, Header, List } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const TopBarContainer = styled.div`
@@ -21,9 +21,9 @@ const TopBar = props => {
                     <Button
                         onClick={() => {
                             setOpen(true);
-                            window.FB.AppEvents.logEvent(
-                                'Login Button Clicked'
-                            );
+                            // window.FB.AppEvents.logEvent(
+                            //     'Login Button Clicked'
+                            // );
                         }}
                     >
                         Login
@@ -41,10 +41,11 @@ const TopBar = props => {
                 }}
             >
                 <Button
-                    style={{ marginRight: 20 }}
+                    style={{ minWidth: '150px', marginRight: 20 }}
                     content="Saved Jobs"
                     icon="heart"
                     color="red"
+                    basic
                     onClick={() => setOpen(true)}
                 />
                 <Input
@@ -53,33 +54,56 @@ const TopBar = props => {
                         labelPosition: 'left',
                         icon: 'save',
                         content: 'Save Pasted Link',
+                        basic: 'true',
                         onClick: function() {
                             setOpen(true);
                         },
                     }}
                     actionPosition="left"
                     placeholder="https://indeed.com/..."
-                    style={{ width: '75%', marginRight: 20 }}
+                    style={{ width: '100%', marginRight: 20 }}
                 />
-                <div>Logo</div>
+                <Button basic onClick={() => props.setCurrentSite({})}>
+                    Logo
+                </Button>
             </div>
             <Modal
-                size="small"
+                size="tiny"
                 open={open}
                 onClose={() => setOpen(false)}
                 closeIcon
             >
-                <Header icon="archive" content="Archive Old Messages" />
+                <Header as="h2" icon="rocket" content="Coming Soon!" />
                 <Modal.Content>
-                    <p>Are you sure you want to delete your account</p>
+                    <Header as="h3">Sign Up Early!</Header>
+                    <p>
+                        All The Job Sites is working diligently to help make
+                        your job search experience as easy as it can be.
+                    </p>
+                    <p>
+                        Sign up today and get notified on the next release for
+                        the following features:
+                    </p>
+                    <List bulleted>
+                        <List.Item content="Save Jobs" />
+                        <List.Item content="Save Job Searches" />
+                        <List.Item content="Track Jobs" />
+                    </List>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button negative>No</Button>
-                    <Button
-                        positive
-                        icon="checkmark"
-                        labelPosition="right"
-                        content="Yes"
+                    <Input
+                        action={{
+                            color: 'green',
+                            labelPosition: 'left',
+                            icon: 'bell',
+                            content: 'Notify Me',
+                            onClick: function() {
+                                console.log('Sign Up');
+                            },
+                        }}
+                        fluid
+                        actionPosition="left"
+                        placeholder="hireme@ineedajob.com"
                     />
                 </Modal.Actions>
             </Modal>
