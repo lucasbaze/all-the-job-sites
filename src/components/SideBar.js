@@ -47,42 +47,48 @@ const SideBar = props => {
 
     return (
         <StyledSideBar>
-            <Header as="h4" style={{ marginBottom: 5 }}>
-                Looking for:
-            </Header>
-            <div
-                style={{
-                    marginTop: 10,
-                    marginBottoM: 10,
-                    textAlign: 'center',
-                    display: 'flex',
-                }}
-            >
-                <Button
-                    icon={allOpen ? 'compress' : 'expand arrows alternate'}
-                    basic
-                    onClick={() =>
-                        allOpen ? setAllOpen(false) : setAllOpen(true)
-                    }
-                />
-                <Input
-                    action={{
-                        color: 'lightgrey',
-                        icon: 'close',
-                        basic: 'true',
-                        onClick: function() {
-                            setSearchValue('');
-                            setAllOpen(false);
-                        },
-                    }}
-                    actionPosition="left"
-                    loading={isLoading}
-                    onChange={e => handleSearchChange(e)}
-                    icon="search"
-                    value={searchValue}
-                    placeholder="Sales, React, Military..."
-                />
-            </div>
+            {props.collapsed ? null : (
+                <div>
+                    <Header as="h4" style={{ marginBottom: 5 }}>
+                        Looking for:
+                    </Header>
+                    <div
+                        style={{
+                            marginTop: 10,
+                            marginBottoM: 10,
+                            textAlign: 'center',
+                            display: 'flex',
+                        }}
+                    >
+                        <Button
+                            icon={
+                                allOpen ? 'compress' : 'expand arrows alternate'
+                            }
+                            basic
+                            onClick={() =>
+                                allOpen ? setAllOpen(false) : setAllOpen(true)
+                            }
+                        />
+                        <Input
+                            action={{
+                                color: 'lightgrey',
+                                icon: 'close',
+                                basic: 'true',
+                                onClick: function() {
+                                    setSearchValue('');
+                                    setAllOpen(false);
+                                },
+                            }}
+                            actionPosition="left"
+                            loading={isLoading}
+                            onChange={e => handleSearchChange(e)}
+                            icon="search"
+                            value={searchValue}
+                            placeholder="Sales, React, Military..."
+                        />
+                    </div>
+                </div>
+            )}
             <JobSitesContainer
                 updateSite={updateSite}
                 searchValue={searchValue}

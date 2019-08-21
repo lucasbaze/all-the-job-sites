@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Header, List } from 'semantic-ui-react';
+import { Header, List, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import { sites } from '../sites.js';
 import JobLink from './JobLink.js';
 
-const CategoryHeader = () => <Header as="h4"></Header>;
-
-const StyledCategory = styled(CategoryHeader)`
+const StyledCategory = styled(Header)`
     padding-bottom: 5px;
     border-bottom: 0.5px solid #e4e4e4;
     margin-top: 5px;
@@ -39,12 +37,17 @@ const CategoryList = props => {
     return (
         <List.Item style={{ marginBottom: 0 }}>
             <StyledCategory
-                as="h4"
+                as="h3"
                 style={{ borderBottom: '0.5px solid #e4e4e4' }}
                 onClick={() => (opened ? setOpened(false) : setOpened(true))}
             >
                 {props.title}
+                <Icon
+                    name={opened ? 'caret down' : 'caret right'}
+                    style={{ float: 'right' }}
+                />
             </StyledCategory>
+
             <StyledInnerList opened={opened}>
                 {props.categoryList}
             </StyledInnerList>

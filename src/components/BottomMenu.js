@@ -5,7 +5,7 @@ import { Button, Header, Modal, Popup, Image, Icon } from 'semantic-ui-react';
 const StyledBottomMenu = styled.div`
     height: 50px;
     width: 100%;
-    box-shadow: -3px -3px 5px #eaeaea;
+    box-shadow: 0 -3px 5px #eaeaea;
     padding: 7px 15px;
     display: flex;
     flex-flow: row norwap;
@@ -27,16 +27,19 @@ const BottomMenu = props => {
                     icon="compress"
                     basic
                 />
-                <Popup
-                    content="Settings"
-                    position="top left"
-                    trigger={<Button basic icon="cogs" />}
-                />
+                {props.collapsed ? null : (
+                    <Popup
+                        content="Settings"
+                        position="top left"
+                        trigger={<Button basic icon="cogs" />}
+                    />
+                )}
             </div>
             <Button
                 color="red"
                 onClick={() => setOpen(true)}
-                content="Post A Job"
+                content="Post Job"
+                style={{ minWidth: 100 }}
             />
             <Modal open={open} onClose={() => setOpen(false)}>
                 <Header

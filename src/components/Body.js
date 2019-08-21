@@ -12,13 +12,15 @@ const MainContainer = styled.div`
 `;
 
 const SideBarContainer = styled.div`
-    flex: 1;
+    flex: ${props => (props.collapsed ? 0.5 : 1)};
     height: calc(100vh - 50px);
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     overflow-y: scroll;
     overflow-x: hidden;
+    box-shadow: 3px 0px 5px #eaeaea;
+    transition: flex 0.5s linear;
 `;
 
 const MainContentContainer = styled.div`
@@ -36,12 +38,15 @@ const Body = props => {
 
     return (
         <MainContainer>
-            <SideBarContainer>
+            <SideBarContainer collapsed={collapsed}>
                 <SideBar
-                    collapsed={collapsed}
                     setCurrentSite={props.setCurrentSite}
+                    collapsed={collapsed}
                 />
-                <BottomMenu updateCollapsed={updateCollapsed} />
+                <BottomMenu
+                    updateCollapsed={updateCollapsed}
+                    collapsed={collapsed}
+                />
             </SideBarContainer>
             <MainContentContainer>
                 <MainContent currentSite={props.currentSite} />

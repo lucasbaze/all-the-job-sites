@@ -25,11 +25,14 @@ const TopBar = props => {
                             //     'Login Button Clicked'
                             // );
                         }}
+                        color="green"
                     >
                         Login
                     </Button>
                     <Button.Or />
-                    <Button onClick={() => setOpen(true)}>Sign Up</Button>
+                    <Button color="blue" onClick={() => setOpen(true)}>
+                        Sign Up
+                    </Button>
                 </Button.Group>
             </div>
             <div
