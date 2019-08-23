@@ -12,7 +12,7 @@ const MainContainer = styled.div`
 `;
 
 const SideBarContainer = styled.div`
-    flex: ${props => (props.collapsed ? 0.5 : 1)};
+    flex: ${props => (props.collapsed ? 0.55 : 1)};
     height: calc(100vh - 50px);
     display: flex;
     flex-flow: column nowrap;
@@ -30,6 +30,7 @@ const MainContentContainer = styled.div`
 
 const Body = props => {
     const [collapsed, setCollapsed] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
 
     const updateCollapsed = () => {
         console.log(collapsed);
@@ -40,8 +41,11 @@ const Body = props => {
         <MainContainer>
             <SideBarContainer collapsed={collapsed}>
                 <SideBar
+                    currentSite={props.currentSite}
                     setCurrentSite={props.setCurrentSite}
                     collapsed={collapsed}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
                 />
                 <BottomMenu
                     updateCollapsed={updateCollapsed}
@@ -49,7 +53,10 @@ const Body = props => {
                 />
             </SideBarContainer>
             <MainContentContainer>
-                <MainContent currentSite={props.currentSite} />
+                <MainContent
+                    currentSite={props.currentSite}
+                    searchValue={searchValue}
+                />
             </MainContentContainer>
         </MainContainer>
     );

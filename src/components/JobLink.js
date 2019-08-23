@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { List } from 'semantic-ui-react';
+import { List, Icon, Popup } from 'semantic-ui-react';
 
 const StyledListItem = styled(List.Item)`
     div {
@@ -24,6 +24,16 @@ const JobLink = props => {
                 }}
             >
                 {props.site.site_name}
+                {!props.site.iframe_able && (
+                    <Icon
+                        name="linkify"
+                        size="small"
+                        style={{ float: 'right', color: 'grey' }}
+                    />
+                )}
+                {props.searching != '' && props.site.searchable && (
+                    <Icon name="searchengin" style={{ float: 'right' }} />
+                )}
             </div>
         </StyledListItem>
     );

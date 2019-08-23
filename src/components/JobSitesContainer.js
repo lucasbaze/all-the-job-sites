@@ -68,25 +68,79 @@ const JobSitesContainer = props => {
 
     let reducedObject = Object.entries(reduced);
 
-    console.log(reducedObject);
+    let sortCategories = (a, b) => {
+        return a[0].toUpperCase() < b[0].toUpperCase() ? -1 : 1;
+    };
+
+    let searchFilter = site => {
+        if (props.searchValue === '') {
+            return true;
+        } else {
+            //Check if the search value is in the site_name
+            //return true if true
+            let siteNameIndex = site.site_name
+                .toLowerCase()
+                .search(props.searchValue.toLowerCase());
+            let siteNameFilter = siteNameIndex >= 0 ? true : false;
+
+            //Check if the search value is in the tags
+            //return true if one of the tags has the search term and then provide an icon with the tag_icon
+            let siteTagIndex = site.tags.filter(tag => {
+                return tag
+                    .toLowerCase()
+                    .search(props.searchValue.toLowerCase()) >= 0
+                    ? true
+                    : false;
+            });
+
+            let siteTagFilter = siteTagIndex.length >= 1 ? true : false;
+
+            //Check if the site is searchable
+            //return true and then run a .map over just those specific true ones
+            let siteSearchable = site.searchable;
+
+            return siteNameFilter || siteTagFilter || siteSearchable;
+        }
+    };
+
+    let tansformSiteLinksBasedOnSearchTerm = site => {
+        if (site.searchable) {
+            let query = props.searchValue.replace(' ', '%20');
+
+            site.searchURL = site.site_url + `/${query}`;
+            console.log(site);
+            return site;
+        } else {
+            return site;
+        }
+    };
+
+    let sortLinks = (a, b) => {
+        return a.site_name.toUpperCase() < b.site_name.toUpperCase() ? -1 : 1;
+    };
 
     let linkList = reducedObject
+        .sort((a, b) => {
+            return sortCategories(a, b);
+        })
         .map((category, index) => {
             let categoryList = category[1]
-                .filter(link => {
-                    if (props.searchValue === '') {
-                        return true;
-                    } else {
-                        let searched = link.site_name
-                            .toLowerCase()
-                            .search(props.searchValue.toLowerCase());
-                        let returned = searched >= 0 ? true : false;
-                        return returned;
-                    }
+                .filter(site => {
+                    return searchFilter(site);
+                })
+                .map(site => {
+                    return tansformSiteLinksBasedOnSearchTerm(site);
+                })
+                .sort((a, b) => {
+                    return sortLinks(a, b);
                 })
                 .map(site => {
                     return (
-                        <JobLink site={site} updateSite={props.updateSite} />
+                        <JobLink
+                            site={site}
+                            updateSite={props.updateSite}
+                            searching={props.searchValue}
+                        />
                     );
                 })
                 .reduce((prev, curr) => [prev, curr], []);

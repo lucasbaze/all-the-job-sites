@@ -4,6 +4,7 @@ import { Header } from 'semantic-ui-react';
 
 import HomePage from './Home.js';
 import ExternalLink from './ExternalLink.js';
+import Iframe from './Iframe.js';
 
 const MainContainer = styled.div`
     height: calc(100vh - 50px);
@@ -16,19 +17,22 @@ const MainContainer = styled.div`
     }
 `;
 
-const MainContent = ({ currentSite }) => {
+const MainContent = ({ currentSite, searchValue }) => {
     const [mainContent, setMainContent] = useState(<HomePage />);
 
     useEffect(() => {
         if (currentSite !== {} && currentSite.iframe_able === true) {
-            setMainContent(
-                <iframe title="currentSite" src={currentSite.site_url} />
-            );
+            setMainContent(<Iframe currentSite={currentSite} />);
         } else if (currentSite !== {} && currentSite.iframe_able === false) {
-            //TODO: open url in a new tab
-            let win = window.open(currentSite.site_url, '_blank');
+            let openURL =
+                currentSite.searchURL != null
+                    ? currentSite.searchURL
+                    : currentSite.site_url;
+            let win = window.open(openURL, '_blank');
             win.focus();
-            setMainContent(<ExternalLink site={currentSite} />);
+            setMainContent(
+                <ExternalLink site={currentSite} searchValue={searchValue} />
+            );
         } else {
             setMainContent(<HomePage />);
         }

@@ -21,16 +21,26 @@ const TopBar = props => {
                     <Button
                         onClick={() => {
                             setOpen(true);
-                            // window.FB.AppEvents.logEvent(
-                            //     'Login Button Clicked'
-                            // );
+                            window.gtag('event', 'login', {
+                                event_category: 'access',
+                                event_label: 'login',
+                            });
                         }}
                         color="green"
                     >
-                        Login
+                        Logins
                     </Button>
                     <Button.Or />
-                    <Button color="blue" onClick={() => setOpen(true)}>
+                    <Button
+                        color="blue"
+                        onClick={() => {
+                            setOpen(true);
+                            window.gtag('event', 'signup', {
+                                event_category: 'access',
+                                event_label: 'signup',
+                            });
+                        }}
+                    >
                         Sign Up
                     </Button>
                 </Button.Group>

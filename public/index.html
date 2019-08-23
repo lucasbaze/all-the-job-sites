@@ -31,17 +31,6 @@
     -->
 
         <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId: '486221888831401',
-                    cookie: true,
-                    xfbml: true,
-                    version: '0.1',
-                });
-
-                FB.AppEvents.logPageView();
-            };
-
             (function(d, s, id) {
                 var js,
                     fjs = d.getElementsByTagName(s)[0];
@@ -54,6 +43,33 @@
                 fjs.parentNode.insertBefore(js, fjs);
             })(document, 'script', 'facebook-jssdk');
         </script>
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: '486221888831401',
+                    cookie: true,
+                    xfbml: true,
+                    version: '0.1',
+                });
+
+                FB.AppEvents.logPageView();
+            };
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-146174041-1"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-146174041-1');
+        </script>
+
         <title>All The Job Sites</title>
     </head>
     <body>

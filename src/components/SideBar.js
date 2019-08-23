@@ -5,7 +5,6 @@ import JobSitesContainer from './JobSitesContainer.js';
 import styled from 'styled-components';
 
 const StyledSideBar = styled.div`
-    width: ${props => (props.collapsed ? '0px' : '100%')};
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -16,33 +15,38 @@ const StyledSideBar = styled.div`
 `;
 
 const SideBar = props => {
-    const [searchValue, setSearchValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
 
     useEffect(() => {
-        if (searchValue.length >= 1) {
+        if (props.searchValue.length >= 1) {
             setAllOpen(true);
         } else {
             setAllOpen(false);
         }
-    }, [searchValue]);
+    }, [props.searchValue]);
 
     const handleSearchChange = event => {
         setIsLoading(true);
-        setSearchValue(event.target.value);
+        props.setSearchValue(event.target.value);
 
         setTimeout(() => {
-            if (searchValue.length < 1) return;
+            if (props.searchValue.length < 1) return;
 
             setIsLoading(false);
         }, 300);
-        console.log(searchValue);
+        console.log(props.searchValue);
     };
 
     const updateSite = site => {
-        console.log(site);
-        props.setCurrentSite(site);
+        if (site === props.currentSite && !site.iframe_able) {
+            let openURL =
+                site.searchURL != null ? site.searchURL : site.site_url;
+            let win = window.open(openURL, '_blank');
+            win.focus();
+        } else {
+            props.setCurrentSite(site);
+        }
     };
 
     return (
@@ -75,7 +79,7 @@ const SideBar = props => {
                                 icon: 'close',
                                 basic: 'true',
                                 onClick: function() {
-                                    setSearchValue('');
+                                    props.setSearchValue('');
                                     setAllOpen(false);
                                 },
                             }}
@@ -83,7 +87,7 @@ const SideBar = props => {
                             loading={isLoading}
                             onChange={e => handleSearchChange(e)}
                             icon="search"
-                            value={searchValue}
+                            value={props.searchValue}
                             placeholder="Sales, React, Military..."
                         />
                     </div>
@@ -91,7 +95,7 @@ const SideBar = props => {
             )}
             <JobSitesContainer
                 updateSite={updateSite}
-                searchValue={searchValue}
+                searchValue={props.searchValue}
                 allOpen={allOpen}
             />
         </StyledSideBar>
