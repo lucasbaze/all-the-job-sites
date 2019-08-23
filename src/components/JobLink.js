@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { List, Icon, Popup } from 'semantic-ui-react';
+import { List, Icon } from 'semantic-ui-react';
 
 const StyledListItem = styled(List.Item)`
     div {
@@ -31,9 +31,17 @@ const JobLink = props => {
                         style={{ float: 'right', color: 'grey' }}
                     />
                 )}
-                {props.searching != '' && props.site.searchable && (
-                    <Icon name="searchengin" style={{ float: 'right' }} />
-                )}
+                {/* TODO: functionize this test to display the tag or make this a more robust component */}
+                {!props.site.site_name
+                    .toLowerCase()
+                    .search(props.searchValue.toLowerCase()) >= 0 &&
+                    props.searchValue !== '' && (
+                        <Icon
+                            name="tag"
+                            size="small"
+                            style={{ float: 'right', color: 'grey' }}
+                        />
+                    )}
             </div>
         </StyledListItem>
     );

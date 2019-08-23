@@ -7,6 +7,7 @@
     "react-dom": "^16.9.0",
     "react-router": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-typeform-embed": "^0.2.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.3",
     "styled-components": "^4.3.2"

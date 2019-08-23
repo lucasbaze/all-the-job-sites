@@ -27,13 +27,6 @@ const BottomMenu = props => {
                     icon="compress"
                     basic
                 />
-                {props.collapsed ? null : (
-                    <Popup
-                        content="Settings"
-                        position="top left"
-                        trigger={<Button basic icon="cogs" />}
-                    />
-                )}
             </div>
             <Button
                 color="red"

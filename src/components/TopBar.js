@@ -76,9 +76,7 @@ const TopBar = props => {
                     placeholder="https://indeed.com/..."
                     style={{ width: '100%', marginRight: 20 }}
                 />
-                <Button basic onClick={() => props.setCurrentSite({})}>
-                    Logo
-                </Button>
+                <Button icon="home" onClick={() => props.setCurrentSite({})} />
             </div>
             <Modal
                 size="tiny"

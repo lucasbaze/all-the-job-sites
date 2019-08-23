@@ -99,7 +99,8 @@ const JobSitesContainer = props => {
             //return true and then run a .map over just those specific true ones
             let siteSearchable = site.searchable;
 
-            return siteNameFilter || siteTagFilter || siteSearchable;
+            //return siteNameFilter || siteTagFilter || siteSearchable;
+            return siteNameFilter || siteTagFilter;
         }
     };
 
@@ -128,9 +129,10 @@ const JobSitesContainer = props => {
                 .filter(site => {
                     return searchFilter(site);
                 })
-                .map(site => {
-                    return tansformSiteLinksBasedOnSearchTerm(site);
-                })
+                // Is the transformation of each link part
+                // .map(site => {
+                //     return tansformSiteLinksBasedOnSearchTerm(site);
+                // })
                 .sort((a, b) => {
                     return sortLinks(a, b);
                 })
@@ -139,7 +141,7 @@ const JobSitesContainer = props => {
                         <JobLink
                             site={site}
                             updateSite={props.updateSite}
-                            searching={props.searchValue}
+                            searchValue={props.searchValue}
                         />
                     );
                 })
