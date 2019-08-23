@@ -12,6 +12,10 @@ const StyledSideBar = styled.div`
     align-items: stretch;
     overflow: scroll;
     padding: 15px;
+
+    .input {
+        width: 100%;
+    }
 `;
 
 const SideBar = props => {

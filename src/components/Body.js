@@ -5,6 +5,8 @@ import SideBar from './SideBar.js';
 import BottomMenu from './BottomMenu.js';
 import MainContent from './MainContent.js';
 
+import { Button, Popup, Modal, Header } from 'semantic-ui-react';
+
 const MainContainer = styled.div`
     display: Flex;
     flex-direction: row;
@@ -28,9 +30,16 @@ const MainContentContainer = styled.div`
     overflow: scroll;
 `;
 
+const FeedbackButton = styled(Button)`
+    position: absolute;
+    bottom: 3px;
+    right: 0px;
+`;
+
 const Body = props => {
     const [collapsed, setCollapsed] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+    const [open, setOpen] = useState(false);
 
     const updateCollapsed = () => {
         console.log(collapsed);
@@ -58,6 +67,16 @@ const Body = props => {
                     searchValue={searchValue}
                 />
             </MainContentContainer>
+            <FeedbackButton content="Feedback" onClick={() => setOpen(true)} />
+            <Modal
+                size="tiny"
+                open={open}
+                onClose={() => setOpen(false)}
+                closeIcon
+            >
+                <Header as="h2" icon="rocket" content="Coming Soon!" />
+                <Modal.Content>Stuff</Modal.Content>
+            </Modal>
         </MainContainer>
     );
 };

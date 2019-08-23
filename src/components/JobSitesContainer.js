@@ -107,7 +107,7 @@ const JobSitesContainer = props => {
         if (site.searchable) {
             let query = props.searchValue.replace(' ', '%20');
 
-            site.searchURL = site.site_url + `/${query}`;
+            site.searchURL = site.site_url + `${query}`;
             console.log(site);
             return site;
         } else {
