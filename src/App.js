@@ -6,7 +6,6 @@ import Body from './components/Body.js';
 
 function App() {
     const [currentSite, setCurrentSite] = useState({});
-    console.log(process.env.AIRTABLE_API);
     return (
         <div className="App">
             <TopBar setCurrentSite={setCurrentSite} />
