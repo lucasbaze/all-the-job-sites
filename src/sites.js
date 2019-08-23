@@ -948,4 +948,14 @@ export const sites = [
             'https://www.linkedin.com/jobs/search?keywords=Video%20Editing&location=Denver%2C%20Colorado%2C%20United%20States&trk=guest_job_search_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0',
         ],
     },
+    {
+        main_category: 'Woman Focused',
+        type: 'job-board',
+        site_name: 'Women For Hire',
+        site_url: 'http://jobs.womenforhire.com/jobs/',
+        iframe_able: false,
+        tags: ['home', 'warehouse', 'women', 'female'],
+        searchable: true,
+        search_query_examples: [],
+    },
 ];
