@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { List, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const StyledListItem = styled(List.Item)`
-    div {
-        padding-bottom: 5px;
-        padding-top: 5px;
-        border-bottom: 1px solid #e4e4e4;
-    }
+    padding-bottom: 5px;
+    padding-top: 5px;
 
     :hover {
         color: green;
@@ -15,14 +16,19 @@ const StyledListItem = styled(List.Item)`
     }
 `;
 
+const StyledLink = styled(Link)`
+    color: rgb(73, 73, 73);
+`;
+
 const JobLink = props => {
     return (
-        <StyledListItem>
-            <div
-                onClick={() => {
-                    props.updateSite(props.site);
-                }}
-            >
+        <StyledLink
+            to="/site"
+            onClick={() => {
+                props.setSite(props.site);
+            }}
+        >
+            <StyledListItem>
                 {props.site.site_name}
                 {!props.site.iframe_able && (
                     <Icon
@@ -42,9 +48,12 @@ const JobLink = props => {
                             style={{ float: 'right', color: 'grey' }}
                         />
                     )}
-            </div>
-        </StyledListItem>
+            </StyledListItem>
+        </StyledLink>
     );
 };
 
-export default JobLink;
+export default connect(
+    null,
+    actions
+)(JobLink);

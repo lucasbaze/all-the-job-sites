@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Input, Button } from 'semantic-ui-react';
+import { Header, Input, Button, Modal } from 'semantic-ui-react';
 import JobSitesContainer from './JobSitesContainer.js';
 
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
+import BottomMenu from './BottomMenu.js';
 
 const StyledSideBar = styled.div`
     flex: 1;
@@ -18,92 +23,200 @@ const StyledSideBar = styled.div`
     }
 `;
 
+const StyledButton = styled(Button)`
+    padding: 0 10;
+`;
+
+const SideBarContainer = styled.div`
+    flex: ${props => (props.collapsed ? 0.7 : 1)};
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-shadow: 3px 0px 5px rgba(112, 112, 112, 0.4);
+    transition: flex 0.3s linear;
+    z-index: 999;
+`;
+
+const StyledTopBar = styled.div`
+    padding: 15px;
+    box-shadow: 0px 3px 5px #eaeaea;
+`;
+
+const StyledLink = styled.div`
+    margin-right: 10px;
+    a {
+        color: black;
+        :hover {
+            color: green;
+        }
+    }
+`;
+
 const SideBar = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
+    const [collapsed, setCollapsed] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+    const [openAbout, setOpenAbout] = useState(false);
+
+    const updateCollapsed = () => {
+        console.log(collapsed);
+        collapsed ? setCollapsed(false) : setCollapsed(true);
+    };
 
     useEffect(() => {
-        if (props.searchValue.length >= 1) {
+        if (searchValue.length >= 1) {
             setAllOpen(true);
         } else {
             setAllOpen(false);
         }
-    }, [props.searchValue]);
+    }, [searchValue]);
 
     const handleSearchChange = event => {
         setIsLoading(true);
-        props.setSearchValue(event.target.value);
+        setSearchValue(event.target.value);
 
         setTimeout(() => {
-            if (props.searchValue.length < 1) return;
+            if (searchValue.length < 1) return;
 
             setIsLoading(false);
         }, 300);
-        console.log(props.searchValue);
+        console.log(searchValue);
     };
 
     const updateSite = site => {
-        if (site === props.currentSite && !site.iframe_able) {
-            let openURL =
-                site.searchURL != null ? site.searchURL : site.site_url;
-            let win = window.open(openURL, '_blank');
-            win.focus();
-        } else {
-            props.setCurrentSite(site);
-        }
+        // if (site === props.currentSite && !site.iframe_able) {
+        //     let openURL =
+        //         site.searchURL != null ? site.searchURL : site.site_url;
+        //     let win = window.open(openURL, '_blank');
+        //     win.focus();
+        // } else {
+        //     props.setCurrentSite(site);
+        // }
+        console.log(site);
     };
 
     return (
-        <StyledSideBar>
-            {props.collapsed ? null : (
-                <div>
-                    <Header as="h4" style={{ marginBottom: 5 }}>
-                        Looking for:
-                    </Header>
+        <SideBarContainer collapsed={collapsed}>
+            {collapsed ? null : (
+                <StyledTopBar>
+                    <Header
+                        as="h2"
+                        content="All The Job Sites"
+                        style={{ marginBottom: 5, verticalAlign: 'middle' }}
+                    />
                     <div
                         style={{
-                            marginTop: 10,
-                            marginBottoM: 10,
-                            textAlign: 'center',
                             display: 'flex',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            marginBottom: 20,
                         }}
                     >
-                        <Button
-                            icon={
-                                allOpen ? 'compress' : 'expand arrows alternate'
-                            }
-                            basic
-                            onClick={() =>
-                                allOpen ? setAllOpen(false) : setAllOpen(true)
-                            }
-                        />
-                        <Input
-                            action={{
-                                color: 'lightgrey',
-                                icon: 'close',
-                                basic: 'true',
-                                onClick: function() {
-                                    props.setSearchValue('');
-                                    setAllOpen(false);
-                                },
-                            }}
-                            actionPosition="left"
-                            loading={isLoading}
-                            onChange={e => handleSearchChange(e)}
-                            icon="search"
-                            value={props.searchValue}
-                            placeholder="Sales, React, Military..."
-                        />
+                        <StyledLink>
+                            <Link to="/">Home</Link>
+                        </StyledLink>
+                        <StyledLink>
+                            <Link to="/contact-us">Contact Us</Link>
+                        </StyledLink>
+                        <StyledLink>
+                            <Link onClick={() => setOpenAbout(true)}>
+                                About Us
+                            </Link>
+                        </StyledLink>
                     </div>
-                </div>
+                    <div>
+                        <Header as="h4" style={{ marginBottom: 5 }}>
+                            Looking for:
+                        </Header>
+                        <div
+                            style={{
+                                marginTop: 10,
+                                textAlign: 'center',
+                                display: 'flex',
+                            }}
+                        >
+                            <Button
+                                icon={
+                                    allOpen
+                                        ? 'compress'
+                                        : 'expand arrows alternate'
+                                }
+                                basic
+                                onClick={() =>
+                                    allOpen
+                                        ? setAllOpen(false)
+                                        : setAllOpen(true)
+                                }
+                            />
+                            <Input
+                                action={{
+                                    color: 'lightgrey',
+                                    icon: 'close',
+                                    basic: 'true',
+                                    onClick: function() {
+                                        setSearchValue('');
+                                        setAllOpen(false);
+                                    },
+                                }}
+                                actionPosition="left"
+                                loading={isLoading}
+                                onChange={e => handleSearchChange(e)}
+                                icon="search"
+                                value={searchValue}
+                                placeholder="Sales, React, Military..."
+                            />
+                        </div>
+                    </div>
+                </StyledTopBar>
             )}
-            <JobSitesContainer
-                updateSite={updateSite}
-                searchValue={props.searchValue}
-                allOpen={allOpen}
+            <StyledSideBar>
+                <JobSitesContainer
+                    updateSite={updateSite}
+                    searchValue={searchValue}
+                    allOpen={allOpen}
+                />
+            </StyledSideBar>
+            <BottomMenu
+                updateCollapsed={updateCollapsed}
+                collapsed={collapsed}
             />
-        </StyledSideBar>
+            <Modal
+                size="tiny"
+                open={openAbout}
+                onClose={() => setOpenAbout(false)}
+                closeIcon
+            >
+                <Header as="h2" icon="thumbs up outline" content="Welcome!" />
+                <Modal.Content>
+                    <p>All The Job Sites is built by AllTheJobSites, Inc.</p>
+                    <p>
+                        The motivation of this site is to make job search
+                        easier. There are hundreds of job boards and finding all
+                        the jobs is a nightmare. All The Job Sites is the #1
+                        place to make all of this easier.
+                    </p>
+                    <p>
+                        The team currently consists of{' '}
+                        <a href="https://www.linkedin.com/in/lucas-bazemore-b3ba1264/">
+                            Lucas Bazemore
+                        </a>
+                        .
+                    </p>
+                </Modal.Content>
+            </Modal>
+        </SideBarContainer>
     );
 };
 
-export default SideBar;
+function mapStateToProps({ site }) {
+    return { site: site };
+}
+
+export default connect(
+    mapStateToProps,
+    actions
+)(SideBar);
