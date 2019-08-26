@@ -14,7 +14,7 @@ const StyledHomePage = styled.div`
 `;
 
 const StyledContainer = styled.div`
-    height: 80vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,7 +42,7 @@ const HomePage = () => {
         <StyledHomePage>
             <StyledContainer>
                 <StyledValueProp>
-                    <Header as="h1" style={{ marginBottom: 0 }}>
+                    <Header as="h1" style={{ marginBottom: 0, marginTop: 10 }}>
                         All The Job Sites
                     </Header>
                     <Header as="h3" style={{ marginTop: 10 }}>
@@ -69,7 +69,23 @@ const HomePage = () => {
                         company="Status"
                         location="Remote, US"
                         title="Mobile Engineering Lead"
-                        tags={['react native', 'android', 'blockchain']}
+                        tags={['react native', 'android', 'blockchain', 'js']}
+                    />
+                    <FeaturedJob
+                        logo="https://cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/006/203/resized/ScaleFactor_square_RGB.png?1470933628"
+                        url="https://boards.greenhouse.io/scalefactor/jobs/1838415"
+                        company="ScaleFactor"
+                        location="Austin, TX"
+                        title="Accounting Support Lead"
+                        tags={['jira', 'confluence', 'zendesk', 'accounting']}
+                    />
+                    <FeaturedJob
+                        logo="https://authenticjobs.s3.amazonaws.com/uploads/logos/223c285e4b730ba3daf341d03efee7cc/Lucid%20round,%20white%20on%20red.png"
+                        url="https://authenticjobs.com/jobs/31568/ecommerce-account-manager"
+                        company="Vestwell"
+                        location="New York, NY"
+                        title="Ecommerce Account Manager"
+                        tags={['magento', 'bigcommerce', 'sales', 'smb']}
                     />
                 </StyledFeaturedJobs>
                 <ShareButtons>

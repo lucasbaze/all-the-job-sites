@@ -100,7 +100,7 @@ const JobSitesContainer = props => {
             let siteSearchable = site.searchable;
 
             //return siteNameFilter || siteTagFilter || siteSearchable;
-            return siteNameFilter || siteTagFilter;
+            return siteNameFilter || siteTagFilter || siteSearchable;
         }
     };
 

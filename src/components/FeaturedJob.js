@@ -47,12 +47,19 @@ const FeaturedJob = props => {
                         width={8}
                         style={{
                             display: 'flex',
-                            flexFlow: 'row nowrap',
-                            justifyContent: 'space-around',
+                            flexFlow: 'row',
+                            justifyContent: 'flex-start',
                         }}
                     >
                         {props.tags.map(tag => {
-                            return <Button compact content={tag} />;
+                            return (
+                                <Button
+                                    compact
+                                    disabled
+                                    content={tag}
+                                    style={{ marginRight: 10, color: 'black' }}
+                                />
+                            );
                         })}
                     </Grid.Column>
                 </Grid.Row>

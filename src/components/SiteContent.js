@@ -56,7 +56,7 @@ const SiteContent = props => {
                     }
                 />
             ) : (
-                <ExternalLink />
+                <ExternalLink site={props.site} />
             )}
         </StyledLoaderContainer>
     );

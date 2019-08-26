@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Header, Button } from 'semantic-ui-react';
-
-import { connect } from 'react-redux';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -16,19 +14,33 @@ const StyledContainer = styled.div`
 `;
 
 const ExternalLink = props => {
-    //TODO: The below code will render a header that will countdown and then load the window in a new tab, except the issue is that if you click on another link that should load in another tab immediately after this one, countDown doesn't reset, so the page doesn't load.
+    const [count, setCount] = useState(4);
+
+    let timer = useRef();
 
     useEffect(() => {
-        console.log('hello');
-    }, [props.site]);
+        if (count > 0) {
+            timer.current = setTimeout(() => {
+                setCount(count - 1);
+            }, 1000);
+        } else {
+            let path =
+                props.site.searchURL != null
+                    ? props.site.searchURL
+                    : props.site.site_url;
+            window.open(path, 'blank');
+        }
+        return () => {
+            clearTimeout(timer.current);
+        };
+    }, [count]);
 
-    // let openURL =
-    //     props.site.searchURL != null
-    //         ? props.site.searchURL
-    //         : props.site.site_url;
-    // window.open(openURL, '_blank');
-    // clearInterval(timer);
-    // setCountDown(3);
+    useEffect(() => {
+        setCount(4);
+        return () => {
+            console.log('component unmounted');
+        };
+    }, [props.site]);
 
     return (
         <StyledContainer>
@@ -43,7 +55,7 @@ const ExternalLink = props => {
                         target="_blank"
                     >
                         <Header as="h2" color="blue">
-                            Open {props.site.site_name} in new tab
+                            {props.site.site_name} will open in {count}
                         </Header>
                     </a>
                     <Header as="h3" style={{ marginBottom: 0 }}>
@@ -60,8 +72,4 @@ const ExternalLink = props => {
     );
 };
 
-const mapStateToProps = ({ site }) => {
-    return { site: site };
-};
-
-export default connect(mapStateToProps)(ExternalLink);
+export default ExternalLink;
