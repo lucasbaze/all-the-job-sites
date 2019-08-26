@@ -39,7 +39,13 @@ const CategoryList = props => {
             <StyledCategory
                 as="h3"
                 style={{ borderBottom: '0.5px solid #e4e4e4' }}
-                onClick={() => (opened ? setOpened(false) : setOpened(true))}
+                onClick={() => {
+                    opened ? setOpened(false) : setOpened(true);
+                    window.gtag('event', 'category', {
+                        event_category: 'navigation',
+                        event_label: 'open close category',
+                    });
+                }}
             >
                 {props.title}
                 <Icon

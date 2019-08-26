@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Container, Header } from 'semantic-ui-react';
 import styled from 'styled-components';
@@ -15,7 +15,14 @@ const StyledTypeFormContainer = styled.div`
     width: 100%;
 `;
 
-const PostJob = () => {
+const ContactUs = () => {
+    useEffect(() => {
+        window.gtag('event', 'navigate', {
+            event_category: 'navigation',
+            event_label: 'contact us',
+        });
+    }, []);
+
     return (
         <Container fluid style={{ padding: 15 }}>
             <Header as="h1" content="Contact Us" style={{ marginTop: 15 }} />
@@ -30,4 +37,4 @@ const PostJob = () => {
     );
 };
 
-export default PostJob;
+export default ContactUs;

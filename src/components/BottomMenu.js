@@ -25,7 +25,13 @@ const BottomMenu = props => {
         <StyledBottomMenu>
             <div>
                 <StyledButton
-                    onClick={() => props.updateCollapsed()}
+                    onClick={() => {
+                        props.updateCollapsed();
+                        window.gtag('event', 'collapse', {
+                            event_category: 'navigation',
+                            event_label: 'expand collapse sidebar',
+                        });
+                    }}
                     icon="compress"
                     basic
                 />
@@ -33,7 +39,12 @@ const BottomMenu = props => {
             <Link to="/post-job">
                 <Button
                     color="red"
-                    onClick={() => setOpen(true)}
+                    onClick={() => {
+                        window.gtag('event', 'navigate', {
+                            event_category: 'navigation',
+                            event_label: 'post job',
+                        });
+                    }}
                     content="Post Job"
                     style={{ minWidth: 100 }}
                 />

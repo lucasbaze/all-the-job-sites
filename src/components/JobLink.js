@@ -26,6 +26,10 @@ const JobLink = props => {
             to="/site"
             onClick={() => {
                 props.setSite(props.site);
+                window.gtag('event', 'link', {
+                    event_category: 'navigation',
+                    event_label: 'open link',
+                });
             }}
         >
             <StyledListItem>

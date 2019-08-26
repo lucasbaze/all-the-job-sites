@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header, Icon, Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
@@ -38,6 +38,13 @@ const ShareButtons = styled.div`
 //height: calc(100vh - 50px);
 
 const HomePage = () => {
+    useEffect(() => {
+        window.gtag('event', 'navigate', {
+            event_category: 'navigation',
+            event_label: 'home page',
+        });
+    }, []);
+
     return (
         <StyledHomePage>
             <StyledContainer>
@@ -98,16 +105,32 @@ const HomePage = () => {
                                 backgroundColor: '#1877f2',
                                 color: 'white',
                             }}
+                            onClick={() => {
+                                window.gtag('event', 'click', {
+                                    event_category: 'share',
+                                    event_label: 'facebook share',
+                                });
+                            }}
                         >
                             <Icon name="facebook" />
                             Share on Facebook
                         </Button>
                     </FacebookShareButton>
-                    <TwitterShareButton url={'https://allthejobsites.com'}>
+                    <TwitterShareButton
+                        url={'https://allthejobsites.com'}
+                        title="All The Jobs Sites. Where your job search starts... and ends."
+                        hashtags={['jobs', 'hiring']}
+                    >
                         <Button
                             style={{
                                 backgroundColor: '#1da1f2',
                                 color: 'white',
+                            }}
+                            onClick={() => {
+                                window.gtag('event', 'click', {
+                                    event_category: 'share',
+                                    event_label: 'twitter share',
+                                });
                             }}
                         >
                             <Icon name="twitter square" />

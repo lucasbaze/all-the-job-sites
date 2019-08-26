@@ -123,7 +123,15 @@ const SideBar = props => {
                             <Link to="/contact-us">Contact Us</Link>
                         </StyledLink>
                         <StyledLink>
-                            <Link onClick={() => setOpenAbout(true)}>
+                            <Link
+                                onClick={() => {
+                                    setOpenAbout(true);
+                                    window.gtag('event', 'navigate', {
+                                        event_category: 'navigation',
+                                        event_label: 'open about us',
+                                    });
+                                }}
+                            >
                                 About Us
                             </Link>
                         </StyledLink>
@@ -146,11 +154,15 @@ const SideBar = props => {
                                         : 'expand arrows alternate'
                                 }
                                 basic
-                                onClick={() =>
+                                onClick={() => {
                                     allOpen
                                         ? setAllOpen(false)
-                                        : setAllOpen(true)
-                                }
+                                        : setAllOpen(true);
+                                    window.gtag('event', 'collapse', {
+                                        event_category: 'navigation',
+                                        event_label: 'expand collapse links',
+                                    });
+                                }}
                             />
                             <Input
                                 action={{
@@ -160,11 +172,21 @@ const SideBar = props => {
                                     onClick: function() {
                                         setSearchValue('');
                                         setAllOpen(false);
+                                        window.gtag('event', 'search', {
+                                            event_category: 'navigation',
+                                            event_label: 'clear search',
+                                        });
                                     },
                                 }}
                                 actionPosition="left"
                                 loading={isLoading}
-                                onChange={e => handleSearchChange(e)}
+                                onChange={e => {
+                                    handleSearchChange(e);
+                                    window.gtag('event', 'search', {
+                                        event_category: 'navigation',
+                                        event_label: 'searching',
+                                    });
+                                }}
                                 icon="search"
                                 value={searchValue}
                                 placeholder="Sales, React, Military..."
@@ -187,7 +209,13 @@ const SideBar = props => {
             <Modal
                 size="tiny"
                 open={openAbout}
-                onClose={() => setOpenAbout(false)}
+                onClose={() => {
+                    setOpenAbout(false);
+                    window.gtag('event', 'navigate', {
+                        event_category: 'navigation',
+                        event_label: 'close about us',
+                    });
+                }}
                 closeIcon
             >
                 <Header as="h2" icon="thumbs up outline" content="Welcome!" />

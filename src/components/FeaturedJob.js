@@ -21,6 +21,10 @@ const FeaturedJob = props => {
             style={{ display: 'flex' }}
             onClick={() => {
                 window.open(props.url, 'blank');
+                window.gtag('event', 'jobs', {
+                    event_category: 'navigation',
+                    event_label: 'featured job link',
+                });
             }}
         >
             <StyledImage src={props.logo} />
