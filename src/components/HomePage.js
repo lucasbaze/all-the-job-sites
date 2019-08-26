@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Header, Icon, Button } from 'semantic-ui-react';
+import { Header, Icon, Button, Image } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 

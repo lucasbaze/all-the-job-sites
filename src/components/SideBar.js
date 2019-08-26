@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Input, Button, Modal } from 'semantic-ui-react';
+import { Header, Input, Button, Modal, Image } from 'semantic-ui-react';
 import JobSitesContainer from './JobSitesContainer.js';
 
 import * as actions from '../actions';
@@ -103,11 +103,13 @@ const SideBar = props => {
         <SideBarContainer collapsed={collapsed}>
             {collapsed ? null : (
                 <StyledTopBar>
-                    <Header
-                        as="h2"
-                        content="All The Job Sites"
-                        style={{ marginBottom: 5, verticalAlign: 'middle' }}
-                    />
+                    <Header as="h2" style={{ display: 'flex' }}>
+                        <Image
+                            src="/apple-touch-icon.png"
+                            style={{ width: 30, height: 30, marginRight: 10 }}
+                        />
+                        <p>All The Job Sites</p>
+                    </Header>
                     <div
                         style={{
                             display: 'flex',
