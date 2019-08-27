@@ -395,7 +395,7 @@ export const sites = [
     {
         main_category: 'Crypto',
         type: 'job-board',
-        site_name: 'Crytocurrency Jobs',
+        site_name: 'Cryptocurrency Jobs',
         site_url: 'https://cryptocurrencyjobs.co/',
         iframe_able: true,
         tags: ['software', 'startups', 'crypto', 'blockchain'],

@@ -84,7 +84,8 @@ const SideBar = props => {
 
             setIsLoading(false);
         }, 300);
-        console.log(searchValue);
+
+        console.log(`${searchValue} => ${event.target.value}`);
     };
 
     const updateSite = site => {
