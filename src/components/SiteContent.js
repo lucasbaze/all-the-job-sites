@@ -4,6 +4,9 @@ import { Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import ExternalLink from './ExternalLink';
+import { sitesBySlug } from '../sites';
+
+console.log(sitesBySlug)
 
 const StyledLoaderContainer = styled.div`
     position: relative;
@@ -31,13 +34,16 @@ const StyledCover = styled.div`
 
 const SiteContent = props => {
     const [visible, setVisible] = useState(true);
+    const { categorySlug, nameSlug } = props.match.params;
+    const site = sitesBySlug[categorySlug][nameSlug]; // grab the site we want
 
+    // fancy shit
     useEffect(() => {
         setVisible(true);
         setTimeout(() => {
             setVisible(false);
         }, 1000);
-    }, [props.site]);
+    }, [site]);
 
     return (
         <StyledLoaderContainer>
@@ -46,17 +52,17 @@ const SiteContent = props => {
                     <Loader inline active inverted size="large" />
                 </StyledCover>
             ) : null}
-            {props.site.iframe_able ? (
+            {site.iframe_able ? (
                 <iframe
                     title="currentSite"
                     src={
-                        props.site.searchURL != null
-                            ? props.site.searchURL
-                            : props.site.site_url
+                        site.searchURL != null
+                            ? site.searchURL
+                            : site.site_url
                     }
                 />
             ) : (
-                <ExternalLink site={props.site} />
+                <ExternalLink site={site} />
             )}
         </StyledLoaderContainer>
     );
