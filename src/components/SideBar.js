@@ -173,7 +173,7 @@ const SideBar = props => {
                                 action={{
                                     color: 'lightgrey',
                                     icon: 'close',
-                                    basic: 'true',
+                                    basic: true,
                                     onClick: function() {
                                         setSearchValue('');
                                         setAllOpen(false);
@@ -192,9 +192,11 @@ const SideBar = props => {
                                         event_label: 'searching',
                                     });
                                 }}
+                                fluid
                                 icon="search"
                                 value={searchValue}
                                 placeholder="Sales, React, Military..."
+                                style={{ flex: 1 /* use full width */ }}
                             />
                         </div>
                     </div>
