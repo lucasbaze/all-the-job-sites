@@ -1,4 +1,26 @@
-export const sites = [
+import _ from 'lodash';
+
+// Helper functions
+const slugify = s => _.kebabCase(s)
+const addSlugsToSites = sites => {
+    sites.forEach(site => {
+        site.main_category_slug = slugify(site.main_category);
+        site.site_name_slug = slugify(site.site_name);
+    });
+}
+const groupBySlugs = sites => {
+    let categories = {};
+    for(let idx in sites) {
+        let cat  = sites[idx].main_category_slug; // slugified category
+        let name = sites[idx].site_name_slug;
+        if(!categories[cat]) categories[cat] = {};
+        categories[cat][name] = sites[idx];
+    }
+    return categories;
+}
+
+// Data
+let sitesMaster = [
     {
         main_category: 'Remote',
         type: 'job-board',
@@ -1379,3 +1401,10 @@ export const sites = [
         ],
     },
 ];
+
+// Processing
+addSlugsToSites(sitesMaster); // run this in-place to save memory
+
+// Exports
+export const sites = sitesMaster;
+export const sitesBySlug = groupBySlugs(sites);

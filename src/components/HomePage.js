@@ -57,7 +57,7 @@ const HomePage = () => {
                     </Header>
                     <p>
                         <Icon name="chevron left" />
-                        Use the sidebar on the left to get start!
+                        Use the sidebar on the left to get started!
                     </p>
                 </StyledValueProp>
                 <StyledFeaturedJobs>

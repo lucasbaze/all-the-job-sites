@@ -21,11 +21,12 @@ const StyledLink = styled(Link)`
 `;
 
 const JobLink = props => {
+    const { site } = props;
     return (
         <StyledLink
-            to="/site"
+            to={`/${site.main_category_slug}/${site.site_name_slug}`}
             onClick={() => {
-                props.setSite(props.site);
+                // props.setSite(props.site);
                 window.gtag('event', 'link', {
                     event_category: 'navigation',
                     event_label: 'open link',
@@ -33,8 +34,8 @@ const JobLink = props => {
             }}
         >
             <StyledListItem>
-                {props.site.site_name}
-                {!props.site.iframe_able && (
+                {site.site_name}
+                {!site.iframe_able && (
                     <Icon
                         name="linkify"
                         size="small"
@@ -42,7 +43,7 @@ const JobLink = props => {
                     />
                 )}
                 {/* TODO: functionize this test to display the tag or make this a more robust component */}
-                {!props.site.site_name
+                {!site.site_name
                     .toLowerCase()
                     .search(props.searchValue.toLowerCase()) >= 0 &&
                     props.searchValue !== '' && (
