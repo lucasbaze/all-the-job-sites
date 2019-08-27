@@ -61,8 +61,19 @@ const CategoryList = props => {
     );
 };
 
-const JobSitesContainer = props => {
-    //This will need to be pulled from a Database
+// sort site objects alphabetically by key (main_category)
+const sortCategories = (a, b) => {
+    return a[0].toUpperCase() < b[0].toUpperCase() ? -1 : 1;
+};
+const sortSites = (a, b) => {
+    return a.site_name.toUpperCase() < b.site_name.toUpperCase() ? -1 : 1;
+};
+
+/**
+ * @returns Array [global sort key, site object]
+ */
+const prepareSites = sites => {
+    // TODO: This will need to be pulled from a Database
     let reduced = sites.reduce((total, curr, index) => {
         if (curr.main_category in total) {
             total[curr.main_category] = [...total[curr.main_category], curr];
@@ -72,11 +83,18 @@ const JobSitesContainer = props => {
         return total;
     }, {});
 
-    let reducedObject = Object.entries(reduced);
+    // convert object to array of [key, value] pairs
+    // the value part is an array of sites
+    // sort the sites by their site_name (see sortSites)
+    // then, sort the whole master array by categories names
+    let reducedObject = Object.entries(reduced).map(([k, v]) => [k, v.sort(sortSites)]).sort(sortCategories);
 
-    let sortCategories = (a, b) => {
-        return a[0].toUpperCase() < b[0].toUpperCase() ? -1 : 1;
-    };
+    return reducedObject;
+}
+
+const preparedSites = prepareSites(sites);
+
+const JobSitesContainer = props => {
 
     let searchFilter = site => {
         if (props.searchValue === '') {
@@ -84,33 +102,34 @@ const JobSitesContainer = props => {
         } else {
             //Check if the search value is in the site_name
             //return true if true
-            let siteNameIndex = site.site_name
-                .toLowerCase()
-                .search(props.searchValue.toLowerCase());
-            let siteNameFilter = siteNameIndex >= 0 ? true : false;
+
+            let query = props.searchValue.toLowerCase();
+            let siteNameIndex = site.site_name.toLowerCase().search(query);
+            let siteNameFilter = siteNameIndex >= 0; // ? true : false is redundant
 
             //Check if the search value is in the tags
             //return true if one of the tags has the search term and then provide an icon with the tag_icon
-            let siteTagIndex = site.tags.filter(tag => {
+            /*let siteTagIndex = site.tags.filter(tag => {
                 return tag
                     .toLowerCase()
                     .search(props.searchValue.toLowerCase()) >= 0
                     ? true
                     : false;
-            });
+            });*/
+            // let siteTagFilter = siteTagIndex.length >= 1 ? true : false;
 
-            let siteTagFilter = siteTagIndex.length >= 1 ? true : false;
+            let siteTagFilter = site.tags.includes(query);
 
             //Check if the site is searchable
             //return true and then run a .map over just those specific true ones
-            let siteSearchable = site.searchable;
+            // let siteSearchable = site.searchable;
 
             //return siteNameFilter || siteTagFilter || siteSearchable;
-            return siteNameFilter || siteTagFilter || siteSearchable;
+            return siteNameFilter || siteTagFilter;
         }
     };
 
-    let tansformSiteLinksBasedOnSearchTerm = site => {
+    /*let tansformSiteLinksBasedOnSearchTerm = site => {
         if (site.searchable) {
             let query = props.searchValue.replace(' ', '%20');
 
@@ -121,27 +140,15 @@ const JobSitesContainer = props => {
             return site;
         }
     };
+    Is the transformation of each link part
+    .map(site => {
+        return tansformSiteLinksBasedOnSearchTerm(site);
+    })*/
 
-    let sortLinks = (a, b) => {
-        return a.site_name.toUpperCase() < b.site_name.toUpperCase() ? -1 : 1;
-    };
-
-    let linkList = reducedObject
-        .sort((a, b) => {
-            return sortCategories(a, b);
-        })
-        .map((category, index) => {
-            let categoryList = category[1]
-                .filter(site => {
-                    return searchFilter(site);
-                })
-                // Is the transformation of each link part
-                // .map(site => {
-                //     return tansformSiteLinksBasedOnSearchTerm(site);
-                // })
-                .sort((a, b) => {
-                    return sortLinks(a, b);
-                })
+    let linkList = preparedSites
+        .map(([categoryName, categorySites], index) => {
+            let categoryList = categorySites // pulling the value part
+                .filter(searchFilter)
                 .map(site => {
                     return (
                         <JobLink
@@ -155,7 +162,7 @@ const JobSitesContainer = props => {
 
             return categoryList.length >= 1 ? (
                 <CategoryList
-                    title={category[0]}
+                    title={categoryName}
                     categoryList={categoryList}
                     allOpen={props.allOpen}
                 />
