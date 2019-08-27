@@ -493,6 +493,7 @@ let sitesMaster = [
         tags: ['all jobs', 'career', 'temporary', 'minority'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://us.jobs/search?keyword=%q'
     },
     {
         main_category: 'Software',
