@@ -104,13 +104,15 @@ const SideBar = props => {
         <SideBarContainer collapsed={collapsed}>
             {collapsed ? null : (
                 <StyledTopBar>
-                    <Header as="h2" style={{ display: 'flex' }}>
-                        <Image
-                            src="/apple-touch-icon.png"
-                            style={{ width: 30, height: 30, marginRight: 10 }}
-                        />
-                        <p>All The Job Sites</p>
-                    </Header>
+                    <Link to="/">
+                        <Header as="h2" style={{ display: 'flex', marginBottom: 5 }}>
+                            <Image
+                                src="/apple-touch-icon.png"
+                                style={{ width: 30, height: 30, marginRight: 10 }}
+                            />
+                            <p>All The Job Sites</p>
+                        </Header>
+                    </Link>
                     <div
                         style={{
                             display: 'flex',

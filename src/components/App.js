@@ -55,14 +55,14 @@ const App = props => {
             <MainContainer>
                 <SideBar />
                 <MainContentContainer>
-                    <Route exact path="/" render={() => <HomePage />} />
-                    <Route exact path="/site" render={() => <SiteContent />} />
+                    <Route exact path="/" component={HomePage} />
                     <Route
                         exact
                         path="/contact-us"
-                        render={() => <ContactUs />}
+                        component={ContactUs}
                     />
-                    <Route exact path="/post-job" render={() => <PostJob />} />
+                    <Route exact path="/post-job" component={PostJob} />
+                    <Route exact path="/:categorySlug/:nameSlug" component={SiteContent} />
                 </MainContentContainer>
             </MainContainer>
         </BrowserRouter>
