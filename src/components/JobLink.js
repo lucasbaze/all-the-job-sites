@@ -55,28 +55,38 @@ const JobLink = props => {
                 }}>
                 <StyledListItem>
                     {site.site_name}
-                    {!site.iframe_able && (
-                        <Icon
-                            name="linkify"
-                            size="small"
-                            style={{ float: 'right', color: 'grey' }}
-                        />
-                    )}
-                    {/* TODO: functionize this test to display the tag or make this a more robust component */}
-                    {!site.site_name
-                        .toLowerCase()
-                        .search(props.searchValue.toLowerCase()) >= 0 &&
-                        props.searchValue !== '' && (
+                    {!(props.searchValue && site.searchable) ? null : (
+                        <span style={{ float: 'right', fontVariant: 'small-caps', fontSize: 11, opacity: 0.5 }}>
                             <Icon
-                                name="tag"
-                                size="small"
-                                style={{ float: 'right', color: 'grey' }}
+                                name="searchengin"
+                                size="medium"
+                                style={{ }}
                             />
-                        )}
+                            "{props.searchValue}"
+                        </span>
+                    )}
                 </StyledListItem>
             </Responsive>
         </>
     );
+    // {!site.iframe_able && (
+    //     <Icon
+    //         name="linkify"
+    //         size="small"
+    //         style={{ float: 'right', color: 'grey' }}
+    //     />
+    // )}
+    // {/* TODO: functionize this test to display the tag or make this a more robust component */}
+    // {!site.site_name
+    //     .toLowerCase()
+    //     .search(props.searchValue.toLowerCase()) >= 0 &&
+    //     props.searchValue !== '' && (
+    //         <Icon
+    //             name="tag"
+    //             size="small"
+    //             style={{ float: 'right', color: 'grey' }}
+    //         />
+    //     )}
 };
 
 export default connect(
