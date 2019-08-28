@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Input, Button, Modal, Image } from 'semantic-ui-react';
+import {
+    Header,
+    Input,
+    Button,
+    Modal,
+    Image,
+    Responsive,
+} from 'semantic-ui-react';
 import JobSitesContainer from './JobSitesContainer.js';
 
 import { useStateValue } from '../state';
@@ -52,6 +59,14 @@ const StyledLink = styled.div`
         :hover {
             color: green;
         }
+    }
+`;
+
+const StyledALink = styled.a`
+    color: black;
+    margin-right: 10px;
+    :hover {
+        color: green;
     }
 `;
 
@@ -124,9 +139,28 @@ const SideBar = () => {
                         <StyledLink>
                             <Link to="/">Home</Link>
                         </StyledLink>
-                        <StyledLink>
-                            <Link to="/contact-us">Contact Us</Link>
-                        </StyledLink>
+                        <Responsive
+                            as={StyledLink}
+                            to="/contact-us"
+                            minWidth={768}
+                        >
+                            Contact Us
+                        </Responsive>
+
+                        <Responsive
+                            as={StyledALink}
+                            href="https://lucasbazemore.typeform.com/to/iAd0PV"
+                            maxWidth={768}
+                            target="_blank"
+                            onClick={() =>
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'contact us',
+                                })
+                            }
+                        >
+                            Contact Us
+                        </Responsive>
                         <StyledLink>
                             <Link
                                 onClick={() => {
