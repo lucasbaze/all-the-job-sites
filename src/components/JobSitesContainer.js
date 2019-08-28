@@ -122,10 +122,10 @@ const JobSitesContainer = props => {
 
             //Check if the site is searchable
             //return true and then run a .map over just those specific true ones
-            // let siteSearchable = site.searchable;
+            let siteSearchable = site.searchable;
 
-            //return siteNameFilter || siteTagFilter || siteSearchable;
-            return siteNameFilter || siteTagFilter;
+            return siteNameFilter || siteTagFilter || siteSearchable;
+            // return siteNameFilter || siteTagFilter;
         }
     };
 

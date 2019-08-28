@@ -25,8 +25,8 @@ const ExternalLink = props => {
             }, 1000);
         } else {
             let path =
-                props.site.searchURL != null
-                    ? props.site.searchURL
+                props.site.search_url != null
+                    ? props.site.search_url.replace('%q', 'some_search_term')
                     : props.site.site_url;
             window.open(path, 'blank');
         }

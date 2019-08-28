@@ -38,6 +38,7 @@ const SideBarContainer = styled.div`
     box-shadow: 3px 0px 5px rgba(112, 112, 112, 0.4);
     transition: flex 0.3s linear;
     z-index: 999;
+    min-width: 280px;
 `;
 
 const StyledTopBar = styled.div`
@@ -173,7 +174,7 @@ const SideBar = props => {
                                 action={{
                                     color: 'lightgrey',
                                     icon: 'close',
-                                    basic: 'true',
+                                    basic: true,
                                     onClick: function() {
                                         setSearchValue('');
                                         setAllOpen(false);
@@ -192,9 +193,11 @@ const SideBar = props => {
                                         event_label: 'searching',
                                     });
                                 }}
+                                fluid
                                 icon="search"
                                 value={searchValue}
                                 placeholder="Sales, React, Military..."
+                                style={{ flex: 1 /* use full width */ }}
                             />
                         </div>
                     </div>

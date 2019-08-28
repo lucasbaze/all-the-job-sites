@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import './App.css';
-import { Container, Grid, Header } from 'semantic-ui-react';
+import { Container, Grid, Header, Responsive } from 'semantic-ui-react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -54,7 +54,7 @@ const App = props => {
         <BrowserRouter>
             <MainContainer>
                 <SideBar />
-                <MainContentContainer>
+                <Responsive as={MainContentContainer} minWidth={768}>
                     <Route exact path="/" component={HomePage} />
                     <Route
                         exact
@@ -63,7 +63,7 @@ const App = props => {
                     />
                     <Route exact path="/post-job" component={PostJob} />
                     <Route exact path="/:categorySlug/:nameSlug" component={SiteContent} />
-                </MainContentContainer>
+                </Responsive>
             </MainContainer>
         </BrowserRouter>
     );
