@@ -7,7 +7,7 @@ import { sitesBySlug } from '../sites';
 
 import { useStateValue } from '../sites';
 
-console.log(sitesBySlug);
+//console.log(sitesBySlug);
 
 const StyledLoaderContainer = styled.div`
     position: relative;
