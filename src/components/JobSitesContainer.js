@@ -87,15 +87,16 @@ const prepareSites = sites => {
     // the value part is an array of sites
     // sort the sites by their site_name (see sortSites)
     // then, sort the whole master array by categories names
-    let reducedObject = Object.entries(reduced).map(([k, v]) => [k, v.sort(sortSites)]).sort(sortCategories);
+    let reducedObject = Object.entries(reduced)
+        .map(([k, v]) => [k, v.sort(sortSites)])
+        .sort(sortCategories);
 
     return reducedObject;
-}
+};
 
 const preparedSites = prepareSites(sites);
 
 const JobSitesContainer = props => {
-
     let searchFilter = site => {
         if (props.searchValue === '') {
             return true;
@@ -151,11 +152,7 @@ const JobSitesContainer = props => {
                 .filter(searchFilter)
                 .map(site => {
                     return (
-                        <JobLink
-                            site={site}
-                            updateSite={props.updateSite}
-                            searchValue={props.searchValue}
-                        />
+                        <JobLink site={site} searchValue={props.searchValue} />
                     );
                 })
                 .reduce((prev, curr) => [prev, curr], []);

@@ -1,47 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React from 'react';
 import './App.css';
-import { Container, Grid, Header, Responsive } from 'semantic-ui-react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Responsive } from 'semantic-ui-react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import HomePage from './HomePage';
-
-// import TopBar from './components/TopBar.js';
-// import Body from './components/Body.js';
-//
-// function App() {
-//     const [currentSite, setCurrentSite] = useState({});
-//     return (
-//         <div className="App">
-//             <TopBar setCurrentSite={setCurrentSite} />
-//             <Body currentSite={currentSite} setCurrentSite={setCurrentSite} />
-//         </div>
-//     );
-// }
-
 import SideBar from './SideBar';
 import SiteContent from './SiteContent';
 import PostJob from './PostJob';
 import ContactUs from './ContactUs';
 
+import { StateProvider } from '../state';
+
 const MainContainer = styled.div`
     display: Flex;
     flex-direction: row;
     align-items: stretch;
-`;
-
-const SideBarContainer = styled.div`
-    flex: ${props => (props.collapsed ? 0.55 : 1)};
-    height: 100vh;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    box-shadow: 3px 0px 5px #eaeaea;
-    transition: flex 0.5s linear;
 `;
 
 const MainContentContainer = styled.div`
@@ -50,30 +24,41 @@ const MainContentContainer = styled.div`
 `;
 
 const App = props => {
+    const initialState = {
+        searchValue: '',
+    };
+
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'updateSearch':
+                return {
+                    ...state,
+                    searchValue: action.payload,
+                };
+            default:
+                return state;
+        }
+    };
+
     return (
-        <BrowserRouter>
-            <MainContainer>
-                <SideBar />
-                <Responsive as={MainContentContainer} minWidth={768}>
-                    <Route exact path="/" component={HomePage} />
-                    <Route
-                        exact
-                        path="/contact-us"
-                        component={ContactUs}
-                    />
-                    <Route exact path="/post-job" component={PostJob} />
-                    <Route exact path="/:categorySlug/:nameSlug" component={SiteContent} />
-                </Responsive>
-            </MainContainer>
-        </BrowserRouter>
+        <StateProvider initialState={initialState} reducer={reducer}>
+            <BrowserRouter>
+                <MainContainer>
+                    <SideBar />
+                    <Responsive as={MainContentContainer} minWidth={768}>
+                        <Route exact path="/" component={HomePage} />
+                        <Route exact path="/contact-us" component={ContactUs} />
+                        <Route exact path="/post-job" component={PostJob} />
+                        <Route
+                            exact
+                            path="/:categorySlug/:nameSlug"
+                            component={SiteContent}
+                        />
+                    </Responsive>
+                </MainContainer>
+            </BrowserRouter>
+        </StateProvider>
     );
 };
 
-const mapStateToProps = ({ site }) => {
-    return { site: site };
-};
-
-export default connect(
-    mapStateToProps,
-    actions
-)(App);
+export default App;

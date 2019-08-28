@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Header, Button } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
+
+import { useStateValue } from '../state';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -15,6 +17,9 @@ const StyledContainer = styled.div`
 
 const ExternalLink = props => {
     const [count, setCount] = useState(4);
+    const [{ searchValue }, dispatch] = useStateValue();
+
+    console.log(searchValue);
 
     let timer = useRef();
 
@@ -26,7 +31,7 @@ const ExternalLink = props => {
         } else {
             let path =
                 props.site.search_url != null
-                    ? props.site.search_url.replace('%q', 'some_search_term')
+                    ? props.site.search_url.replace(/%q/g, searchValue)
                     : props.site.site_url;
             window.open(path, 'blank');
         }
@@ -62,8 +67,6 @@ const ExternalLink = props => {
                         {props.site.site_name} cannot be accessed from here.
                     </Header>
                     <p>This is common, so nothing to worry about.</p>
-                    {/*<Header as="h3">Site will open in {countDown}</Header>*/}
-                    {/*<Header as="h3">{searchValue}</Header>*/}
                 </div>
             ) : (
                 <p>Click a link to open here!</p>

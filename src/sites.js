@@ -1,23 +1,23 @@
 import _ from 'lodash';
 
 // Helper functions
-const slugify = s => _.kebabCase(s)
+const slugify = s => _.kebabCase(s);
 const addSlugsToSites = sites => {
     sites.forEach(site => {
         site.main_category_slug = slugify(site.main_category);
         site.site_name_slug = slugify(site.site_name);
     });
-}
+};
 const groupBySlugs = sites => {
     let categories = {};
-    for(let idx in sites) {
-        let cat  = sites[idx].main_category_slug; // slugified category
+    for (let idx in sites) {
+        let cat = sites[idx].main_category_slug; // slugified category
         let name = sites[idx].site_name_slug;
-        if(!categories[cat]) categories[cat] = {};
+        if (!categories[cat]) categories[cat] = {};
         categories[cat][name] = sites[idx];
     }
     return categories;
-}
+};
 
 // Data
 let sitesMaster = [
@@ -122,6 +122,8 @@ let sitesMaster = [
             'https://www.careerbuilder.com/jobs?utf8=%E2%9C%93&keywords=Marketing&location=Austin+Tx',
             'https://www.careerbuilder.com/jobs?utf8=%E2%9C%93&keywords=React&location=Denver%2C+CO',
         ],
+        search_url:
+            'https://www.careerbuilder.com/jobs?utf8=%E2%9C%93&keywords=%q',
     },
     {
         main_category: 'Job Boards',
@@ -135,6 +137,7 @@ let sitesMaster = [
             'https://www.indeed.com/q-full-stack-developer-l-College-Station,-TX-jobs.html',
             'https://www.indeed.com/jobs?q=theater+teacher&l=Oregon',
         ],
+        search_url: 'https://www.indeed.com/jobs?q=%q',
     },
     {
         main_category: 'Tech Companies',
@@ -158,6 +161,8 @@ let sitesMaster = [
             'https://www.glassdoor.com/Job/react-native-jobs-SRCH_KO0,12.htm',
             'https://www.glassdoor.com/Job/seattle-full-stack-web-dev-jobs-SRCH_IL.0,7_IC1150505_KE8,26.htm',
         ],
+        search_url:
+            'https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=%q&sc.keyword=%q&locT=&locId=&jobType=',
     },
     {
         main_category: 'Remote',
@@ -403,6 +408,8 @@ let sitesMaster = [
         tags: ['career', 'all jobs', 'corporate'],
         searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://www.themuse.com/search/jobs?keyword=%q&filter=true',
     },
     {
         main_category: 'Job Boards',
@@ -413,6 +420,8 @@ let sitesMaster = [
         tags: ['career', 'all jobs', 'corporate', 'internships', 'startups'],
         searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://www.idealist.org/en/?q=%q&searchMode=true&sort=relevance&type=JOB',
     },
     {
         main_category: 'Crypto',
@@ -493,7 +502,7 @@ let sitesMaster = [
         tags: ['all jobs', 'career', 'temporary', 'minority'],
         searchable: true,
         search_query_examples: [''],
-        search_url: 'https://us.jobs/search?keyword=%q'
+        search_url: 'https://us.jobs/search?keyword=%q',
     },
     {
         main_category: 'Software',
@@ -652,6 +661,8 @@ let sitesMaster = [
         tags: ['all jobs', 'career', 'corporate'],
         searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://www.monster.com/jobs/search/?q=%q&intcid=skr_navigation_nhpso_searchMain',
     },
     {
         main_category: 'Job Boards',
@@ -662,6 +673,7 @@ let sitesMaster = [
         tags: ['all jobs', 'career', 'corporate'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.simplyhired.com/search?q=%q',
     },
     {
         main_category: 'Job Boards',
@@ -672,6 +684,7 @@ let sitesMaster = [
         tags: ['all jobs', 'career', 'corporate'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.ziprecruiter.com/candidate/search?search=%q',
     },
     {
         main_category: 'Gig Economy',
@@ -1010,6 +1023,8 @@ let sitesMaster = [
             'https://www.linkedin.com/jobs/search?keywords=Front%20End%20Engineer&location=United%20States&trk=homepage-jobseeker_recent-search&redirect=false&position=1&pageNum=0',
             'https://www.linkedin.com/jobs/search?keywords=Video%20Editing&location=Denver%2C%20Colorado%2C%20United%20States&trk=guest_job_search_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0',
         ],
+        search_url:
+            'https://www.linkedin.com/jobs/search/?keywords=%q&location=United%20States',
     },
     {
         main_category: 'Women',

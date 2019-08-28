@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header, Input, Button, Modal, Image } from 'semantic-ui-react';
 import JobSitesContainer from './JobSitesContainer.js';
 
-import * as actions from '../actions';
-import { connect } from 'react-redux';
+import { useStateValue } from '../state';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -28,7 +27,7 @@ const StyledButton = styled(Button)`
 `;
 
 const SideBarContainer = styled.div`
-    flex: ${props => (props.collapsed ? 0.7 : 1)};
+    flex: ${props => (props.collapsed ? 0.6 : 1)};
     height: 100vh;
     display: flex;
     flex-flow: column nowrap;
@@ -38,7 +37,7 @@ const SideBarContainer = styled.div`
     box-shadow: 3px 0px 5px rgba(112, 112, 112, 0.4);
     transition: flex 0.3s linear;
     z-index: 999;
-    min-width: 280px;
+    min-width: 260px;
 `;
 
 const StyledTopBar = styled.div`
@@ -56,12 +55,13 @@ const StyledLink = styled.div`
     }
 `;
 
-const SideBar = props => {
+const SideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
-    const [searchValue, setSearchValue] = useState('');
     const [openAbout, setOpenAbout] = useState(false);
+    const [{ searchValue }, dispatch] = useStateValue();
+    //const [searchValue, setSearchValue] = useState('');
 
     const updateCollapsed = () => {
         console.log(collapsed);
@@ -78,7 +78,11 @@ const SideBar = props => {
 
     const handleSearchChange = event => {
         setIsLoading(true);
-        setSearchValue(event.target.value);
+
+        dispatch({
+            type: 'updateSearch',
+            payload: event.target.value,
+        });
 
         setTimeout(() => {
             if (searchValue.length < 1) return;
@@ -89,27 +93,22 @@ const SideBar = props => {
         console.log(`${searchValue} => ${event.target.value}`);
     };
 
-    const updateSite = site => {
-        // if (site === props.currentSite && !site.iframe_able) {
-        //     let openURL =
-        //         site.searchURL != null ? site.searchURL : site.site_url;
-        //     let win = window.open(openURL, '_blank');
-        //     win.focus();
-        // } else {
-        //     props.setCurrentSite(site);
-        // }
-        console.log(site);
-    };
-
     return (
         <SideBarContainer collapsed={collapsed}>
             {collapsed ? null : (
                 <StyledTopBar>
                     <Link to="/">
-                        <Header as="h2" style={{ display: 'flex', marginBottom: 5 }}>
+                        <Header
+                            as="h2"
+                            style={{ display: 'flex', marginBottom: 5 }}
+                        >
                             <Image
                                 src="/apple-touch-icon.png"
-                                style={{ width: 30, height: 30, marginRight: 10 }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginRight: 10,
+                                }}
                             />
                             <p>All The Job Sites</p>
                         </Header>
@@ -176,7 +175,10 @@ const SideBar = props => {
                                     icon: 'close',
                                     basic: true,
                                     onClick: function() {
-                                        setSearchValue('');
+                                        dispatch({
+                                            type: 'updateSearch',
+                                            payload: '',
+                                        });
                                         setAllOpen(false);
                                         window.gtag('event', 'search', {
                                             event_category: 'navigation',
@@ -205,7 +207,6 @@ const SideBar = props => {
             )}
             <StyledSideBar>
                 <JobSitesContainer
-                    updateSite={updateSite}
                     searchValue={searchValue}
                     allOpen={allOpen}
                 />
@@ -248,11 +249,4 @@ const SideBar = props => {
     );
 };
 
-function mapStateToProps({ site }) {
-    return { site: site };
-}
-
-export default connect(
-    mapStateToProps,
-    actions
-)(SideBar);
+export default SideBar;

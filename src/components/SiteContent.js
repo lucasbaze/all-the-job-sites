@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Loader } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 
 import ExternalLink from './ExternalLink';
 import { sitesBySlug } from '../sites';
 
-console.log(sitesBySlug)
+import { useStateValue } from '../sites';
+
+console.log(sitesBySlug);
 
 const StyledLoaderContainer = styled.div`
     position: relative;
@@ -56,9 +57,7 @@ const SiteContent = props => {
                 <iframe
                     title="currentSite"
                     src={
-                        site.searchURL != null
-                            ? site.searchURL
-                            : site.site_url
+                        site.searchURL != null ? site.searchURL : site.site_url
                     }
                 />
             ) : (
@@ -68,8 +67,4 @@ const SiteContent = props => {
     );
 };
 
-const mapStateToProps = ({ site }) => {
-    return { site: site };
-};
-
-export default connect(mapStateToProps)(SiteContent);
+export default SiteContent;

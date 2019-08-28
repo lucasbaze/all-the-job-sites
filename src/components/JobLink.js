@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { List, Icon, Responsive } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-
 const StyledListItem = styled(List.Item)`
     padding-bottom: 5px;
     padding-top: 5px;
@@ -38,10 +35,9 @@ const JobLink = props => {
                         event_label: 'open link',
                     });
                 }}
-                target="_blank">
-                <StyledListItem>
-                    {site.site_name}
-                </StyledListItem>
+                target="_blank"
+            >
+                <StyledListItem>{site.site_name}</StyledListItem>
             </Responsive>
             <Responsive
                 as={StyledLink}
@@ -52,16 +48,20 @@ const JobLink = props => {
                         event_category: 'navigation',
                         event_label: 'open link',
                     });
-                }}>
+                }}
+            >
                 <StyledListItem>
                     {site.site_name}
                     {!(props.searchValue && site.searchable) ? null : (
-                        <span style={{ float: 'right', fontVariant: 'small-caps', fontSize: 11, opacity: 0.5 }}>
-                            <Icon
-                                name="searchengin"
-                                size="medium"
-                                style={{ }}
-                            />
+                        <span
+                            style={{
+                                float: 'right',
+                                fontVariant: 'small-caps',
+                                fontSize: 11,
+                                opacity: 0.5,
+                            }}
+                        >
+                            <Icon name="searchengin" size="medium" style={{}} />
                             "{props.searchValue}"
                         </span>
                     )}
@@ -89,7 +89,4 @@ const JobLink = props => {
     //     )}
 };
 
-export default connect(
-    null,
-    actions
-)(JobLink);
+export default JobLink;
