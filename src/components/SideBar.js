@@ -52,8 +52,14 @@ const StyledTopBar = styled.div`
     box-shadow: 0px 3px 5px #eaeaea;
 `;
 
-const StyledLink = styled.div`
+const StyledLink = styled(Link)`
     margin-right: 10px;
+
+    color: black;
+    :hover {
+        color: green;
+    }
+
     a {
         color: black;
         :hover {
