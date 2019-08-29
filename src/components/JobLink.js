@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { List, Icon, Responsive } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import { useStateValue } from '../state';
+
 const StyledListItem = styled(List.Item)`
     padding-bottom: 5px;
     padding-top: 5px;
@@ -22,13 +24,18 @@ const StyledLink2 = styled.a`
 
 const JobLink = props => {
     const { site } = props;
+    const [{ searchValue }, dispatch] = useStateValue();
 
     return (
         <>
             <Responsive
                 as={StyledLink2}
                 maxWidth={768}
-                href={site.site_url}
+                href={
+                    searchValue != ''
+                        ? site.search_url.replace(/%q/g, searchValue)
+                        : site.site_url
+                }
                 onClick={() => {
                     window.gtag('event', 'link', {
                         event_category: 'navigation',
