@@ -34,7 +34,7 @@ const StyledButton = styled(Button)`
 `;
 
 const SideBarContainer = styled.div`
-    flex: ${props => (props.collapsed ? 0.6 : 1)};
+    flex: ${props => (props.collapsed ? 0.6 : 1.1)};
     height: 100vh;
     display: flex;
     flex-flow: column nowrap;
