@@ -37,7 +37,31 @@ const JobLink = props => {
                 }}
                 target="_blank"
             >
-                <StyledListItem>{site.site_name}</StyledListItem>
+                <StyledListItem>
+                    {site.site_name}
+                    {!site.iframe_able && (
+                        <span style={{ opacity: 0.8, marginLeft: 5 }}>
+                            <Icon name="linkify" size="small" />
+                        </span>
+                    )}
+                    {!(
+                        props.searchValue &&
+                        site.searchable &&
+                        site.search_url !== site.site_url
+                    ) ? null : (
+                        <span
+                            style={{
+                                float: 'right',
+                                fontVariant: 'small-caps',
+                                fontSize: 11,
+                                opacity: 0.5,
+                            }}
+                        >
+                            <Icon name="searchengin" style={{}} />"
+                            {props.searchValue}"
+                        </span>
+                    )}
+                </StyledListItem>
             </Responsive>
             <Responsive
                 as={StyledLink}
