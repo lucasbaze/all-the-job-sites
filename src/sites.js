@@ -591,7 +591,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://careers.microsoft.com/us/en/search-results?keywords=Sales',
         ],
-        search_url: 'https://www.amazon.jobs/en-gb/search?base_query=%q',
+        search_url: 'https://careers.microsoft.com/us/en/search-results?keywords=%q',
     },
     {
         main_category: 'Job Boards',
