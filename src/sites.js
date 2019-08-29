@@ -33,6 +33,7 @@ let sitesMaster = [
             'https://remoteok.io/remote-video-editing-jobs',
             'https://remoteok.io/remote-customer-support+css-jobs',
         ],
+        search_url: 'https://remoteok.io/remote-%q-jobs',
     },
     {
         main_category: 'Software',
@@ -41,7 +42,7 @@ let sitesMaster = [
         site_url: 'https://codepen.io/jobs/',
         iframe_able: true,
         tags: ['software', 'remote'],
-        searchable: true,
+        searchable: false,
         search_query_examples: ['https://codepen.io/jobs.json'],
     },
     {
@@ -56,6 +57,8 @@ let sitesMaster = [
             'https://jobs.github.com/positions?utf8=%E2%9C%93&description=React&location=',
             'https://jobs.github.com/positions?utf8=%E2%9C%93&description=Java&location=San+Fransisco',
         ],
+        search_url:
+            'https://jobs.github.com/positions?utf8=%E2%9C%93&description=%q&location=',
     },
     {
         main_category: 'Startups',
@@ -69,6 +72,7 @@ let sitesMaster = [
             'https://www.monday.vc/jobs?q=Dev%20Ops',
             'https://www.monday.vc/jobs?q=Content%20Creator',
         ],
+        search_url: 'https://www.monday.vc/jobs?q=%q',
     },
     {
         main_category: 'Startups',
@@ -82,6 +86,7 @@ let sitesMaster = [
             'https://jobs.techstars.com/?q=Intern',
             'https://jobs.techstars.com/?t=1197&j=1064993781&l=90',
         ],
+        search_url: 'https://jobs.techstars.com/?q=%q',
     },
     {
         main_category: 'Startups',
@@ -165,6 +170,16 @@ let sitesMaster = [
             'https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=%q&sc.keyword=%q&locT=&locId=&jobType=',
     },
     {
+        main_category: 'Job Boards',
+        type: 'job-board',
+        site_name: 'Google Jobs',
+        site_url: 'https://www.google.com/search?q=jobs&ibp=htl;jobs',
+        iframe_able: false,
+        tags: ['career', 'all jobs', 'corporate'],
+        searchable: true,
+        search_url: 'https://www.google.com/search?q=%q&ibp=htl;jobs',
+    },
+    {
         main_category: 'Remote',
         type: 'job-board',
         site_name: 'FlexJobs',
@@ -176,6 +191,7 @@ let sitesMaster = [
             'https://www.flexjobs.com/jobs/graphic-design',
             'https://www.flexjobs.com/search?search=Full+Stack+Web+Developer&location=Denver%2C+CO',
         ],
+        search_url: 'https://www.flexjobs.com/search?search=%q',
     },
     {
         main_category: 'Remote',
@@ -189,6 +205,8 @@ let sitesMaster = [
             'https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=React',
             'https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=React+Native',
         ],
+        search_url:
+            'https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=%q',
     },
     {
         main_category: 'Remote',
@@ -202,6 +220,7 @@ let sitesMaster = [
             'https://remote.co/remote-jobs/search/?search_keywords=customer+service',
             'https://remote.co/remote-jobs/search/?search_keywords=Tech+Sales',
         ],
+        search_url: 'https://remote.co/remote-jobs/search/?search_keywords=%q',
     },
     {
         main_category: 'Remote',
@@ -210,8 +229,9 @@ let sitesMaster = [
         site_url: 'https://www.virtualvocations.com/',
         iframe_able: false,
         tags: ['remote', 'part-time', 'freelance'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: '',
     },
     {
         main_category: 'Remote',
@@ -290,8 +310,10 @@ let sitesMaster = [
         site_url: 'https://landing.jobs/',
         iframe_able: false,
         tags: ['remote', 'part-time', 'freelance'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://landing.jobs/jobs?page=1&q=%q&hd=false&t_co=false&t_st=false',
     },
     {
         main_category: 'Remote',
@@ -300,8 +322,9 @@ let sitesMaster = [
         site_url: 'https://authenticjobs.com/',
         iframe_able: true,
         tags: ['remote', 'part-time', 'freelance'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://authenticjobs.com/#query=%q',
     },
     {
         main_category: 'Design',
@@ -365,6 +388,7 @@ let sitesMaster = [
             'https://workingnotworking.com/search/everywhere/jobs/ux-ia-designer',
             'https://workingnotworking.com/search/new-york-ny-usa',
         ],
+        search_url: 'https://workingnotworking.com/search/everywhere/jobs/%q',
     },
     {
         main_category: 'Software',
@@ -381,6 +405,7 @@ let sitesMaster = [
         ],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://stackoverflow.com/search?q=%q',
     },
     {
         main_category: 'Software',
@@ -432,6 +457,7 @@ let sitesMaster = [
         tags: ['software', 'startups', 'crypto', 'blockchain'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://cryptocurrencyjobs.co/?query=%q',
     },
     {
         main_category: 'Crypto',
@@ -450,8 +476,9 @@ let sitesMaster = [
         site_url: 'https://cryptojobslist.com/',
         iframe_able: true,
         tags: ['software', 'startups', 'crypto', 'blockchain'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://cryptojobslist.com/blockchain-%q-jobs',
     },
     {
         main_category: 'Crypto',
@@ -460,8 +487,10 @@ let sitesMaster = [
         site_url: 'https://www.crypto-careers.com/',
         iframe_able: false,
         tags: ['software', 'startups', 'crypto', 'blockchain'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://www.crypto-careers.com/jobs/search?utf8=%E2%9C%93&q=%q&cat=&l=&lat=&long=&d=',
     },
     {
         main_category: 'Startups',
@@ -472,6 +501,7 @@ let sitesMaster = [
         tags: ['software', 'startups', 'operations', ''],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.f6s.com/jobs?keywords[]=%q&sort=newest',
     },
     {
         main_category: 'Startups',
@@ -480,7 +510,7 @@ let sitesMaster = [
         site_url: 'https://growthhackers.com/jobs/',
         iframe_able: false,
         tags: ['software', 'startups', 'operations', 'growth hacker', 'growth'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [''],
     },
     {
@@ -525,6 +555,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.wphired.com/jobs/?search_keywords=sales&search_region=0&search_categories%5B%5D=&submit=Search&filter_job_type%5B%5D=',
         ],
+        search_url: 'https://www.wphired.com/jobs/?search_keywords=%q',
     },
     {
         main_category: 'Tech Companies',
@@ -547,6 +578,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.amazon.jobs/en-gb/search?base_query=Utah&loc_query=',
         ],
+        search_url: '',
     },
     {
         main_category: 'Tech Companies',
@@ -559,6 +591,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://careers.microsoft.com/us/en/search-results?keywords=Sales',
         ],
+        search_url: 'https://www.amazon.jobs/en-gb/search?base_query=%q',
     },
     {
         main_category: 'Job Boards',
@@ -589,6 +622,7 @@ let sitesMaster = [
         tags: ['health care', 'medical', 'nurse', 'internship', 'doctors'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.careervitals.com/search.php?strKeyword=%q',
     },
     {
         main_category: 'Health Care',
@@ -597,7 +631,7 @@ let sitesMaster = [
         site_url: 'https://www.mdjobsite.com/',
         iframe_able: true,
         tags: ['health care', 'medical', 'nurse', 'internship', 'doctors'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [''],
     },
     {
@@ -613,7 +647,7 @@ let sitesMaster = [
             'biotech',
             'science',
         ],
-        searchable: true,
+        searchable: false,
         search_query_examples: [''],
     },
     {
@@ -631,6 +665,7 @@ let sitesMaster = [
         ],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.healthcarejobsite.com/jobs/search?k=%q',
     },
     {
         main_category: 'Health Care',
@@ -641,6 +676,7 @@ let sitesMaster = [
         tags: ['health care', 'medical', 'nursing', 'science'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.nursingjobs.com/jobs/k-%q-l-/?clear=true',
     },
     {
         main_category: 'Health Care',
@@ -1043,10 +1079,8 @@ let sitesMaster = [
             'theatre',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://www.linkedin.com/jobs/search?keywords=Front%20End%20Engineer&location=United%20States&trk=homepage-jobseeker_recent-search&redirect=false&position=1&pageNum=0',
-            'https://www.linkedin.com/jobs/search?keywords=Video%20Editing&location=Denver%2C%20Colorado%2C%20United%20States&trk=guest_job_search_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0',
-        ],
+        search_query_examples: [],
+        search_url: '',
     },
     {
         main_category: 'Women',
@@ -1057,6 +1091,7 @@ let sitesMaster = [
         tags: ['home', 'software', 'tech', 'women', 'female'],
         searchable: true,
         search_query_examples: [],
+        search_url: '',
     },
     {
         main_category: 'Women',
@@ -1067,6 +1102,7 @@ let sitesMaster = [
         tags: ['home', 'tech', 'women', 'female'],
         searchable: true,
         search_query_examples: [],
+        search_url: '',
     },
     {
         main_category: 'Women',
@@ -1077,6 +1113,7 @@ let sitesMaster = [
         tags: ['home', 'tech', 'women', 'female'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://fairygodboss.com/search?term=%q',
     },
     {
         main_category: 'Women',
@@ -1085,7 +1122,7 @@ let sitesMaster = [
         site_url: 'https://www.careercontessa.com/jobs/',
         iframe_able: true,
         tags: ['home', 'tech', 'women', 'female'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [],
     },
     {
@@ -1097,6 +1134,7 @@ let sitesMaster = [
         tags: ['campus', 'pride', 'gay', 'lesbian', 'queer', 'trans'],
         searchable: true,
         search_query_examples: ['https://campuspride.jobs/jobs/?q=nurse'],
+        search_url: 'https://campuspride.jobs/jobs/?q=%q',
     },
     {
         main_category: 'Pride',
@@ -1115,7 +1153,7 @@ let sitesMaster = [
         site_url: 'https://pink-jobs.com/jobs/',
         iframe_able: true,
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [],
     },
     {
@@ -1127,6 +1165,7 @@ let sitesMaster = [
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://alllgbtjobs.com/s/find-%q-jobs-in-usa',
     },
     {
         main_category: 'Pride',
@@ -1135,7 +1174,7 @@ let sitesMaster = [
         site_url: 'http://tjobbank.com/',
         iframe_able: true,
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [],
     },
     {
@@ -1159,6 +1198,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://success.recruitmilitary.com/jobs?utf8=%E2%9C%93&keywords=army&location=&commit=Search',
         ],
+        search_url:
+            'https://success.recruitmilitary.com/jobs?keywords=%q&location=',
     },
     {
         main_category: 'Veterans',
@@ -1169,6 +1210,8 @@ let sitesMaster = [
         tags: ['military', 'veteran', 'army', 'navy', 'airforce', 'marines'],
         searchable: true,
         search_query_examples: [],
+        search_url:
+            'https://jobs.hireheroesusa.org/jobs/search?utf8=%E2%9C%93&q=%q&l=&lat=&long=&d=',
     },
     {
         main_category: 'Veterans',
@@ -1179,6 +1222,8 @@ let sitesMaster = [
         tags: ['military', 'veteran', 'army', 'navy', 'airforce', 'marines'],
         searchable: true,
         search_query_examples: [],
+        search_url:
+            'https://www.military.com/jobsearch/jobs?q=%q&date-posted=-1&page_index=1&onprem=1',
     },
     {
         main_category: 'Minority',
@@ -1198,6 +1243,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.blackjobs.com/jobs/search?utf8=%E2%9C%93&q=act&l=College+Station%2C+TX&lat=30.6032&long=-96.3136&d=',
         ],
+        search_url:
+            'https://www.blackjobs.com/jobs/search?utf8=%E2%9C%93&q=%q&l=&lat=&long=&d=',
     },
     {
         main_category: 'Minority',
@@ -1217,6 +1264,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.blackcareernetwork.com/job-summaries?keywords=actions&location=Washington%2C+DC&organization=',
         ],
+        search_url:
+            'https://www.blackcareernetwork.com/job-summaries?keywords=%q',
     },
     {
         main_category: 'Minority',
@@ -1238,6 +1287,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://jobs.imdiversity.com/candidate/job_search/quick/results?sort_field=post_date&keyword=action&sort_dir=desc',
         ],
+        search_url:
+            'https://jobs.imdiversity.com/candidate/job_search/quick/results?sort_field=post_date&keyword=%q&sort_dir=desc',
     },
     {
         main_category: 'Minority',
@@ -1248,6 +1299,7 @@ let sitesMaster = [
         tags: ['minority', 'hispanic', 'spanish', 'people of color', 'poc'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://hispanic-today.com/career-search-engine/',
     },
     {
         main_category: 'Minority',
@@ -1258,6 +1310,8 @@ let sitesMaster = [
         tags: ['minority', 'hispanic', 'spanish', 'people of color', 'poc'],
         searchable: true,
         search_query_examples: [],
+        search_url:
+            'https://jobs.hlpa.com/jobs/?listing_type%5Bequal%5D=Job&searchId=1567052602.9847&action=search&keywords%5Ball_words%5D=%q',
     },
     {
         main_category: 'Minority',
@@ -1279,6 +1333,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
         ],
+        search_url: 'https://diversityjobs.com/js/find-%q-jobs-in-usa',
     },
     {
         main_category: 'Minority',
@@ -1297,9 +1352,8 @@ let sitesMaster = [
             'poc',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.diversity.com/list-jobs',
     },
     {
         main_category: 'Justice Involved',
@@ -1316,9 +1370,8 @@ let sitesMaster = [
             'convict',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.70millionjobs.com/search',
     },
     {
         main_category: 'Justice Involved',
@@ -1335,9 +1388,8 @@ let sitesMaster = [
             'convict',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.jailtojob.com/companies-hire-felons.html',
     },
     {
         main_category: 'Justice Involved',
@@ -1367,6 +1419,8 @@ let sitesMaster = [
         search_query_examples: [
             'http://jobs.recruitdisability.org/jobs/results/keyword/hearing/College+Station%2C+Texas?radius=25&SearchNetworks=US&networkView=national',
         ],
+        search_url:
+            'http://jobs.recruitdisability.org/jobs/results/title/%q?radius=25',
     },
     {
         main_category: 'Disabled',
@@ -1379,6 +1433,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url:
+            'https://abilitylinks.org/search/job?search=%q&field_job_region=All',
     },
     {
         main_category: 'Disabled',
@@ -1391,6 +1447,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url: 'https://www.gettinghired.com/?keyword=%q',
     },
     {
         main_category: 'Disabled',
@@ -1403,6 +1460,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url: 'https://www.disabilityjobexchange.com/jobs/k-%q',
     },
     {
         main_category: 'Disabled',
@@ -1415,6 +1473,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url:
+            'https://www.disabledperson.com/jobs?utf8=%E2%9C%93&term=%q&location=',
     },
 ];
 
