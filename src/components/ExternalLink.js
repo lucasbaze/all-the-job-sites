@@ -28,9 +28,10 @@ const ExternalLink = props => {
     const [{ searchValue }, dispatch] = useStateValue();
 
     let timer = useRef();
-    let path = props.site.search_url != null
-        ? props.site.search_url.replace(/%q/g, searchValue)
-        : props.site.site_url;
+    let path =
+        props.site.search_url != null && searchValue != ''
+            ? props.site.search_url.replace(/%q/g, searchValue)
+            : props.site.site_url;
 
     useEffect(() => {
         if (count > 0) {
@@ -74,7 +75,9 @@ const ExternalLink = props => {
             {props.site.site_name ? (
                 <div style={{ marginBottom: 40 }}>
                     <a href={path} target="_blank">
-                        <Header as="h2" color="blue">{header}</Header>
+                        <Header as="h2" color="blue">
+                            {header}
+                        </Header>
                     </a>
                     <Popup
                         trigger={<StyledInfo>What's this?</StyledInfo>}
