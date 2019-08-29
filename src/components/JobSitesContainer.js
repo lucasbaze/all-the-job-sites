@@ -63,7 +63,7 @@ const CategoryList = props => {
 
 // sort site objects alphabetically by key (main_category)
 const sortCategories = (a, b) => {
-    return a[0].toUpperCase() < b[0].toUpperCase() ? -1 : 1;
+    return a[0].toUpperCase() < b[0].toUpperCase() ? 1 : -1;
 };
 const sortSites = (a, b) => {
     return a.site_name.toUpperCase() < b.site_name.toUpperCase() ? -1 : 1;
