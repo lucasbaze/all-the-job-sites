@@ -274,6 +274,10 @@ const SideBar = () => {
                         The team currently consists of{' '}
                         <a href="https://www.linkedin.com/in/lucas-bazemore-b3ba1264/">
                             Lucas Bazemore
+                        </a>{' '}
+                        and{' '}
+                        <a href="https://www.linkedin.com/in/cameronskelley/">
+                            Cameron Kelley
                         </a>
                         .
                     </p>
