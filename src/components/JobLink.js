@@ -60,7 +60,7 @@ const JobLink = props => {
                     {!(
                         props.searchValue &&
                         site.searchable &&
-                        site.search_url !== ''
+                        site.search_url !== site.site_url
                     ) ? null : (
                         <span
                             style={{
