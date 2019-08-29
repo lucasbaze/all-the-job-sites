@@ -5,7 +5,7 @@ import { Loader } from 'semantic-ui-react';
 import ExternalLink from './ExternalLink';
 import { sitesBySlug } from '../sites';
 
-import { useStateValue } from '../sites';
+import { useStateValue } from '../state';
 
 //console.log(sitesBySlug);
 
@@ -38,6 +38,8 @@ const SiteContent = props => {
     const { categorySlug, nameSlug } = props.match.params;
     const site = sitesBySlug[categorySlug][nameSlug]; // grab the site we want
 
+    const [{ searchValue }, dispatch] = useStateValue();
+
     // fancy shit
     useEffect(() => {
         setVisible(true);
@@ -57,7 +59,9 @@ const SiteContent = props => {
                 <iframe
                     title="currentSite"
                     src={
-                        site.searchURL != null ? site.searchURL : site.site_url
+                        searchValue != ''
+                            ? site.search_url.replace(/%q/g, searchValue)
+                            : site.site_url
                     }
                 />
             ) : (

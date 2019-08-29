@@ -34,7 +34,7 @@ const StyledButton = styled(Button)`
 `;
 
 const SideBarContainer = styled.div`
-    flex: ${props => (props.collapsed ? 0.6 : 1)};
+    flex: ${props => (props.collapsed ? 0.6 : 1.1)};
     height: 100vh;
     display: flex;
     flex-flow: column nowrap;
@@ -274,6 +274,10 @@ const SideBar = () => {
                         The team currently consists of{' '}
                         <a href="https://www.linkedin.com/in/lucas-bazemore-b3ba1264/">
                             Lucas Bazemore
+                        </a>{' '}
+                        and{' '}
+                        <a href="https://www.linkedin.com/in/cameronskelley/">
+                            Cameron Kelley
                         </a>
                         .
                     </p>

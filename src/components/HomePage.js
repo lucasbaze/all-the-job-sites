@@ -49,7 +49,7 @@ const HomePage = () => {
         <StyledHomePage>
             <StyledContainer>
                 <StyledValueProp>
-                    <Header as="h1" style={{ marginBottom: 0, marginTop: 10 }}>
+                    <Header as="h1" style={{ marginBottom: 0, marginTop: 20 }}>
                         All The Job Sites
                     </Header>
                     <Header as="h3" style={{ marginTop: 10 }}>
@@ -58,6 +58,10 @@ const HomePage = () => {
                     <p>
                         <Icon name="chevron left" />
                         Use the sidebar on the left to get started!
+                    </p>
+                    <p>
+                        <Icon name="linkify" />
+                        Links will open in a new tab
                     </p>
                 </StyledValueProp>
                 <StyledFeaturedJobs>

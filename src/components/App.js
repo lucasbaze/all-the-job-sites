@@ -31,9 +31,14 @@ const App = props => {
     const reducer = (state, action) => {
         switch (action.type) {
             case 'updateSearch':
+                let cleanedSearch = action.payload.replace(
+                    /[^a-zA-Z 0-9]/g,
+                    ''
+                );
+
                 return {
                     ...state,
-                    searchValue: action.payload,
+                    searchValue: cleanedSearch,
                 };
             default:
                 return state;

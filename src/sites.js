@@ -33,6 +33,7 @@ let sitesMaster = [
             'https://remoteok.io/remote-video-editing-jobs',
             'https://remoteok.io/remote-customer-support+css-jobs',
         ],
+        search_url: 'https://remoteok.io/remote-%q-jobs',
     },
     {
         main_category: 'Software',
@@ -41,8 +42,9 @@ let sitesMaster = [
         site_url: 'https://codepen.io/jobs/',
         iframe_able: true,
         tags: ['software', 'remote'],
-        searchable: true,
+        searchable: false,
         search_query_examples: ['https://codepen.io/jobs.json'],
+        search_url: 'https://codepen.io/jobs/',
     },
     {
         main_category: 'Software',
@@ -56,6 +58,8 @@ let sitesMaster = [
             'https://jobs.github.com/positions?utf8=%E2%9C%93&description=React&location=',
             'https://jobs.github.com/positions?utf8=%E2%9C%93&description=Java&location=San+Fransisco',
         ],
+        search_url:
+            'https://jobs.github.com/positions?utf8=%E2%9C%93&description=%q&location=',
     },
     {
         main_category: 'Startups',
@@ -69,6 +73,7 @@ let sitesMaster = [
             'https://www.monday.vc/jobs?q=Dev%20Ops',
             'https://www.monday.vc/jobs?q=Content%20Creator',
         ],
+        search_url: 'https://www.monday.vc/jobs?q=%q',
     },
     {
         main_category: 'Startups',
@@ -82,6 +87,7 @@ let sitesMaster = [
             'https://jobs.techstars.com/?q=Intern',
             'https://jobs.techstars.com/?t=1197&j=1064993781&l=90',
         ],
+        search_url: 'https://jobs.techstars.com/?q=%q',
     },
     {
         main_category: 'Startups',
@@ -99,6 +105,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.workatastartup.com/',
     },
     {
         main_category: 'Startups',
@@ -109,6 +116,7 @@ let sitesMaster = [
         tags: ['remote', 'startups', 'venture backed', 'yc', 'y combinator'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://ycombinator.monday.vc/',
     },
     {
         main_category: 'Job Boards',
@@ -148,6 +156,7 @@ let sitesMaster = [
         tags: ['tech', 'startups', 'gaming', 'video', 'software'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://boards.greenhouse.io/twitch',
     },
     {
         main_category: 'Job Boards',
@@ -165,6 +174,16 @@ let sitesMaster = [
             'https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=%q&sc.keyword=%q&locT=&locId=&jobType=',
     },
     {
+        main_category: 'Job Boards',
+        type: 'job-board',
+        site_name: 'Google Jobs',
+        site_url: 'https://www.google.com/search?q=jobs&ibp=htl;jobs',
+        iframe_able: false,
+        tags: ['career', 'all jobs', 'corporate'],
+        searchable: true,
+        search_url: 'https://www.google.com/search?q=%q&ibp=htl;jobs',
+    },
+    {
         main_category: 'Remote',
         type: 'job-board',
         site_name: 'FlexJobs',
@@ -176,6 +195,7 @@ let sitesMaster = [
             'https://www.flexjobs.com/jobs/graphic-design',
             'https://www.flexjobs.com/search?search=Full+Stack+Web+Developer&location=Denver%2C+CO',
         ],
+        search_url: 'https://www.flexjobs.com/search?search=%q',
     },
     {
         main_category: 'Remote',
@@ -189,6 +209,8 @@ let sitesMaster = [
             'https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=React',
             'https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=React+Native',
         ],
+        search_url:
+            'https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term=%q',
     },
     {
         main_category: 'Remote',
@@ -202,6 +224,7 @@ let sitesMaster = [
             'https://remote.co/remote-jobs/search/?search_keywords=customer+service',
             'https://remote.co/remote-jobs/search/?search_keywords=Tech+Sales',
         ],
+        search_url: 'https://remote.co/remote-jobs/search/?search_keywords=%q',
     },
     {
         main_category: 'Remote',
@@ -210,8 +233,9 @@ let sitesMaster = [
         site_url: 'https://www.virtualvocations.com/',
         iframe_able: false,
         tags: ['remote', 'part-time', 'freelance'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.virtualvocations.com/',
     },
     {
         main_category: 'Remote',
@@ -222,6 +246,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://pangian.com/job-travel-remote/',
     },
     {
         main_category: 'Remote',
@@ -232,6 +257,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://remotive.io/',
     },
     {
         main_category: 'Remote',
@@ -242,6 +268,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.workingnomads.co/jobs',
     },
     {
         main_category: 'Remote',
@@ -252,6 +279,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://jobspresso.co/remote-work/',
     },
     {
         main_category: 'Remote',
@@ -262,6 +290,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://europeremotely.com/',
     },
     {
         main_category: 'Remote',
@@ -272,6 +301,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.outsourcely.com/remote-workers',
     },
     {
         main_category: 'Women',
@@ -282,6 +312,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance', 'women'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://powertofly.com/',
     },
     {
         main_category: 'Remote',
@@ -290,8 +321,10 @@ let sitesMaster = [
         site_url: 'https://landing.jobs/',
         iframe_able: false,
         tags: ['remote', 'part-time', 'freelance'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://landing.jobs/jobs?page=1&q=%q&hd=false&t_co=false&t_st=false',
     },
     {
         main_category: 'Remote',
@@ -300,8 +333,9 @@ let sitesMaster = [
         site_url: 'https://authenticjobs.com/',
         iframe_able: true,
         tags: ['remote', 'part-time', 'freelance'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://authenticjobs.com/#query=%q',
     },
     {
         main_category: 'Design',
@@ -312,6 +346,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance', 'design', 'graphics'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://dribbble.com/jobs',
     },
     {
         main_category: 'Design',
@@ -322,6 +357,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance', 'design', 'graphics'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://99designs.com/',
     },
     {
         main_category: 'Design',
@@ -332,6 +368,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance', 'design', 'graphics'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.behance.net/joblist',
     },
     {
         main_category: 'Design',
@@ -342,6 +379,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance', 'design', 'graphics'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://jobs.designcrowd.com/jobs/',
     },
     {
         main_category: 'Design',
@@ -352,6 +390,7 @@ let sitesMaster = [
         tags: ['remote', 'part-time', 'freelance', 'design', 'graphics'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://studio.envato.com/',
     },
     {
         main_category: 'Design',
@@ -365,6 +404,7 @@ let sitesMaster = [
             'https://workingnotworking.com/search/everywhere/jobs/ux-ia-designer',
             'https://workingnotworking.com/search/new-york-ny-usa',
         ],
+        search_url: 'https://workingnotworking.com/search/everywhere/jobs/%q',
     },
     {
         main_category: 'Software',
@@ -381,6 +421,7 @@ let sitesMaster = [
         ],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://stackoverflow.com/search?q=%q',
     },
     {
         main_category: 'Software',
@@ -396,8 +437,9 @@ let sitesMaster = [
             'remote',
             'developers',
         ],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://jobs.smashingmagazine.com/jobs/',
     },
     {
         main_category: 'Job Boards',
@@ -430,8 +472,9 @@ let sitesMaster = [
         site_url: 'https://cryptocurrencyjobs.co/',
         iframe_able: true,
         tags: ['software', 'startups', 'crypto', 'blockchain'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://cryptocurrencyjobs.co/?query=%q',
     },
     {
         main_category: 'Crypto',
@@ -440,8 +483,9 @@ let sitesMaster = [
         site_url: 'https://crypto.jobs',
         iframe_able: false,
         tags: ['software', 'startups', 'crypto', 'blockchain'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://crypto.jobs',
     },
     {
         main_category: 'Crypto',
@@ -450,8 +494,9 @@ let sitesMaster = [
         site_url: 'https://cryptojobslist.com/',
         iframe_able: true,
         tags: ['software', 'startups', 'crypto', 'blockchain'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url: 'https://cryptojobslist.com/blockchain-%q-jobs',
     },
     {
         main_category: 'Crypto',
@@ -460,8 +505,10 @@ let sitesMaster = [
         site_url: 'https://www.crypto-careers.com/',
         iframe_able: false,
         tags: ['software', 'startups', 'crypto', 'blockchain'],
-        searchable: false,
+        searchable: true,
         search_query_examples: [''],
+        search_url:
+            'https://www.crypto-careers.com/jobs/search?utf8=%E2%9C%93&q=%q&cat=&l=&lat=&long=&d=',
     },
     {
         main_category: 'Startups',
@@ -472,6 +519,7 @@ let sitesMaster = [
         tags: ['software', 'startups', 'operations', ''],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.f6s.com/jobs?keywords[]=%q&sort=newest',
     },
     {
         main_category: 'Startups',
@@ -482,6 +530,7 @@ let sitesMaster = [
         tags: ['software', 'startups', 'operations', 'growth hacker', 'growth'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://growthhackers.com/jobs/',
     },
     {
         main_category: 'Software',
@@ -492,6 +541,7 @@ let sitesMaster = [
         tags: ['software'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.gun.io/',
     },
     {
         main_category: 'Job Boards',
@@ -513,6 +563,7 @@ let sitesMaster = [
         tags: ['software'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://boards.greenhouse.io/gitlab',
     },
     {
         main_category: 'Software',
@@ -525,6 +576,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.wphired.com/jobs/?search_keywords=sales&search_region=0&search_categories%5B%5D=&submit=Search&filter_job_type%5B%5D=',
         ],
+        search_url: 'https://www.wphired.com/jobs/?search_keywords=%q',
     },
     {
         main_category: 'Tech Companies',
@@ -535,6 +587,7 @@ let sitesMaster = [
         tags: ['photography', 'sales', 'customer service', 'software'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://careers.airbnb.com/',
     },
     {
         main_category: 'Tech Companies',
@@ -547,6 +600,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.amazon.jobs/en-gb/search?base_query=Utah&loc_query=',
         ],
+        search_url: 'https://www.amazon.jobs/',
     },
     {
         main_category: 'Tech Companies',
@@ -559,6 +613,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://careers.microsoft.com/us/en/search-results?keywords=Sales',
         ],
+        search_url:
+            'https://careers.microsoft.com/us/en/search-results?keywords=%q',
     },
     {
         main_category: 'Job Boards',
@@ -569,81 +625,76 @@ let sitesMaster = [
         tags: ['software', 'sales', 'customer service'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://appexchange.salesforce.com/jobs',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'Health Ecareers',
         site_url: 'https://www.healthecareers.com/search-jobs/',
         iframe_able: true,
-        tags: ['health care', 'medical', 'nurse', 'internship', 'doctors'],
+        tags: ['Healthcare', 'medical', 'nurse', 'internship', 'doctors'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.healthecareers.com/search-jobs/',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'Career Vitals',
         site_url: 'http://www.careervitals.com/',
         iframe_able: true,
-        tags: ['health care', 'medical', 'nurse', 'internship', 'doctors'],
+        tags: ['Healthcare', 'medical', 'nurse', 'internship', 'doctors'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.careervitals.com/search.php?strKeyword=%q',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'MD Jobsite',
         site_url: 'https://www.mdjobsite.com/',
         iframe_able: true,
-        tags: ['health care', 'medical', 'nurse', 'internship', 'doctors'],
-        searchable: true,
+        tags: ['Healthcare', 'medical', 'nurse', 'internship', 'doctors'],
+        searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.mdjobsite.com/',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'MedZilla',
         site_url: 'http://www.medzilla.com',
         iframe_able: true,
-        tags: [
-            'health care',
-            'medical',
-            'pharmaceutical',
-            'biotech',
-            'science',
-        ],
-        searchable: true,
+        tags: ['Healthcare', 'medical', 'pharmaceutical', 'biotech', 'science'],
+        searchable: false,
         search_query_examples: [''],
+        search_url: 'http://www.medzilla.com',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'Healthcare Jobsite',
         site_url: 'https://www.healthcarejobsite.com',
         iframe_able: true,
-        tags: [
-            'health care',
-            'medical',
-            'pharmaceutical',
-            'nursing',
-            'science',
-        ],
+        tags: ['Healthcare', 'medical', 'pharmaceutical', 'nursing', 'science'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.healthcarejobsite.com/jobs/search?k=%q',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'Nursing Jobs',
         site_url: 'https://www.nursingjobs.com/',
         iframe_able: true,
-        tags: ['health care', 'medical', 'nursing', 'science'],
+        tags: ['Healthcare', 'medical', 'nursing', 'science'],
         searchable: true,
         search_query_examples: [''],
+        search_url: 'https://www.nursingjobs.com/jobs/k-%q-l-/?clear=true',
     },
     {
-        main_category: 'Health Care',
+        main_category: 'Healthcare',
         type: 'job-board',
         site_name: 'Gas Work',
         site_url: 'https://www.gaswork.com/',
@@ -651,6 +702,7 @@ let sitesMaster = [
         tags: ['medical gas', 'medical', 'gas'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.gaswork.com/',
     },
     {
         main_category: 'Job Boards',
@@ -695,6 +747,41 @@ let sitesMaster = [
         tags: ['gig', 'driving', 'part-time'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.uber.com/drive',
+    },
+    {
+        main_category: 'Gig Economy',
+        type: 'company',
+        site_name: 'Freelancer',
+        site_url: 'https://www.freelancer.com/jobs',
+        iframe_able: false,
+        tags: ['gig', 'freelance', 'contract', 'remote'],
+        searchable: true,
+        search_query_examples: [''],
+        search_url: 'https://www.freelancer.com/jobs/?keyword=%q',
+    },
+    {
+        main_category: 'Gig Economy',
+        type: 'company',
+        site_name: 'Upwork',
+        site_url: 'https://www.upwork.com/search/jobs/?sort=relevance%2Bdesc',
+        iframe_able: false,
+        tags: ['gig', 'freelance', 'contract', 'remote'],
+        searchable: true,
+        search_query_examples: [''],
+        search_url:
+            'https://www.upwork.com/search/jobs/?q=%q&sort=relevance%2Bdesc',
+    },
+    {
+        main_category: 'Gig Economy',
+        type: 'company',
+        site_name: 'Fiverr',
+        site_url: 'https://www.fiverr.com/',
+        iframe_able: false,
+        tags: ['gig', 'freelance', 'contract', 'remote'],
+        searchable: true,
+        search_query_examples: [''],
+        search_url: 'https://www.fiverr.com/search/gigs?query=%q',
     },
     {
         main_category: 'Gig Economy',
@@ -705,6 +792,7 @@ let sitesMaster = [
         tags: ['gig', 'driving', 'part-time'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.lyft.com/drive-with-lyft',
     },
     {
         main_category: 'Gig Economy',
@@ -715,6 +803,7 @@ let sitesMaster = [
         tags: ['gig', 'driving', 'food delivery', 'part-time'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.uber.com/drive/delivery/',
     },
     {
         main_category: 'Gig Economy',
@@ -725,6 +814,7 @@ let sitesMaster = [
         tags: ['gig', 'driving', 'part-time'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://driver.grubhub.com/',
     },
     {
         main_category: 'Gig Economy',
@@ -735,6 +825,7 @@ let sitesMaster = [
         tags: ['gig', 'driving', 'food delivery', 'part-time'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.doordash.com/dasher/signup/',
     },
     {
         main_category: 'Gig Economy',
@@ -745,6 +836,7 @@ let sitesMaster = [
         tags: ['gig', 'driving', 'food delivery', 'part-time'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://fleet.postmates.com/',
     },
     {
         main_category: 'Gig Economy',
@@ -755,6 +847,7 @@ let sitesMaster = [
         tags: ['gig', 'pets', 'pet sitting', 'part-time', 'pet grooming'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://simplepuppy.com/',
     },
     {
         main_category: 'Gig Economy',
@@ -765,6 +858,7 @@ let sitesMaster = [
         tags: ['gig', 'pets', 'pet sitting', 'part-time', 'pet grooming'],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://wagwalking.com/dog-walker',
     },
     {
         main_category: 'Writing',
@@ -783,6 +877,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.journalismjobs.com/job-listings',
     },
     {
         main_category: 'Writing',
@@ -801,6 +896,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.contena.co/',
     },
     {
         main_category: 'Writing',
@@ -820,6 +916,8 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url:
+            'https://www.freelancewritinggigs.com/freelance-writing-job-ads/',
     },
     {
         main_category: 'Writing',
@@ -838,6 +936,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.freelancewriting.com/jobs/',
     },
     {
         main_category: 'Writing',
@@ -856,6 +955,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://allfreelancewriting.com/freelance-writing-jobs/',
     },
     {
         main_category: 'Writing',
@@ -874,6 +974,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.mediabistro.com/jobs/openings/',
     },
     {
         main_category: 'Writing',
@@ -892,6 +993,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://due.com/guest-post-on-due/',
     },
     {
         main_category: 'Writing',
@@ -910,6 +1012,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://publoft.com/writers',
     },
     {
         main_category: 'Writing',
@@ -928,6 +1031,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://contently.net/about-us/',
     },
     {
         main_category: 'Video',
@@ -946,6 +1050,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.productionhub.com/jobs',
     },
     {
         main_category: 'Video',
@@ -964,6 +1069,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.stage32.com/find-jobs',
     },
     {
         main_category: 'Video',
@@ -982,6 +1088,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.assemble.tv/talent',
     },
     {
         main_category: 'Video',
@@ -1001,6 +1108,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [''],
+        search_url: 'https://www.mandy.com/',
     },
     {
         main_category: 'Job Boards',
@@ -1043,10 +1151,8 @@ let sitesMaster = [
             'theatre',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://www.linkedin.com/jobs/search?keywords=Front%20End%20Engineer&location=United%20States&trk=homepage-jobseeker_recent-search&redirect=false&position=1&pageNum=0',
-            'https://www.linkedin.com/jobs/search?keywords=Video%20Editing&location=Denver%2C%20Colorado%2C%20United%20States&trk=guest_job_search_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.hiretechladies.com/',
     },
     {
         main_category: 'Women',
@@ -1057,6 +1163,7 @@ let sitesMaster = [
         tags: ['home', 'software', 'tech', 'women', 'female'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'http://jobs.womenforhire.com/jobs/',
     },
     {
         main_category: 'Women',
@@ -1067,6 +1174,7 @@ let sitesMaster = [
         tags: ['home', 'tech', 'women', 'female'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://www.womensjoblist.com',
     },
     {
         main_category: 'Women',
@@ -1077,6 +1185,7 @@ let sitesMaster = [
         tags: ['home', 'tech', 'women', 'female'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://fairygodboss.com/search?term=%q',
     },
     {
         main_category: 'Women',
@@ -1085,8 +1194,9 @@ let sitesMaster = [
         site_url: 'https://www.careercontessa.com/jobs/',
         iframe_able: true,
         tags: ['home', 'tech', 'women', 'female'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [],
+        search_url: 'https://www.careercontessa.com/jobs/',
     },
     {
         main_category: 'Pride',
@@ -1097,6 +1207,7 @@ let sitesMaster = [
         tags: ['campus', 'pride', 'gay', 'lesbian', 'queer', 'trans'],
         searchable: true,
         search_query_examples: ['https://campuspride.jobs/jobs/?q=nurse'],
+        search_url: 'https://campuspride.jobs/jobs/?q=%q',
     },
     {
         main_category: 'Pride',
@@ -1107,6 +1218,7 @@ let sitesMaster = [
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
         searchable: false,
         search_query_examples: [],
+        search_url: 'https://www.lgbtcenters.org/Careers',
     },
     {
         main_category: 'Pride',
@@ -1115,8 +1227,9 @@ let sitesMaster = [
         site_url: 'https://pink-jobs.com/jobs/',
         iframe_able: true,
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [],
+        search_url: 'https://pink-jobs.com/jobs/',
     },
     {
         main_category: 'Pride',
@@ -1127,6 +1240,7 @@ let sitesMaster = [
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://alllgbtjobs.com/s/find-%q-jobs-in-usa',
     },
     {
         main_category: 'Pride',
@@ -1135,8 +1249,9 @@ let sitesMaster = [
         site_url: 'http://tjobbank.com/',
         iframe_able: true,
         tags: ['pride', 'gay', 'lesbian', 'queer', 'trans'],
-        searchable: true,
+        searchable: false,
         search_query_examples: [],
+        search_url: 'http://tjobbank.com/',
     },
     {
         main_category: 'Veterans',
@@ -1147,6 +1262,7 @@ let sitesMaster = [
         tags: ['military', 'veteran', 'army', 'navy', 'airforce', 'marines'],
         searchable: false,
         search_query_examples: [],
+        search_url: 'http://vetjobs.com/',
     },
     {
         main_category: 'Veterans',
@@ -1159,6 +1275,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://success.recruitmilitary.com/jobs?utf8=%E2%9C%93&keywords=army&location=&commit=Search',
         ],
+        search_url:
+            'https://success.recruitmilitary.com/jobs?keywords=%q&location=',
     },
     {
         main_category: 'Veterans',
@@ -1169,6 +1287,8 @@ let sitesMaster = [
         tags: ['military', 'veteran', 'army', 'navy', 'airforce', 'marines'],
         searchable: true,
         search_query_examples: [],
+        search_url:
+            'https://jobs.hireheroesusa.org/jobs/search?utf8=%E2%9C%93&q=%q&l=&lat=&long=&d=',
     },
     {
         main_category: 'Veterans',
@@ -1179,6 +1299,8 @@ let sitesMaster = [
         tags: ['military', 'veteran', 'army', 'navy', 'airforce', 'marines'],
         searchable: true,
         search_query_examples: [],
+        search_url:
+            'https://www.military.com/jobsearch/jobs?q=%q&date-posted=-1&page_index=1&onprem=1',
     },
     {
         main_category: 'Minority',
@@ -1198,6 +1320,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.blackjobs.com/jobs/search?utf8=%E2%9C%93&q=act&l=College+Station%2C+TX&lat=30.6032&long=-96.3136&d=',
         ],
+        search_url:
+            'https://www.blackjobs.com/jobs/search?utf8=%E2%9C%93&q=%q&l=&lat=&long=&d=',
     },
     {
         main_category: 'Minority',
@@ -1217,6 +1341,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://www.blackcareernetwork.com/job-summaries?keywords=actions&location=Washington%2C+DC&organization=',
         ],
+        search_url:
+            'https://www.blackcareernetwork.com/job-summaries?keywords=%q',
     },
     {
         main_category: 'Minority',
@@ -1238,6 +1364,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://jobs.imdiversity.com/candidate/job_search/quick/results?sort_field=post_date&keyword=action&sort_dir=desc',
         ],
+        search_url:
+            'https://jobs.imdiversity.com/candidate/job_search/quick/results?sort_field=post_date&keyword=%q&sort_dir=desc',
     },
     {
         main_category: 'Minority',
@@ -1248,6 +1376,7 @@ let sitesMaster = [
         tags: ['minority', 'hispanic', 'spanish', 'people of color', 'poc'],
         searchable: true,
         search_query_examples: [],
+        search_url: 'https://hispanic-today.com/career-search-engine/',
     },
     {
         main_category: 'Minority',
@@ -1258,6 +1387,8 @@ let sitesMaster = [
         tags: ['minority', 'hispanic', 'spanish', 'people of color', 'poc'],
         searchable: true,
         search_query_examples: [],
+        search_url:
+            'https://jobs.hlpa.com/jobs/?listing_type%5Bequal%5D=Job&searchId=1567052602.9847&action=search&keywords%5Ball_words%5D=%q',
     },
     {
         main_category: 'Minority',
@@ -1279,6 +1410,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
         ],
+        search_url: 'https://diversityjobs.com/js/find-%q-jobs-in-usa',
     },
     {
         main_category: 'Minority',
@@ -1297,9 +1429,8 @@ let sitesMaster = [
             'poc',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.diversity.com/list-jobs',
     },
     {
         main_category: 'Justice Involved',
@@ -1316,9 +1447,8 @@ let sitesMaster = [
             'convict',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.70millionjobs.com/search',
     },
     {
         main_category: 'Justice Involved',
@@ -1335,9 +1465,8 @@ let sitesMaster = [
             'convict',
         ],
         searchable: true,
-        search_query_examples: [
-            'https://diversityjobs.com/js/find-action-jobs-in-usa/age:356',
-        ],
+        search_query_examples: [],
+        search_url: 'https://www.jailtojob.com/companies-hire-felons.html',
     },
     {
         main_category: 'Justice Involved',
@@ -1355,6 +1484,7 @@ let sitesMaster = [
         ],
         searchable: false,
         search_query_examples: [],
+        search_url: 'https://www.hirefelons.org/best-jobs-for-felons/',
     },
     {
         main_category: 'Disabled',
@@ -1367,6 +1497,8 @@ let sitesMaster = [
         search_query_examples: [
             'http://jobs.recruitdisability.org/jobs/results/keyword/hearing/College+Station%2C+Texas?radius=25&SearchNetworks=US&networkView=national',
         ],
+        search_url:
+            'http://jobs.recruitdisability.org/jobs/results/title/%q?radius=25',
     },
     {
         main_category: 'Disabled',
@@ -1379,6 +1511,8 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url:
+            'https://abilitylinks.org/search/job?search=%q&field_job_region=All',
     },
     {
         main_category: 'Disabled',
@@ -1391,6 +1525,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url: 'https://www.gettinghired.com/?keyword=%q',
     },
     {
         main_category: 'Disabled',
@@ -1403,6 +1538,7 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url: 'https://www.disabilityjobexchange.com/jobs/k-%q',
     },
     {
         main_category: 'Disabled',
@@ -1415,6 +1551,188 @@ let sitesMaster = [
         search_query_examples: [
             'https://abilitylinks.org/search/job?search=distribution&field_job_region=All',
         ],
+        search_url:
+            'https://www.disabledperson.com/jobs?utf8=%E2%9C%93&term=%q&location=',
+    },
+    {
+        main_category: 'Cannabis',
+        type: 'job-board',
+        site_name: 'High Altitude Careers',
+        site_url: 'https://highaltitudecareers.com/find-a-job/',
+        iframe_able: false,
+        tags: ['weed', 'marijuana', 'cannabis'],
+        searchable: true,
+        search_query_examples: [],
+        search_url: 'https://highaltitudecareers.com/find-a-job/',
+    },
+    {
+        main_category: 'Cannabis',
+        type: 'job-board',
+        site_name: 'Cannabis.net',
+        site_url: 'https://jobs.cannabis.net/',
+        iframe_able: false,
+        tags: ['weed', 'marijuana', 'cannabis'],
+        searchable: true,
+        search_query_examples: [],
+        search_url:
+            'https://jobs.cannabis.net/candidate/job_search/quick/results?sort_field=post_date&keyword=%q&sort_dir=desc',
+    },
+    {
+        main_category: 'Cannabis',
+        type: 'job-board',
+        site_name: '420 Careers',
+        site_url: 'https://420careers.com/browse-jobs/',
+        iframe_able: true,
+        tags: ['weed', 'marijuana', 'cannabis'],
+        searchable: true,
+        search_query_examples: [],
+        search_url: 'https://420careers.com/browse-jobs/?search_keywords=%q',
+    },
+    {
+        main_category: 'Cannabis',
+        type: 'job-board',
+        site_name: 'Vangst',
+        site_url: 'https://vangst.com/cannabis-jobseeker?page=0',
+        iframe_able: true,
+        tags: ['weed', 'marijuana', 'cannabis'],
+        searchable: true,
+        search_query_examples: [],
+        search_url: 'https://vangst.com/cannabis-jobseeker?page=0',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Sales Gravy',
+        site_url: 'https://www.salesgravy.com/JobBoard/',
+        iframe_able: true,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: true,
+        search_query_examples: [],
+        search_url:
+            'https://www.salesgravy.com/JobBoard/index.php?action=search&what=%q&where=&p=1',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Rainmakers',
+        site_url: 'https://www.rainmakers.co',
+        iframe_able: false,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: false,
+        search_query_examples: [],
+        search_url: 'https://www.rainmakers.co',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Sales Jobs',
+        site_url: 'https://www.salesjobs.com/',
+        iframe_able: true,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: true,
+        search_query_examples: [],
+        search_url:
+            'https://www.salesjobs.com/findajob/index.asp?keywords=%q&location=&action=jobSearchResults',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Sales Trax',
+        site_url: 'https://www.salestrax.com/JSsearch.php',
+        iframe_able: false,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: false,
+        search_query_examples: [],
+        search_url: 'https://www.salestrax.com/JSsearch.php',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Sales Heads',
+        site_url: 'https://www.salesheads.com/jobs/search',
+        iframe_able: true,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: true,
+        search_query_examples: [],
+        search_url: 'https://www.salesheads.com/jobs/search?soid=1&k=%q&l=',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Dado Match',
+        site_url: 'https://www.dadomatch.com/job',
+        iframe_able: true,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: false,
+        search_query_examples: [],
+        search_url: 'https://www.dadomatch.com/job',
+    },
+    {
+        main_category: 'Sales',
+        type: 'job-board',
+        site_name: 'Ladders',
+        site_url: 'https://www.theladders.com',
+        iframe_able: true,
+        tags: [
+            'sales',
+            'account manager',
+            'salesperson',
+            'salesman',
+            'saleswoman',
+            'business development',
+            'biz dev',
+        ],
+        searchable: false,
+        search_query_examples: [],
+        search_url: 'https://www.theladders.com',
     },
 ];
 
