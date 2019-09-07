@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import styled from 'styled-components';
 import { Header, Segment, Form, Icon, Dropdown } from 'semantic-ui-react';
@@ -13,7 +13,7 @@ const SavedJobs = props => {
     };
 
     const handleSubmit = () => {
-        axios.post('/api/jobs', { jobLink: jobLink });
+        // axios.post('/api/jobs', { jobLink: jobLink });
 
         //Just add the job link to the saved jobs so it displays in the list
         setSavedJobs([
@@ -25,18 +25,18 @@ const SavedJobs = props => {
     };
 
     useEffect(() => {
-        axios
-            .get('/api/jobs')
-            .then(response => {
-                if (!response.status == 200) {
-                    throw new Error('Failed to fetch the saved Jobs');
-                }
-                return response.data;
-            })
-            .then(data => {
-                setSavedJobs(data);
-            })
-            .catch(err => console.log(err));
+        // axios
+        //     .get('/api/jobs')
+        //     .then(response => {
+        //         if (!response.status == 200) {
+        //             throw new Error('Failed to fetch the saved Jobs');
+        //         }
+        //         return response.data;
+        //     })
+        //     .then(data => {
+        //         setSavedJobs(data);
+        //     })
+        //     .catch(err => console.log(err));
     }, []);
 
     let options = [
