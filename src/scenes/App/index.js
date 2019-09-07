@@ -1,6 +1,6 @@
 import React from 'react';
 import { Responsive } from 'semantic-ui-react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 //Components
 import HomePage from '../HomePage';
@@ -13,10 +13,32 @@ import UserProfile from '../UserProfile';
 //State
 import { StateProvider } from '../../state';
 import { reducer } from '../../reducers';
+import firebase from '../../firebase';
 
 //CSS
 import { MainContainer, MainContentContainer } from './Styled';
 import './App.css';
+
+//
+function PrivateRoute({ component: Component, ...rest }) {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                firebase.auth().currentUser ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: "/",
+                            state: { from: props.location }
+                        }}
+                    />
+                )
+            }
+            />
+    );
+}
 
 const App = props => {
     const initialState = {
@@ -38,7 +60,7 @@ const App = props => {
                             path="/:categorySlug/:nameSlug"
                             component={SiteContent}
                         />
-                        <Route
+                        <PrivateRoute
                             exact
                             path="/user-profile"
                             component={UserProfile}
