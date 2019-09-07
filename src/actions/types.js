@@ -1,1 +1,2 @@
-export const SET_SITE = 'set_site';
+export const FETCH_USER = 'fetch_user';
+export const UPDATE_SEARCH = 'update_search';

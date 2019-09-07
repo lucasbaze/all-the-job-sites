@@ -24,7 +24,8 @@ const BottomMenu = props => {
     return (
         <StyledBottomMenu>
             <Responsive
-                as={StyledButton} minWidth={768}
+                as={StyledButton}
+                minWidth={768}
                 onClick={() => {
                     props.updateCollapsed();
                     window.gtag('event', 'collapse', {
@@ -48,7 +49,12 @@ const BottomMenu = props => {
                     style={{ minWidth: 100 }}
                 />
             </Responsive>
-            <Responsive as='a' maxWidth={768} href="https://lucasbazemore.typeform.com/to/xu9lJZ" target="_blank">
+            <Responsive
+                as="a"
+                maxWidth={768}
+                href="https://lucasbazemore.typeform.com/to/xu9lJZ"
+                target="_blank"
+            >
                 <Button
                     color="red"
                     onClick={() => {
@@ -66,42 +72,3 @@ const BottomMenu = props => {
 };
 
 export default BottomMenu;
-
-// <Modal open={open} onClose={() => setOpen(false)}>
-//     <Header
-//         as="h2"
-//         icon="bullhorn"
-//         content="Get in front of All The People"
-//     />
-//     <Modal.Content image>
-//         <div
-//             style={{
-//                 width: 200,
-//                 height: 200,
-//                 display: 'flex',
-//                 justifyContent: 'center',
-//                 alignItems: 'center',
-//                 textAlign: 'center',
-//                 backgroundColor: 'lightgrey',
-//                 fontWeight: 700,
-//                 borderRadius: 10,
-//                 padding: 20,
-//                 marginRight: 20,
-//             }}
-//         >
-//             <Header as="h2">Your Logo Here</Header>
-//         </div>
-//         <Modal.Description>
-//             <Header as="h3">Looking to post a job?</Header>
-//             <p>
-//                 All The Job Sites is insert further marketing text
-//                 here.
-//             </p>
-//         </Modal.Description>
-//     </Modal.Content>
-//     <Modal.Actions>
-//         <Button primary>
-//             Proceed <Icon name="right chevron" />
-//         </Button>
-//     </Modal.Actions>
-// </Modal>
