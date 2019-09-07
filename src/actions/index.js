@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import { FETCH_USER, UPDATE_SEARCH } from './types.js';
+import { LOGIN_USER, FETCH_USER, UPDATE_SEARCH } from './types.js';
 
 export const fetchUser = dispatch => {
     // axios.get('/api/current_user').then(response => {

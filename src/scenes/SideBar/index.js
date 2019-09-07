@@ -4,7 +4,8 @@ import _ from 'lodash';
 //State
 import { useStateValue } from '../../state';
 import * as actions from '../../actions';
-import { FETCH_USER, UPDATE_SEARCH } from '../../actions/types.js';
+import firebase from '../../firebase';
+// import { FETCH_USER, UPDATE_SEARCH } from '../../actions/types.js';
 
 //Components
 import { Header, Input, Button, Image, Responsive } from 'semantic-ui-react';
@@ -36,6 +37,7 @@ const SideBar = () => {
         collapsed ? setCollapsed(false) : setCollapsed(true);
     };
 
+    // If user is typing search, open all categories
     useEffect(() => {
         if (searchValue.length >= 1) {
             setAllOpen(true);
@@ -44,6 +46,7 @@ const SideBar = () => {
         }
     }, [searchValue]);
 
+    // Load the user on component load
     useEffect(() => {
         actions.fetchUser(dispatch);
     }, []);
@@ -56,7 +59,6 @@ const SideBar = () => {
 
         setTimeout(() => {
             if (searchValue.length < 1) return;
-
             setIsLoading(false);
         }, 300);
 
@@ -129,15 +131,18 @@ const SideBar = () => {
                                 About Us
                             </Link>
                         </StyledLink>
-                        {_.isEmpty(user) ? null : (
+                        {firebase.auth().currentUser ? null : (
                             <StyledLink>
                                 <Link to="/user-profile">Profile</Link>
                             </StyledLink>
                         )}
                     </div>
                     <div>
-                        {_.isEmpty(user) ? (
-                            <a href="/auth/google">Login</a>
+                        {firebase.auth().currentUser ? (
+                            <a href="#" onClick={() => {
+                                var provider = new firebase.auth.GoogleAuthProvider();
+                                firebase.auth().signInWithRedirect(provider);
+                            }}>Login</a>
                         ) : (
                             <a href="/api/logout">Logout</a>
                         )}
