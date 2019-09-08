@@ -1,4 +1,4 @@
-import { FETCH_USER, UPDATE_SEARCH } from '../actions/types';
+import { SET_USER, FETCH_USER, UPDATE_SEARCH } from '../actions/types';
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -8,6 +8,12 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 searchValue: cleanedSearch,
+            };
+
+        case SET_USER:
+            return {
+                ...state,
+                user: action.payload || null,
             };
 
         case FETCH_USER:

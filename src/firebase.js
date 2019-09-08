@@ -14,5 +14,10 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+// firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+// firebase.auth().getRedirectResult().then(function(result) {
+//     console.log(result);
+//     console.log(firebase.auth().currentUser)
+// });
 
 export default firebase;

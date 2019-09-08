@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Responsive } from 'semantic-ui-react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -11,7 +11,8 @@ import ContactUs from '../ContactUs';
 import UserProfile from '../UserProfile';
 
 //State
-import { StateProvider } from '../../state';
+import { setUser } from '../../actions'
+import { StateProvider, useStateValue } from '../../state';
 import { reducer } from '../../reducers';
 import firebase from '../../firebase';
 
@@ -36,40 +37,57 @@ function PrivateRoute({ component: Component, ...rest }) {
                     />
                 )
             }
-            />
+        />
     );
 }
 
+//
 const App = props => {
+    //
+    const [{ user }, dispatch] = useStateValue();
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            setUser(dispatch, user);
+        });
+    }, [dispatch]);
+
+    return (
+        <BrowserRouter>
+            <MainContainer>
+                <SideBar />
+                <Responsive as={MainContentContainer} minWidth={768}>
+                    <Route exact path="/" component={HomePage} />
+                    <Route exact path="/contact-us" component={ContactUs} />
+                    <Route exact path="/post-job" component={PostJob} />
+                    <Route
+                        exact
+                        path="/:categorySlug/:nameSlug"
+                        component={SiteContent}
+                    />
+                    <PrivateRoute
+                        exact
+                        path="/user-profile"
+                        component={UserProfile}
+                    />
+                </Responsive>
+            </MainContainer>
+        </BrowserRouter>
+    );
+}
+
+const AppStateWrapper = props => {
+    //
     const initialState = {
         searchValue: '',
-        user: {},
+        user: null,
     };
 
     return (
         <StateProvider initialState={initialState} reducer={reducer}>
-            <BrowserRouter>
-                <MainContainer>
-                    <SideBar />
-                    <Responsive as={MainContentContainer} minWidth={768}>
-                        <Route exact path="/" component={HomePage} />
-                        <Route exact path="/contact-us" component={ContactUs} />
-                        <Route exact path="/post-job" component={PostJob} />
-                        <Route
-                            exact
-                            path="/:categorySlug/:nameSlug"
-                            component={SiteContent}
-                        />
-                        <PrivateRoute
-                            exact
-                            path="/user-profile"
-                            component={UserProfile}
-                        />
-                    </Responsive>
-                </MainContainer>
-            </BrowserRouter>
+            <App />
         </StateProvider>
     );
 };
 
-export default App;
+export default AppStateWrapper;

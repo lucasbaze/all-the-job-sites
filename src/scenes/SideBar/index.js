@@ -131,20 +131,29 @@ const SideBar = () => {
                                 About Us
                             </Link>
                         </StyledLink>
-                        {firebase.auth().currentUser ? null : (
+                        {!user ? null : (
                             <StyledLink>
                                 <Link to="/user-profile">Profile</Link>
                             </StyledLink>
                         )}
                     </div>
                     <div>
-                        {firebase.auth().currentUser ? (
+                        {user ? (
+                            <a href="#" onClick={() => {
+                                firebase.auth().signOut().then(function() {
+                                    // Sign-out successful.
+                                    window.location.reload();
+                                }).catch(function(error) {
+                                    console.error(error)
+                                    // An error happened.
+                                    // window.location.reload();
+                                });
+                            }}>Logout</a>
+                        ) : (
                             <a href="#" onClick={() => {
                                 var provider = new firebase.auth.GoogleAuthProvider();
                                 firebase.auth().signInWithRedirect(provider);
                             }}>Login</a>
-                        ) : (
-                            <a href="/api/logout">Logout</a>
                         )}
                     </div>
                     <div>
