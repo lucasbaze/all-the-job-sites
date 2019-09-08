@@ -1,10 +1,13 @@
-import 'semantic-ui-css/semantic.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
 
+//
+import './index.css';
+import App from './scenes/App';
+
+//
 import * as serviceWorker from './serviceWorker';
+import './firebase';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
