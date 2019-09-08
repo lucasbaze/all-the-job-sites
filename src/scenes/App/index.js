@@ -8,10 +8,10 @@ import SideBar from '../SideBar';
 import SiteContent from '../../components/SiteContent';
 import PostJob from '../PostJob';
 import ContactUs from '../ContactUs';
-import UserProfile from '../UserProfile';
+import User from '../User';
 
 //State
-import { setUser } from '../../actions'
+import { setUser } from '../../actions';
 import { StateProvider, useStateValue } from '../../state';
 import { reducer } from '../../reducers';
 import firebase from '../../firebase';
@@ -31,8 +31,8 @@ function PrivateRoute({ component: Component, ...rest }) {
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/",
-                            state: { from: props.location }
+                            pathname: '/',
+                            state: { from: props.location },
                         }}
                     />
                 )
@@ -60,21 +60,17 @@ const App = props => {
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/contact-us" component={ContactUs} />
                     <Route exact path="/post-job" component={PostJob} />
+                    <PrivateRoute path="/me" component={User} />
                     <Route
                         exact
-                        path="/:categorySlug/:nameSlug"
+                        path="/site/:categorySlug/:nameSlug"
                         component={SiteContent}
-                    />
-                    <PrivateRoute
-                        exact
-                        path="/user-profile"
-                        component={UserProfile}
                     />
                 </Responsive>
             </MainContainer>
         </BrowserRouter>
     );
-}
+};
 
 const AppStateWrapper = props => {
     //

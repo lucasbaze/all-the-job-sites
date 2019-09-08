@@ -73,7 +73,7 @@ const JobLink = props => {
             <Responsive
                 as={StyledLink}
                 minWidth={768}
-                to={`/${site.main_category_slug}/${site.site_name_slug}`}
+                to={`/site/${site.main_category_slug}/${site.site_name_slug}`}
                 onClick={() => {
                     window.gtag('event', 'link', {
                         event_category: 'navigation',

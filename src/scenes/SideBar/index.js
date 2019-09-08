@@ -5,7 +5,6 @@ import _ from 'lodash';
 import { useStateValue } from '../../state';
 import * as actions from '../../actions';
 import firebase from '../../firebase';
-// import { FETCH_USER, UPDATE_SEARCH } from '../../actions/types.js';
 
 //Components
 import { Header, Input, Button, Image, Responsive } from 'semantic-ui-react';
@@ -45,11 +44,6 @@ const SideBar = () => {
             setAllOpen(false);
         }
     }, [searchValue]);
-
-    // Load the user on component load
-    useEffect(() => {
-        actions.fetchUser(dispatch);
-    }, []);
 
     const handleSearchChange = event => {
         setIsLoading(true);
@@ -133,27 +127,43 @@ const SideBar = () => {
                         </StyledLink>
                         {!user ? null : (
                             <StyledLink>
-                                <Link to="/user-profile">Profile</Link>
+                                <Link to="/me">Profile</Link>
                             </StyledLink>
                         )}
                     </div>
                     <div>
                         {user ? (
-                            <a href="#" onClick={() => {
-                                firebase.auth().signOut().then(function() {
-                                    // Sign-out successful.
-                                    window.location.reload();
-                                }).catch(function(error) {
-                                    console.error(error)
-                                    // An error happened.
-                                    // window.location.reload();
-                                });
-                            }}>Logout</a>
+                            <a
+                                href="#"
+                                onClick={() => {
+                                    firebase
+                                        .auth()
+                                        .signOut()
+                                        .then(function() {
+                                            // Sign-out successful.
+                                            window.location.reload();
+                                        })
+                                        .catch(function(error) {
+                                            console.error(error);
+                                            // An error happened.
+                                            // window.location.reload();
+                                        });
+                                }}
+                            >
+                                Logout
+                            </a>
                         ) : (
-                            <a href="#" onClick={() => {
-                                var provider = new firebase.auth.GoogleAuthProvider();
-                                firebase.auth().signInWithRedirect(provider);
-                            }}>Login</a>
+                            <a
+                                href="#"
+                                onClick={() => {
+                                    var provider = new firebase.auth.GoogleAuthProvider();
+                                    firebase
+                                        .auth()
+                                        .signInWithRedirect(provider);
+                                }}
+                            >
+                                Login
+                            </a>
                         )}
                     </div>
                     <div>
