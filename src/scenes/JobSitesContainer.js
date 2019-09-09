@@ -163,6 +163,7 @@ const JobSitesContainer = props => {
 
             return categoryList.length >= 1 ? (
                 <CategoryList
+                    key={index}
                     title={categoryName}
                     categoryList={categoryList}
                     allOpen={props.allOpen}

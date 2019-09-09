@@ -55,9 +55,10 @@ const FeaturedJob = props => {
                             justifyContent: 'flex-start',
                         }}
                     >
-                        {props.tags.map(tag => {
+                        {props.tags.map((tag, index) => {
                             return (
                                 <Button
+                                    key={index}
                                     compact
                                     disabled
                                     content={tag}

@@ -45,7 +45,7 @@ const User = () => {
                 <div>
                     <Menu>
                         <Menu.Item as={Link} to="/me/profile">
-                            <UserImage src={user.photo} />
+                            <UserImage src={user.photoURL} />
                         </Menu.Item>
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs

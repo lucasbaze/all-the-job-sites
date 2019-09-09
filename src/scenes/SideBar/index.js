@@ -87,9 +87,7 @@ const SideBar = () => {
                             marginBottom: 20,
                         }}
                     >
-                        <StyledLink>
-                            <Link to="/">Home</Link>
-                        </StyledLink>
+                        <StyledLink to="/">Home</StyledLink>
                         <Responsive
                             as={StyledLink}
                             to="/contact-us"
@@ -112,23 +110,20 @@ const SideBar = () => {
                         >
                             Contact Us
                         </Responsive>
-                        <StyledLink>
-                            <Link
-                                onClick={() => {
-                                    setOpenAbout(true);
-                                    window.gtag('event', 'navigate', {
-                                        event_category: 'navigation',
-                                        event_label: 'open about us',
-                                    });
-                                }}
-                            >
-                                About Us
-                            </Link>
+                        <StyledLink
+                            to=""
+                            onClick={() => {
+                                setOpenAbout(true);
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'open about us',
+                                });
+                            }}
+                        >
+                            About Us
                         </StyledLink>
                         {!user ? null : (
-                            <StyledLink>
-                                <Link to="/me">Profile</Link>
-                            </StyledLink>
+                            <StyledLink to="/me">Profile</StyledLink>
                         )}
                     </div>
                     <div>

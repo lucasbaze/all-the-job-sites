@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
+//State
+import * as actions from '../../../actions';
+import { useStateValue } from '../../../state';
+
 import { Table, Dropdown, Rating, Icon } from 'semantic-ui-react';
 
-const SavedJobsTable = ({ savedJobs }) => {
+const SavedJobsTable = props => {
     const [modSavedJobs, setModSavedJobs] = useState([]);
-
-    const filterJobs = filterStatus => {
-        // let filteredJobs = savedJobs.filter(job => {
-        //     return job.status == filterStatus;
-        // });
-        // setModSavedJobs(filteredJobs);
-        console.log(filterStatus);
-    };
+    const [{ user }, dispatch] = useStateValue();
+    let { savedJobs } = props;
+    console.log('SavedJobs: ', savedJobs);
 
     const groupJobsByStatus = () => {
         let groupedJobs = savedJobs
@@ -38,25 +37,27 @@ const SavedJobsTable = ({ savedJobs }) => {
     };
 
     useEffect(() => {
+        console.log('rending from useEffect SavedJobsTable');
         //Group jobs by status
         let groupedJobs = groupJobsByStatus();
 
         //Set saved jobs as an array
         setModSavedJobs(Object.entries(groupedJobs));
-    }, [savedJobs]);
+    }, [props]);
 
     const handleStatusChange = (key, value) => {
+        actions.updateSavedJob(dispatch, user.uid, savedJobs, key, value);
         //Find job and change status
-        let job = _.find(savedJobs, { key: key });
-        job.status = value;
+        //let job = _.find(savedJobs, { key: key });
+        //job.status = value;
 
         //reset value of savedjobs
-        savedJobs = [...savedJobs];
+        //savedJobs = [...savedJobs];
 
         //regroup
-        let groupedJobs = groupJobsByStatus();
-
-        setModSavedJobs(Object.entries(groupedJobs));
+        // let groupedJobs = groupJobsByStatus(savedJobs);
+        //
+        // setModSavedJobs(Object.entries(groupedJobs));
     };
 
     return (
@@ -70,13 +71,13 @@ const SavedJobsTable = ({ savedJobs }) => {
                         <JobRow
                             key={job.key}
                             job={job}
-                            index={index1 + index2}
+                            index={`${index1}${index2}`}
                             handleStatusChange={handleStatusChange}
                         />
                     );
                 });
                 return (
-                    <Table>
+                    <Table key={index1}>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Job Name</Table.HeaderCell>
@@ -144,7 +145,7 @@ const JobRow = ({ job, index, handleStatusChange }) => {
 
     return (
         <Table.Row {...rowStatus}>
-            <Table.Cell content={index} />
+            <Table.Cell content={job.name} />
             <Table.Cell>
                 <a href={job.link} target="_blank">
                     {jobLink}

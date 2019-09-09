@@ -11,7 +11,7 @@ import ContactUs from '../ContactUs';
 import User from '../User';
 
 //State
-import { setUser } from '../../actions';
+import * as actions from '../../actions';
 import { StateProvider, useStateValue } from '../../state';
 import { reducer } from '../../reducers';
 import firebase from '../../firebase';
@@ -48,7 +48,19 @@ const App = props => {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(user) {
-            setUser(dispatch, user);
+            let { displayName, email, photoURL, uid, emailVerified } = user;
+
+            //Check if the user is already associated with a DB record
+            actions.getOrCreateUserDBRecord(dispatch, user);
+
+            //Set user to global state
+            actions.setUser(dispatch, {
+                displayName,
+                email,
+                photoURL,
+                uid,
+                emailVerified,
+            });
         });
     }, [dispatch]);
 
@@ -77,6 +89,7 @@ const AppStateWrapper = props => {
     const initialState = {
         searchValue: '',
         user: null,
+        savedJobs: [],
     };
 
     return (

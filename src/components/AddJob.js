@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 //import axios from 'axios';
 
+//State
+import * as actions from '../actions';
+import { useStateValue } from '../state';
+
 //Components
 import { Header, Form, Segment } from 'semantic-ui-react';
 
@@ -11,27 +15,26 @@ const Container = styled.div`
     position: fixed;
 `;
 
-const AddJob = ({ action }) => {
-    // const [jobToSave, setJobToSave] = useState({
-    //     name: '',
-    //     link: ''
-    // });
-    const [jobLink, setJobLink] = useState('');
+const AddJob = () => {
+    const [{ savedJobs, user }, dispatch] = useStateValue();
+    const [job, setJob] = useState({
+        name: '',
+        link: '',
+    });
 
     const handleChange = e => {
-        //setJobToSave({...jobToSave, [e.target.name] : e.target.value});
-        setJobLink(e.target.value);
+        setJob({ ...job, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = () => {
-        //axios.post('/api/jobs', { jobLink: jobLink });
-        //Just add the job link to the saved jobs so it displays in the list
-        // action([
-        //     { link: jobLink, status: 'new', created: new Date() },
-        //     ...savedJobs,
-        // ]);
-        //setJobLink('');
+        actions.addNewSavedJob(dispatch, savedJobs, job, user.uid);
+        setJob({
+            name: '',
+            link: '',
+        });
     };
+
+    console.log(job.name, job.link);
 
     return (
         <div>
@@ -40,9 +43,19 @@ const AddJob = ({ action }) => {
                 <Form.Group>
                     <Form.Field style={{ flex: 1 }}>
                         <input
+                            name="name"
+                            type="text"
+                            placeholder="Job Name"
+                            value={job.name}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Form.Field style={{ flex: 2 }}>
+                        <input
                             name="link"
                             type="text"
-                            value={jobLink}
+                            placeholder="Job Link"
+                            value={job.link}
                             onChange={handleChange}
                         />
                     </Form.Field>
