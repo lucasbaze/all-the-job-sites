@@ -47,6 +47,10 @@ const SavedJobsTable = props => {
         actions.updateSavedJob(dispatch, user.uid, savedJobs, key, value);
     };
 
+    const handleDelete = key => {
+        actions.deleteSavedJob(dispatch, user.uid, savedJobs, key);
+    };
+
     return (
         <>
             {modSavedJobs.map((category, index1) => {
@@ -59,6 +63,7 @@ const SavedJobsTable = props => {
                             job={job}
                             index={`${index1}${index2}`}
                             handleStatusChange={handleStatusChange}
+                            handleDelete={handleDelete}
                         />
                     );
                 });
@@ -69,7 +74,7 @@ const SavedJobsTable = props => {
                                 <Table.HeaderCell>Job Name</Table.HeaderCell>
                                 <Table.HeaderCell>Link</Table.HeaderCell>
                                 <Table.HeaderCell>Status</Table.HeaderCell>
-                                <Table.HeaderCell>Priority</Table.HeaderCell>
+                                <Table.HeaderCell>Delete</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>{reducedJobs}</Table.Body>
@@ -80,7 +85,7 @@ const SavedJobsTable = props => {
     );
 };
 
-const JobRow = ({ job, index, handleStatusChange }) => {
+const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
     const [status, setStatus] = useState(job.status);
     const [rowStatus, setRowStatus] = useState(() => {
         switch (job.status) {
@@ -145,8 +150,8 @@ const JobRow = ({ job, index, handleStatusChange }) => {
                     onChange={handleChange}
                 />
             </Table.Cell>
-            <Table.Cell>
-                <Rating icon="star" defaultRating={2} maxRating={3} />
+            <Table.Cell onClick={() => handleDelete(job.key)}>
+                <Icon name="delete" />
             </Table.Cell>
         </Table.Row>
     );

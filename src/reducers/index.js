@@ -5,6 +5,7 @@ import {
     SET_USER_JOBS,
     UPDATE_SAVED_JOBS,
     ADD_SAVED_JOB,
+    DELETE_SAVED_JOB,
 } from '../actions/types';
 
 export const reducer = (state, action) => {
@@ -46,6 +47,13 @@ export const reducer = (state, action) => {
                 ...state,
                 savedJobs: action.payload || null,
             };
+
+        case DELETE_SAVED_JOB:
+            return {
+                ...state,
+                savedJobs: action.payload || null,
+            };
+
         default:
             return state;
     }

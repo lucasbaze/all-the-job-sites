@@ -6,6 +6,7 @@ import {
     SET_USER_JOBS,
     UPDATE_SAVED_JOBS,
     ADD_SAVED_JOB,
+    DELETE_SAVED_JOB,
 } from './types.js';
 import firebase from '../firebase.js';
 import _ from 'lodash';
@@ -108,13 +109,30 @@ export const updateSavedJob = (dispatch, uid, savedJobs, key, value) => {
         });
 };
 
-export const deleteSavedJob = (dispatch, job, uid) => {
-    console.log('deleting job');
+export const deleteSavedJob = (dispatch, uid, savedJobs, key) => {
+    console.log('deleting job from state');
 
+    _.remove(savedJobs, job => {
+        return job.key == key;
+    });
+
+    //console.log(savedJobs);
+    dispatch({
+        type: DELETE_SAVED_JOB,
+        payload: savedJobs,
+    });
+
+    //Remove everything before saved_jobs/ from key
+    //key is the document path
+    //key looks like users/wD0GWSkyezNfAPQxgr8IjwMfP583/saved_jobs/VuGJ5M69AwyCHjoMese
+    let jobKey = key.substring(key.indexOf('saved_jobs/') + 11);
+
+    console.log(jobKey);
+    console.log('deleting job from db');
     db.collection('users')
         .doc(`${uid}`)
-        .collection('saved_job')
-        .doc(`${job.key}`)
+        .collection('saved_jobs')
+        .doc(`${jobKey}`)
         .delete()
         .then(() => {
             console.log('Job Succesfully deleted');
