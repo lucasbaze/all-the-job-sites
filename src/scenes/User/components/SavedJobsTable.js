@@ -11,7 +11,6 @@ const SavedJobsTable = props => {
     const [modSavedJobs, setModSavedJobs] = useState([]);
     const [{ user }, dispatch] = useStateValue();
     let { savedJobs } = props;
-    console.log('SavedJobs: ', savedJobs);
 
     const groupJobsByStatus = () => {
         let groupedJobs = savedJobs
@@ -37,7 +36,6 @@ const SavedJobsTable = props => {
     };
 
     useEffect(() => {
-        console.log('rending from useEffect SavedJobsTable');
         //Group jobs by status
         let groupedJobs = groupJobsByStatus();
 
@@ -47,17 +45,6 @@ const SavedJobsTable = props => {
 
     const handleStatusChange = (key, value) => {
         actions.updateSavedJob(dispatch, user.uid, savedJobs, key, value);
-        //Find job and change status
-        //let job = _.find(savedJobs, { key: key });
-        //job.status = value;
-
-        //reset value of savedjobs
-        //savedJobs = [...savedJobs];
-
-        //regroup
-        // let groupedJobs = groupJobsByStatus(savedJobs);
-        //
-        // setModSavedJobs(Object.entries(groupedJobs));
     };
 
     return (
@@ -66,7 +53,6 @@ const SavedJobsTable = props => {
                 let [name, jobs] = category;
                 let reducedJobs = jobs.map((job, index2) => {
                     let jobLink = job.link.substring(8, 35).concat('...');
-                    console.log(job);
                     return (
                         <JobRow
                             key={job.key}

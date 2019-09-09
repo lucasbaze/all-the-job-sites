@@ -55,7 +55,12 @@ export const addNewSavedJob = async (dispatch, savedJobs, job, uid) => {
 
     job.status = 'new';
     job.createDate = new Date();
-    job.key = docRef.id;
+
+    //Set the job key as the entire path
+    //docRef is parsed out in order to update
+    job.key = `users/${uid}/saved_jobs/` + docRef.id;
+
+    console.log(job);
 
     savedJobs.push(job);
 
@@ -84,13 +89,18 @@ export const updateSavedJob = (dispatch, uid, savedJobs, key, value) => {
     //key looks like users/wD0GWSkyezNfAPQxgr8IjwMfP583/saved_jobs/VuGJ5M69AwyCHjoMese
     let jobKey = key.substring(key.indexOf('saved_jobs/') + 11);
 
+    console.log(jobKey);
+
     db.collection('users')
         .doc(`${uid}`)
-        .collection('saved_job')
+        .collection('saved_jobs')
         .doc(`${jobKey}`)
-        .get()
-        .then(doc => {
-            console.log(doc.data());
+        .update({
+            status: value,
+        })
+        // .get()
+        .then(() => {
+            //console.log(doc.data());
             console.log('Succesfully updated Job');
         })
         .catch(err => {

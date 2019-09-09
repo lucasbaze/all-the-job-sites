@@ -34,8 +34,6 @@ const AddJob = () => {
         });
     };
 
-    console.log(job.name, job.link);
-
     return (
         <div>
             <Header as="h1" content="Add Jobs" />
