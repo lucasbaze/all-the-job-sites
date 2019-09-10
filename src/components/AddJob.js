@@ -12,7 +12,7 @@ import { Header, Form, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    position: fixed;
+    width: 100%;
 `;
 
 const AddJob = () => {
@@ -35,7 +35,7 @@ const AddJob = () => {
     };
 
     return (
-        <div>
+        <>
             <Header as="h1" content="Add Jobs" />
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -64,7 +64,7 @@ const AddJob = () => {
                     />
                 </Form.Group>
             </Form>
-        </div>
+        </>
     );
 };
 

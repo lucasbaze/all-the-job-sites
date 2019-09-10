@@ -6,21 +6,34 @@ import { useStateValue } from '../../../state';
 //Components
 import { Header, Segment, Label, Form, Input, Grid } from 'semantic-ui-react';
 
+//Hooks
+import { useForm } from '../../../hooks';
+
 const Profile = () => {
     const [{ user }, dispatch] = useStateValue();
+    const [locationValue, handleLocationChange, handleLocationSubmit] = useForm(
+        '',
+        console.log
+    );
 
     return (
-        <Segment>
+        <>
             <Header as="h1" content={user.displayName} />
             <p>{user.email}</p>
             <Grid columns={3} divided>
                 <Grid.Row>
                     <Grid.Column>
-                        <Form>
-                            <Form.Field>
-                                <label>Locations</label>
-                                <input placeholder="Remote, Austin, Seattle" />
-                            </Form.Field>
+                        <Form onSubmit={handleLocationSubmit}>
+                            <Form.Group>
+                                <Form.Input
+                                    label="locations"
+                                    name="location"
+                                    placeholder="Remote, Austin, Seattle"
+                                    onChange={handleLocationChange}
+                                    value={locationValue.location}
+                                />
+                                <Form.Button color="purple" icon="plus" />
+                            </Form.Group>
                         </Form>
                     </Grid.Column>
                     <Grid.Column>
@@ -41,7 +54,7 @@ const Profile = () => {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-        </Segment>
+        </>
     );
 };
 

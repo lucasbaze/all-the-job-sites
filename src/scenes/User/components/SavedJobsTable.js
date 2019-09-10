@@ -5,7 +5,8 @@ import _ from 'lodash';
 import * as actions from '../../../actions';
 import { useStateValue } from '../../../state';
 
-import { Table, Dropdown, Rating, Icon } from 'semantic-ui-react';
+//Components
+import { Table, Dropdown, Header, Icon, Button } from 'semantic-ui-react';
 
 const SavedJobsTable = props => {
     const [modSavedJobs, setModSavedJobs] = useState([]);
@@ -15,10 +16,7 @@ const SavedJobsTable = props => {
     const groupJobsByStatus = () => {
         let groupedJobs = savedJobs
             .sort((a, b) => {
-                if (a.status > b.status) {
-                    return 1;
-                }
-                if (a.status < b.status) {
+                if (a.status == 'new') {
                     return -1;
                 }
                 return 0;
@@ -53,6 +51,7 @@ const SavedJobsTable = props => {
 
     return (
         <>
+            <Header as="h1" content="Saved Jobs" />
             {modSavedJobs.map((category, index1) => {
                 let [name, jobs] = category;
                 let reducedJobs = jobs.map((job, index2) => {
@@ -68,7 +67,7 @@ const SavedJobsTable = props => {
                     );
                 });
                 return (
-                    <Table key={index1}>
+                    <Table key={index1} stackable>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Job Name</Table.HeaderCell>
@@ -116,7 +115,7 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
         },
     ];
 
-    let jobLink = job.link.substring(8, 35).concat('...');
+    let jobLink = job.link.substring(8, 45).concat('...');
 
     const handleChange = (e, { value }) => {
         setStatus(value);
@@ -136,13 +135,13 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
 
     return (
         <Table.Row {...rowStatus}>
-            <Table.Cell content={job.name} />
-            <Table.Cell>
+            <Table.Cell content={job.name} width={4} />
+            <Table.Cell width={8}>
                 <a href={job.link} target="_blank">
                     {jobLink}
                 </a>
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell width={2}>
                 <Dropdown
                     selection
                     value={status}
@@ -150,8 +149,12 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
                     onChange={handleChange}
                 />
             </Table.Cell>
-            <Table.Cell onClick={() => handleDelete(job.key)}>
-                <Icon name="delete" />
+            <Table.Cell width={1}>
+                <Button
+                    color="red"
+                    icon="delete"
+                    onClick={() => handleDelete(job.key)}
+                />
             </Table.Cell>
         </Table.Row>
     );
