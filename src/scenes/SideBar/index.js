@@ -17,9 +17,9 @@ import {
 } from 'semantic-ui-react';
 import JobSitesContainer from '../JobSitesContainer.js';
 import { Link } from 'react-router-dom';
-import { AboutUs, LoginSignup } from '../../components/Modals';
+import { LoginSignup } from '../../components/Modals';
 
-import Logo from './components/Logo';
+import Logo from '../../components/Logo';
 import SearchBar from './components/SearchBar';
 import LoginSignupButtons from './components/LoginSignupButtons';
 import LinkToAccount from './components/LinkToAccount';
@@ -38,7 +38,6 @@ import {
 const SideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
-    const [openAbout, setOpenAbout] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
     const [{ searchValue, user }, dispatch] = useStateValue();
@@ -117,7 +116,6 @@ const SideBar = () => {
                     allOpen={allOpen}
                 />
             </StyledSideBar>
-            <AboutUs open={openAbout} setOpen={setOpenAbout} />
             <LoginSignup
                 selectedIndex={index}
                 open={openLoginSignup}

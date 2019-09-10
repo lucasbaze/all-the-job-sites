@@ -28,7 +28,7 @@ export const StyledFeaturedJobs = styled.div`
 export const ShareButtons = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 7px;
+    margin-top: 45px;
 `;
 
 export const Container = styled.div`

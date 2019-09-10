@@ -5,6 +5,7 @@ import { FacebookShareButton, TwitterShareButton } from 'react-share';
 //Components
 import FeaturedJob from '../../components/FeaturedJob';
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer';
 
 //CSS
 import {
@@ -48,7 +49,27 @@ const HomePage = () => {
                 </p>
             </Jumbotron>
             <StyledFeaturedJobs>
-                <Header as="h3">Featured Jobs:</Header>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <Header as="h3">Featured Jobs:</Header>
+                    <Link to="/post-job">
+                        <Button
+                            color="red"
+                            onClick={() => {
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'post job',
+                                });
+                            }}
+                            content="Post Job"
+                            style={{ minWidth: 100 }}
+                        />
+                    </Link>
+                </div>
                 <FeaturedJob
                     logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
                     url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
@@ -82,6 +103,50 @@ const HomePage = () => {
                     tags={['magento', 'bigcommerce', 'sales', 'smb']}
                 />
             </StyledFeaturedJobs>
+            <ShareButtons>
+                <FacebookShareButton
+                    url={'https://allthejobsites.com'}
+                    quote="The only site I need to go to find jobs"
+                >
+                    <Button
+                        style={{
+                            backgroundColor: '#1877f2',
+                            color: 'white',
+                        }}
+                        onClick={() => {
+                            window.gtag('event', 'click', {
+                                event_category: 'share',
+                                event_label: 'facebook share',
+                            });
+                        }}
+                    >
+                        <Icon name="facebook" />
+                        Share on Facebook
+                    </Button>
+                </FacebookShareButton>
+                <TwitterShareButton
+                    url={'https://allthejobsites.com'}
+                    title="All The Jobs Sites. Where your job search starts... and ends."
+                    hashtags={['jobs', 'hiring']}
+                >
+                    <Button
+                        style={{
+                            backgroundColor: '#1da1f2',
+                            color: 'white',
+                        }}
+                        onClick={() => {
+                            window.gtag('event', 'click', {
+                                event_category: 'share',
+                                event_label: 'twitter share',
+                            });
+                        }}
+                    >
+                        <Icon name="twitter square" />
+                        Share on Twitter
+                    </Button>
+                </TwitterShareButton>
+            </ShareButtons>
+            <Footer />
         </Container>
     );
 };
