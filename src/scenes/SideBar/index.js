@@ -7,12 +7,22 @@ import * as actions from '../../actions';
 import firebase from '../../firebase';
 
 //Components
-import { Header, Input, Button, Image, Responsive } from 'semantic-ui-react';
+import {
+    Header,
+    Input,
+    Button,
+    Segment,
+    Image,
+    Responsive,
+} from 'semantic-ui-react';
 import JobSitesContainer from '../JobSitesContainer.js';
 import { Link } from 'react-router-dom';
-import { AboutUs } from '../../components/Modals';
+import { AboutUs, LoginSignup } from '../../components/Modals';
 
 import Logo from './components/Logo';
+import SearchBar from './components/SearchBar';
+import LoginSignupButtons from './components/LoginSignupButtons';
+import LinkToAccount from './components/LinkToAccount';
 
 //CSS
 import styled from 'styled-components';
@@ -29,6 +39,8 @@ const SideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
     const [openAbout, setOpenAbout] = useState(false);
+    const [openLoginSignup, setOpenLoginSignup] = useState(false);
+    const [index, setIndex] = useState(0);
     const [{ searchValue, user }, dispatch] = useStateValue();
 
     // If user is typing search, open all categories
@@ -54,138 +66,50 @@ const SideBar = () => {
         console.log(`${searchValue} => ${event.target.value}`);
     };
 
+    const authLogin = () => {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithRedirect(provider);
+    };
+
+    const authLogout = () => {
+        firebase
+            .auth()
+            .signOut()
+            .then(function() {
+                // Sign-out successful.
+                window.location.reload();
+            })
+            .catch(function(error) {
+                console.error(error);
+                // An error happened.
+                // window.location.reload();
+            });
+    };
+
     return (
         <SideBarContainer>
             <StyledTopBar>
                 <Logo />
                 <div
                     style={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'center',
                         marginBottom: 20,
                     }}
                 >
-                    <StyledLink to="/">Home</StyledLink>
-                    <Responsive as={StyledLink} to="/contact-us" minWidth={768}>
-                        Contact Us
-                    </Responsive>
-
-                    <Responsive
-                        as={StyledALink}
-                        href="https://lucasbazemore.typeform.com/to/iAd0PV"
-                        maxWidth={768}
-                        target="_blank"
-                        onClick={() =>
-                            window.gtag('event', 'navigate', {
-                                event_category: 'navigation',
-                                event_label: 'contact us',
-                            })
-                        }
-                    >
-                        Contact Us
-                    </Responsive>
-                    <StyledLink
-                        to=""
-                        onClick={() => {
-                            setOpenAbout(true);
-                            window.gtag('event', 'navigate', {
-                                event_category: 'navigation',
-                                event_label: 'open about us',
-                            });
-                        }}
-                    >
-                        About Us
-                    </StyledLink>
-                    {!user ? null : <StyledLink to="/me">Profile</StyledLink>}
-                </div>
-                <div>
-                    {user ? (
-                        <a
-                            href="#"
-                            onClick={() => {
-                                firebase
-                                    .auth()
-                                    .signOut()
-                                    .then(function() {
-                                        // Sign-out successful.
-                                        window.location.reload();
-                                    })
-                                    .catch(function(error) {
-                                        console.error(error);
-                                        // An error happened.
-                                        // window.location.reload();
-                                    });
-                            }}
-                        >
-                            Logout
-                        </a>
+                    {!user ? (
+                        <LoginSignupButtons
+                            setOpenLoginSignup={setOpenLoginSignup}
+                            setIndex={setIndex}
+                        />
                     ) : (
-                        <a
-                            href="#"
-                            onClick={() => {
-                                var provider = new firebase.auth.GoogleAuthProvider();
-                                firebase.auth().signInWithRedirect(provider);
-                            }}
-                        >
-                            Login
-                        </a>
+                        <LinkToAccount user={user} />
                     )}
                 </div>
-                <div>
-                    <Header as="h4" style={{ marginBottom: 5 }}>
-                        Looking for:
-                    </Header>
-                    <div
-                        style={{
-                            marginTop: 10,
-                            textAlign: 'center',
-                            display: 'flex',
-                        }}
-                    >
-                        <Button
-                            icon={
-                                allOpen ? 'compress' : 'expand arrows alternate'
-                            }
-                            basic
-                            onClick={() => {
-                                allOpen ? setAllOpen(false) : setAllOpen(true);
-                                window.gtag('event', 'collapse', {
-                                    event_category: 'navigation',
-                                    event_label: 'expand collapse links',
-                                });
-                            }}
-                        />
-                        <Input
-                            action={{
-                                icon: 'close',
-                                basic: true,
-                                onClick: function() {
-                                    actions.updateSearch(dispatch, '');
-                                    setAllOpen(false);
-                                    window.gtag('event', 'search', {
-                                        event_category: 'navigation',
-                                        event_label: 'clear search',
-                                    });
-                                },
-                            }}
-                            actionPosition="left"
-                            loading={isLoading}
-                            onChange={e => {
-                                handleSearchChange(e);
-                                window.gtag('event', 'search', {
-                                    event_category: 'navigation',
-                                    event_label: 'searching',
-                                });
-                            }}
-                            fluid
-                            icon="search"
-                            value={searchValue}
-                            placeholder="Sales, React, Military..."
-                            style={{ flex: 1 /* use full width */ }}
-                        />
-                    </div>
-                </div>
+                <SearchBar
+                    allOpen={allOpen}
+                    setAllOpen={setAllOpen}
+                    isLoading={isLoading}
+                    handleSearchChange={handleSearchChange}
+                />
             </StyledTopBar>
             <StyledSideBar>
                 <JobSitesContainer
@@ -194,8 +118,47 @@ const SideBar = () => {
                 />
             </StyledSideBar>
             <AboutUs open={openAbout} setOpen={setOpenAbout} />
+            <LoginSignup
+                selectedIndex={index}
+                open={openLoginSignup}
+                setOpen={setOpenLoginSignup}
+                authLogin={authLogin}
+            />
         </SideBarContainer>
     );
 };
 
 export default SideBar;
+
+// <StyledLink to="/">Home</StyledLink>
+// <Responsive as={StyledLink} to="/contact-us" minWidth={768}>
+//     Contact Us
+// </Responsive>
+//
+// <Responsive
+//     as={StyledALink}
+//     href="https://lucasbazemore.typeform.com/to/iAd0PV"
+//     maxWidth={768}
+//     target="_blank"
+//     onClick={() =>
+//         window.gtag('event', 'navigate', {
+//             event_category: 'navigation',
+//             event_label: 'contact us',
+//         })
+//     }
+// >
+//     Contact Us
+// </Responsive>
+// <StyledLink
+//     to=""
+//     onClick={() => {
+//         setOpenAbout(true);
+//         window.gtag('event', 'navigate', {
+//             event_category: 'navigation',
+//             event_label: 'open about us',
+//         });
+//     }}
+// >
+//     About Us
+// </StyledLink>
+// { !user ? null : <StyledLink to="/me">Profile</StyledLink> }

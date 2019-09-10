@@ -19,7 +19,7 @@ const Logo = () => {
                 as="h3"
                 style={{
                     display: 'flex',
-                    marginBottom: 5,
+                    marginBottom: 15,
                     fontSize: '1.5em',
                 }}
             >
