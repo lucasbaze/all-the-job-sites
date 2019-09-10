@@ -10,8 +10,9 @@ import firebase from '../../firebase';
 import { Header, Input, Button, Image, Responsive } from 'semantic-ui-react';
 import JobSitesContainer from '../JobSitesContainer.js';
 import { Link } from 'react-router-dom';
-import BottomMenu from '../../components/BottomMenu.js';
 import { AboutUs } from '../../components/Modals';
+
+import Logo from './components/Logo';
 
 //CSS
 import styled from 'styled-components';
@@ -27,14 +28,8 @@ import {
 const SideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
-    const [collapsed, setCollapsed] = useState(false);
     const [openAbout, setOpenAbout] = useState(false);
     const [{ searchValue, user }, dispatch] = useStateValue();
-
-    const updateCollapsed = () => {
-        console.log(collapsed);
-        collapsed ? setCollapsed(false) : setCollapsed(true);
-    };
 
     // If user is typing search, open all categories
     useEffect(() => {
@@ -60,177 +55,144 @@ const SideBar = () => {
     };
 
     return (
-        <SideBarContainer collapsed={collapsed}>
-            {collapsed ? null : (
-                <StyledTopBar>
-                    <Link to="/">
-                        <Header
-                            as="h2"
-                            style={{ display: 'flex', marginBottom: 5 }}
-                        >
-                            <Image
-                                src="/apple-touch-icon.png"
-                                style={{
-                                    width: 30,
-                                    height: 30,
-                                    marginRight: 10,
-                                }}
-                            />
-                            <p>All The Job Sites</p>
-                        </Header>
-                    </Link>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'flex-start',
-                            alignItems: 'center',
-                            marginBottom: 20,
+        <SideBarContainer>
+            <StyledTopBar>
+                <Logo />
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        marginBottom: 20,
+                    }}
+                >
+                    <StyledLink to="/">Home</StyledLink>
+                    <Responsive as={StyledLink} to="/contact-us" minWidth={768}>
+                        Contact Us
+                    </Responsive>
+
+                    <Responsive
+                        as={StyledALink}
+                        href="https://lucasbazemore.typeform.com/to/iAd0PV"
+                        maxWidth={768}
+                        target="_blank"
+                        onClick={() =>
+                            window.gtag('event', 'navigate', {
+                                event_category: 'navigation',
+                                event_label: 'contact us',
+                            })
+                        }
+                    >
+                        Contact Us
+                    </Responsive>
+                    <StyledLink
+                        to=""
+                        onClick={() => {
+                            setOpenAbout(true);
+                            window.gtag('event', 'navigate', {
+                                event_category: 'navigation',
+                                event_label: 'open about us',
+                            });
                         }}
                     >
-                        <StyledLink to="/">Home</StyledLink>
-                        <Responsive
-                            as={StyledLink}
-                            to="/contact-us"
-                            minWidth={768}
-                        >
-                            Contact Us
-                        </Responsive>
-
-                        <Responsive
-                            as={StyledALink}
-                            href="https://lucasbazemore.typeform.com/to/iAd0PV"
-                            maxWidth={768}
-                            target="_blank"
-                            onClick={() =>
-                                window.gtag('event', 'navigate', {
-                                    event_category: 'navigation',
-                                    event_label: 'contact us',
-                                })
-                            }
-                        >
-                            Contact Us
-                        </Responsive>
-                        <StyledLink
-                            to=""
+                        About Us
+                    </StyledLink>
+                    {!user ? null : <StyledLink to="/me">Profile</StyledLink>}
+                </div>
+                <div>
+                    {user ? (
+                        <a
+                            href="#"
                             onClick={() => {
-                                setOpenAbout(true);
-                                window.gtag('event', 'navigate', {
+                                firebase
+                                    .auth()
+                                    .signOut()
+                                    .then(function() {
+                                        // Sign-out successful.
+                                        window.location.reload();
+                                    })
+                                    .catch(function(error) {
+                                        console.error(error);
+                                        // An error happened.
+                                        // window.location.reload();
+                                    });
+                            }}
+                        >
+                            Logout
+                        </a>
+                    ) : (
+                        <a
+                            href="#"
+                            onClick={() => {
+                                var provider = new firebase.auth.GoogleAuthProvider();
+                                firebase.auth().signInWithRedirect(provider);
+                            }}
+                        >
+                            Login
+                        </a>
+                    )}
+                </div>
+                <div>
+                    <Header as="h4" style={{ marginBottom: 5 }}>
+                        Looking for:
+                    </Header>
+                    <div
+                        style={{
+                            marginTop: 10,
+                            textAlign: 'center',
+                            display: 'flex',
+                        }}
+                    >
+                        <Button
+                            icon={
+                                allOpen ? 'compress' : 'expand arrows alternate'
+                            }
+                            basic
+                            onClick={() => {
+                                allOpen ? setAllOpen(false) : setAllOpen(true);
+                                window.gtag('event', 'collapse', {
                                     event_category: 'navigation',
-                                    event_label: 'open about us',
+                                    event_label: 'expand collapse links',
                                 });
                             }}
-                        >
-                            About Us
-                        </StyledLink>
-                        {!user ? null : (
-                            <StyledLink to="/me">Profile</StyledLink>
-                        )}
-                    </div>
-                    <div>
-                        {user ? (
-                            <a
-                                href="#"
-                                onClick={() => {
-                                    firebase
-                                        .auth()
-                                        .signOut()
-                                        .then(function() {
-                                            // Sign-out successful.
-                                            window.location.reload();
-                                        })
-                                        .catch(function(error) {
-                                            console.error(error);
-                                            // An error happened.
-                                            // window.location.reload();
-                                        });
-                                }}
-                            >
-                                Logout
-                            </a>
-                        ) : (
-                            <a
-                                href="#"
-                                onClick={() => {
-                                    var provider = new firebase.auth.GoogleAuthProvider();
-                                    firebase
-                                        .auth()
-                                        .signInWithRedirect(provider);
-                                }}
-                            >
-                                Login
-                            </a>
-                        )}
-                    </div>
-                    <div>
-                        <Header as="h4" style={{ marginBottom: 5 }}>
-                            Looking for:
-                        </Header>
-                        <div
-                            style={{
-                                marginTop: 10,
-                                textAlign: 'center',
-                                display: 'flex',
-                            }}
-                        >
-                            <Button
-                                icon={
-                                    allOpen
-                                        ? 'compress'
-                                        : 'expand arrows alternate'
-                                }
-                                basic
-                                onClick={() => {
-                                    allOpen
-                                        ? setAllOpen(false)
-                                        : setAllOpen(true);
-                                    window.gtag('event', 'collapse', {
-                                        event_category: 'navigation',
-                                        event_label: 'expand collapse links',
-                                    });
-                                }}
-                            />
-                            <Input
-                                action={{
-                                    icon: 'close',
-                                    basic: true,
-                                    onClick: function() {
-                                        actions.updateSearch(dispatch, '');
-                                        setAllOpen(false);
-                                        window.gtag('event', 'search', {
-                                            event_category: 'navigation',
-                                            event_label: 'clear search',
-                                        });
-                                    },
-                                }}
-                                actionPosition="left"
-                                loading={isLoading}
-                                onChange={e => {
-                                    handleSearchChange(e);
+                        />
+                        <Input
+                            action={{
+                                icon: 'close',
+                                basic: true,
+                                onClick: function() {
+                                    actions.updateSearch(dispatch, '');
+                                    setAllOpen(false);
                                     window.gtag('event', 'search', {
                                         event_category: 'navigation',
-                                        event_label: 'searching',
+                                        event_label: 'clear search',
                                     });
-                                }}
-                                fluid
-                                icon="search"
-                                value={searchValue}
-                                placeholder="Sales, React, Military..."
-                                style={{ flex: 1 /* use full width */ }}
-                            />
-                        </div>
+                                },
+                            }}
+                            actionPosition="left"
+                            loading={isLoading}
+                            onChange={e => {
+                                handleSearchChange(e);
+                                window.gtag('event', 'search', {
+                                    event_category: 'navigation',
+                                    event_label: 'searching',
+                                });
+                            }}
+                            fluid
+                            icon="search"
+                            value={searchValue}
+                            placeholder="Sales, React, Military..."
+                            style={{ flex: 1 /* use full width */ }}
+                        />
                     </div>
-                </StyledTopBar>
-            )}
+                </div>
+            </StyledTopBar>
             <StyledSideBar>
                 <JobSitesContainer
                     searchValue={searchValue}
                     allOpen={allOpen}
                 />
             </StyledSideBar>
-            <BottomMenu
-                updateCollapsed={updateCollapsed}
-                collapsed={collapsed}
-            />
             <AboutUs open={openAbout} setOpen={setOpenAbout} />
         </SideBarContainer>
     );

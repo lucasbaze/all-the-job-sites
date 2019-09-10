@@ -16,7 +16,7 @@ export const StyledSideBar = styled.div`
 `;
 
 export const SideBarContainer = styled.div`
-    flex: ${props => (props.collapsed ? 0.6 : 1.1)};
+    flex: 1.1;
     height: 100vh;
     display: flex;
     flex-flow: column nowrap;

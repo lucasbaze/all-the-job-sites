@@ -29,3 +29,11 @@ export const ShareButtons = styled.div`
     justify-content: center;
     margin-bottom: 7px;
 `;
+
+export const Container = styled.div`
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: scroll;
+`;

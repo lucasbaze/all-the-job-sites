@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Responsive } from 'semantic-ui-react';
+import { Responsive, Menu } from 'semantic-ui-react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 //Components
@@ -69,10 +69,15 @@ const App = props => {
             <MainContainer>
                 <SideBar />
                 <Responsive as={MainContentContainer} minWidth={768}>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/contact-us" component={ContactUs} />
-                    <Route exact path="/post-job" component={PostJob} />
-                    <PrivateRoute path="/me" component={User} />
+                    <>
+                        <Menu>
+                            <Menu.Item>Hello!</Menu.Item>
+                        </Menu>
+                        <Route exact path="/" component={HomePage} />
+                        <Route exact path="/contact-us" component={ContactUs} />
+                        <Route exact path="/post-job" component={PostJob} />
+                        <PrivateRoute path="/me" component={User} />
+                    </>
                     <Route
                         exact
                         path="/site/:categorySlug/:nameSlug"
