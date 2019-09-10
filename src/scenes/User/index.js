@@ -1,9 +1,10 @@
 import React from 'react';
 import { useStateValue } from '../../state';
 import _ from 'lodash';
+import firebase from '../../firebase';
 
 import styled from 'styled-components';
-import { Header, Segment, Menu } from 'semantic-ui-react';
+import { Header, Segment, Menu, Button } from 'semantic-ui-react';
 import SavedJobs from './components/SavedJobs';
 import Profile from './components/Profile';
 
@@ -49,6 +50,25 @@ const User = () => {
                         </Menu.Item>
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs
+                        </Menu.Item>
+                        <Menu.Item
+                            as={Button}
+                            onClick={() =>
+                                firebase
+                                    .auth()
+                                    .signOut()
+                                    .then(function() {
+                                        // Sign-out successful.
+                                        window.location.reload();
+                                    })
+                                    .catch(function(error) {
+                                        console.error(error);
+                                        // An error happened.
+                                        // window.location.reload();
+                                    })
+                            }
+                        >
+                            Logout
                         </Menu.Item>
                     </Menu>
                     <Route exact path="/me" component={SavedJobs} />
