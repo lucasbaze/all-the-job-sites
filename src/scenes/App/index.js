@@ -69,15 +69,10 @@ const App = props => {
             <MainContainer>
                 <SideBar />
                 <Responsive as={MainContentContainer} minWidth={768}>
-                    <>
-                        <Menu>
-                            <Menu.Item>Hello!</Menu.Item>
-                        </Menu>
-                        <Route exact path="/" component={HomePage} />
-                        <Route exact path="/contact-us" component={ContactUs} />
-                        <Route exact path="/post-job" component={PostJob} />
-                        <PrivateRoute path="/me" component={User} />
-                    </>
+                    <Route exact path="/" component={HomePage} />
+                    <Route exact path="/contact-us" component={ContactUs} />
+                    <Route exact path="/post-job" component={PostJob} />
+                    <PrivateRoute path="/me" component={User} />
                     <Route
                         exact
                         path="/site/:categorySlug/:nameSlug"

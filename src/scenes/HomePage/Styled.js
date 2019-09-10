@@ -22,6 +22,7 @@ export const StyledValueProp = styled.div`
 export const StyledFeaturedJobs = styled.div`
     width: 90%;
     margin: 0 auto;
+    margin-top: 40px;
 `;
 
 export const ShareButtons = styled.div`
@@ -31,9 +32,19 @@ export const ShareButtons = styled.div`
 `;
 
 export const Container = styled.div`
-    padding: 20px;
     display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: scroll;
+`;
+
+export const Jumbotron = styled.div`
+    height: 30vh;
+    width: 100%;
+    background-image: url(${process.env.PUBLIC_URL +
+        'all-the-job-sites-jumbotron-img.jpg'});
+    background-repeat: no-repeat;
+    background-position: 100% 40%;
+    background-size: cover;
+    text-align: center;
 `;
