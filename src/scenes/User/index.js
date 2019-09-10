@@ -28,9 +28,9 @@ const User = () => {
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs
                         </Menu.Item>
-                        <Menu.Item as={Link} to="/me/preferences">
+                        {/*<Menu.Item as={Link} to="/me/preferences">
                             Preferences
-                        </Menu.Item>
+                        </Menu.Item>*/}
                         <Menu.Menu position="right">
                             <Menu.Item>
                                 <Button color="red">
@@ -41,11 +41,11 @@ const User = () => {
                     </Menu>
                     <Route exact path="/me" component={SavedJobs} />
                     <Route exact path="/me/profile" component={Profile} />
-                    <Route
+                    {/*<Route
                         exact
                         path="/me/preferences"
                         component={Preferences}
-                    />
+                    />*/}
                 </div>
             )}
         </ProfileContainer>
