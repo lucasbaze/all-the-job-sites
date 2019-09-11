@@ -7,6 +7,7 @@ import {
     UPDATE_SAVED_JOBS,
     ADD_SAVED_JOB,
     DELETE_SAVED_JOB,
+    GET_USER_PREFERENCES,
 } from './types.js';
 import firebase from '../firebase.js';
 import _ from 'lodash';
@@ -30,6 +31,8 @@ export const updateSearch = (dispatch, value) => {
         payload: value,
     });
 };
+
+export const getUserPreferences = (dispatch, user) => {};
 
 export const addNewSavedJob = async (dispatch, savedJobs, job, uid) => {
     console.log('saving new job to DB');

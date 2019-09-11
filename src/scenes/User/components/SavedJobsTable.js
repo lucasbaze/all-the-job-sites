@@ -115,7 +115,7 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
         },
     ];
 
-    let jobLink = job.link.substring(8, 45).concat('...');
+    let jobLink = job.link.substring(8, 55).concat('...');
 
     const handleChange = (e, { value }) => {
         setStatus(value);
@@ -151,7 +151,7 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
             </Table.Cell>
             <Table.Cell width={1}>
                 <Button
-                    color="red"
+                    basic
                     icon="delete"
                     onClick={() => handleDelete(job.key)}
                 />

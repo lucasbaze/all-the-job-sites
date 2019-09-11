@@ -90,6 +90,7 @@ const AppStateWrapper = props => {
         searchValue: '',
         user: null,
         savedJobs: [],
+        preferences: {},
     };
 
     return (
