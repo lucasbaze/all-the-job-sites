@@ -28,7 +28,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (preferences && !_.isEmpty(preferences)) {
-            actions.getUsePreferences(dispatch, user);
+            actions.getUserPreferences(dispatch, user);
         }
     }, []);
 
