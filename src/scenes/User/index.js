@@ -1,13 +1,15 @@
 import React from 'react';
 import { useStateValue } from '../../state';
 import _ from 'lodash';
+import firebase from '../../firebase';
 
-//Components
-import { Route, Link } from 'react-router-dom';
-import { Header, Menu, Button } from 'semantic-ui-react';
+import styled from 'styled-components';
+import { Header, Segment, Menu, Button } from 'semantic-ui-react';
 import SavedJobs from './components/SavedJobs';
 import Profile from './components/Profile';
 import Preferences from './components/Preferences';
+
+import { Link, Route } from 'react-router-dom';
 
 //Styles / Styled Components
 import { UserImage, ProfileContainer } from './Styled';
@@ -28,16 +30,25 @@ const User = () => {
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs
                         </Menu.Item>
-                        {/*<Menu.Item as={Link} to="/me/preferences">
-                            Preferences
-                        </Menu.Item>*/}
-                        <Menu.Menu position="right">
-                            <Menu.Item>
-                                <Button color="red">
-                                    Find Jobs For Me ($29)
-                                </Button>
-                            </Menu.Item>
-                        </Menu.Menu>
+                        <Menu.Item
+                            as={Button}
+                            onClick={() =>
+                                firebase
+                                    .auth()
+                                    .signOut()
+                                    .then(function() {
+                                        // Sign-out successful.
+                                        window.location.reload();
+                                    })
+                                    .catch(function(error) {
+                                        console.error(error);
+                                        // An error happened.
+                                        // window.location.reload();
+                                    })
+                            }
+                        >
+                            Logout
+                        </Menu.Item>
                     </Menu>
                     <Route exact path="/me" component={SavedJobs} />
                     <Route exact path="/me/profile" component={Profile} />

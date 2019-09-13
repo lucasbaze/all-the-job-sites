@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Responsive } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
+import { Responsive, Menu } from 'semantic-ui-react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 //Components
