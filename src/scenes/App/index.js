@@ -12,8 +12,11 @@ import User from '../User';
 
 //State
 import * as actions from '../../actions';
+import * as userActions from '../../reducers/userReducer';
 import { StateProvider, useStateValue } from '../../state';
 import { reducer } from '../../reducers';
+import { mainReducer } from '../../reducers';
+
 import firebase from '../../firebase';
 
 //CSS
@@ -51,10 +54,10 @@ const App = props => {
             let { displayName, email, photoURL, uid, emailVerified } = user;
 
             //Check if the user is already associated with a DB record
-            actions.getOrCreateUserDBRecord(dispatch, user);
+            userActions.getOrCreateUserDBRecord(dispatch, user);
 
             //Set user to global state
-            actions.setUser(dispatch, {
+            userActions.setUser(dispatch, {
                 displayName,
                 email,
                 photoURL,
@@ -94,7 +97,7 @@ const AppStateWrapper = props => {
     };
 
     return (
-        <StateProvider initialState={initialState} reducer={reducer}>
+        <StateProvider initialState={initialState} reducer={mainReducer}>
             <App />
         </StateProvider>
     );

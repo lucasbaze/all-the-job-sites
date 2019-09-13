@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 //State
 import { useStateValue } from '../../state';
-import * as actions from '../../actions';
+import * as searchActions from '../../reducers/searchReducer';
 import firebase from '../../firebase';
 
 //Components
@@ -55,7 +55,7 @@ const SideBar = () => {
         setIsLoading(true);
 
         //UPDATE SEARCH VALUE
-        actions.updateSearch(dispatch, event.target.value);
+        searchActions.updateSearch(dispatch, event.target.value);
 
         setTimeout(() => {
             if (searchValue.length < 1) return;
@@ -68,21 +68,6 @@ const SideBar = () => {
     const authLogin = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);
-    };
-
-    const authLogout = () => {
-        firebase
-            .auth()
-            .signOut()
-            .then(function() {
-                // Sign-out successful.
-                window.location.reload();
-            })
-            .catch(function(error) {
-                console.error(error);
-                // An error happened.
-                // window.location.reload();
-            });
     };
 
     return (

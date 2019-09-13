@@ -1,7 +1,7 @@
 import React from 'react';
 
 //State
-import * as actions from '../../../actions';
+import * as searchActions from '../../../reducers/searchReducer';
 import { useStateValue } from '../../../state';
 
 //Components
@@ -38,7 +38,7 @@ const SearchBar = ({ allOpen, setAllOpen, isLoading, handleSearchChange }) => {
                         icon: 'close',
                         basic: true,
                         onClick: function() {
-                            actions.updateSearch(dispatch, '');
+                            searchActions.updateSearch(dispatch, '');
                             setAllOpen(false);
                             window.gtag('event', 'search', {
                                 event_category: 'navigation',

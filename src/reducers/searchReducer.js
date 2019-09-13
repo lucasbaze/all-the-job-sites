@@ -1,10 +1,21 @@
-export const UPDATE_SEARCH = 'atjs/update_search';
+export const UPDATE_SEARCH = 'atjs/search/update_search';
 
 export default function reducer(state, action) {
     switch (action.type) {
         case UPDATE_SEARCH:
-            return { ...state, searchValue: action.payload };
+            return action.payload;
         default:
             return state;
     }
 }
+
+export const updateSearch = (dispatch, value) => {
+    console.log('Updating Search Value');
+
+    let cleanedSearch = value.replace(/[^a-zA-Z 0-9]/g, '');
+
+    dispatch({
+        type: UPDATE_SEARCH,
+        payload: cleanedSearch,
+    });
+};

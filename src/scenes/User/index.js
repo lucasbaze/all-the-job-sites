@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { Header, Segment, Menu, Button } from 'semantic-ui-react';
 import SavedJobs from './components/SavedJobs';
 import Profile from './components/Profile';
-import Preferences from './components/Preferences';
 
 import { Link, Route } from 'react-router-dom';
 
@@ -49,14 +48,19 @@ const User = () => {
                         >
                             Logout
                         </Menu.Item>
+                        <Menu.Menu position="right">
+                            <Menu.Item>
+                                <Button
+                                    color="red"
+                                    onClick={() => alert('clicked')}
+                                >
+                                    Find Jobs For Me
+                                </Button>
+                            </Menu.Item>
+                        </Menu.Menu>
                     </Menu>
                     <Route exact path="/me" component={SavedJobs} />
                     <Route exact path="/me/profile" component={Profile} />
-                    {/*<Route
-                        exact
-                        path="/me/preferences"
-                        component={Preferences}
-                    />*/}
                 </div>
             )}
         </ProfileContainer>

@@ -14,7 +14,7 @@ const SavedJobs = props => {
     return (
         <>
             <AddJob />
-            <SavedJobsTable savedJobs={savedJobs} />
+            <SavedJobsTable savedJobs={savedJobs.savedJobs} />
         </>
     );
 };
