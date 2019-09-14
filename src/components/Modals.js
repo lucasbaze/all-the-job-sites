@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../firebase';
 
 import { Modal, Header, Tab, Button } from 'semantic-ui-react';
 
@@ -41,12 +42,17 @@ export const AboutUs = ({ open, setOpen }) => {
     );
 };
 
-export const LoginSignup = ({ open, setOpen, authLogin, selectedIndex }) => {
+export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
     const [index, setIndex] = useState(1);
 
     useEffect(() => {
         setIndex(selectedIndex);
     }, [selectedIndex]);
+
+    const authLogin = () => {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithRedirect(provider);
+    };
 
     const panes = [
         {

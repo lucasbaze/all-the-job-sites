@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { useStateValue } from '../state';
 
+import { phone } from '../globals/constants';
+
 const StyledListItem = styled(List.Item)`
     padding-bottom: 5px;
     padding-top: 5px;
@@ -30,7 +32,7 @@ const JobLink = props => {
         <>
             <Responsive
                 as={StyledLink2}
-                maxWidth={768}
+                maxWidth={501}
                 href={
                     searchValue != ''
                         ? site.search_url.replace(/%q/g, searchValue)

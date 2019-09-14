@@ -21,7 +21,7 @@ import { LoginSignup } from '../../components/Modals';
 
 import Logo from '../../components/Logo';
 import SearchBar from './components/SearchBar';
-import LoginSignupButtons from './components/LoginSignupButtons';
+import LoginSignupButtons from '../../components/LoginSignupButtons';
 import LinkToAccount from './components/LinkToAccount';
 
 //CSS
@@ -65,11 +65,6 @@ const SideBar = () => {
         console.log(`${searchValue} => ${event.target.value}`);
     };
 
-    const authLogin = () => {
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithRedirect(provider);
-    };
-
     return (
         <SideBarContainer>
             <StyledTopBar>
@@ -81,8 +76,9 @@ const SideBar = () => {
                 >
                     {!user ? (
                         <LoginSignupButtons
-                            setOpenLoginSignup={setOpenLoginSignup}
+                            setOpen={setOpenLoginSignup}
                             setIndex={setIndex}
+                            fluid={true}
                         />
                     ) : (
                         <LinkToAccount user={user} />
@@ -105,7 +101,6 @@ const SideBar = () => {
                 selectedIndex={index}
                 open={openLoginSignup}
                 setOpen={setOpenLoginSignup}
-                authLogin={authLogin}
             />
         </SideBarContainer>
     );

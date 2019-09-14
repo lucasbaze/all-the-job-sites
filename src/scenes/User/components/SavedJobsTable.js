@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
 //State
-import * as actions from '../../../actions';
+import * as jobsActions from '../../../reducers/jobsReducer';
 import { useStateValue } from '../../../state';
 
 //Components
@@ -42,11 +42,11 @@ const SavedJobsTable = props => {
     }, [props]);
 
     const handleStatusChange = (key, value) => {
-        actions.updateSavedJob(dispatch, user.uid, savedJobs, key, value);
+        jobsActions.updateSavedJob(dispatch, user.uid, savedJobs, key, value);
     };
 
     const handleDelete = key => {
-        actions.deleteSavedJob(dispatch, user.uid, savedJobs, key);
+        jobsActions.deleteSavedJob(dispatch, user.uid, savedJobs, key);
     };
 
     return (

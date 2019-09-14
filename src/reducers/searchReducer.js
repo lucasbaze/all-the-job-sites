@@ -1,4 +1,12 @@
+//
+// CONSTANTS
+//
+
 export const UPDATE_SEARCH = 'atjs/search/update_search';
+
+//
+//REDUCER
+//
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -8,6 +16,10 @@ export default function reducer(state, action) {
             return state;
     }
 }
+
+//
+// ACTION CREATORS
+//
 
 export const updateSearch = (dispatch, value) => {
     console.log('Updating Search Value');

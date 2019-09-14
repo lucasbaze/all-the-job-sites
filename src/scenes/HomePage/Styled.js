@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { flexBoxMixin } from '../../globals/styles';
+import { computerOnly, tabletOnly } from '../../globals/constants';
 
 export const StyledHomePage = styled.div`
     display: flex;
@@ -26,8 +28,14 @@ export const StyledFeaturedJobs = styled.div`
 `;
 
 export const ShareButtons = styled.div`
-    display: flex;
-    justify-content: center;
+    ${computerOnly} {
+        ${flexBoxMixin('row', 'center')}
+    }
+
+    ${tabletOnly} {
+        ${flexBoxMixin('column', 'center', 'center')}
+    }
+
     margin-top: 45px;
 `;
 
@@ -39,12 +47,24 @@ export const Container = styled.div`
 `;
 
 export const Jumbotron = styled.div`
-    height: 30vh;
+    min-height: 52vh;
     width: 100%;
-    background-image: url(${process.env.PUBLIC_URL +
-        'all-the-job-sites-jumbotron-img.jpg'});
+    background-image: linear-gradient(rgb(255, 94, 94), rgb(255, 46, 74));
     background-repeat: no-repeat;
     background-position: 100% 40%;
     background-size: cover;
     text-align: center;
+
+    .menu > .item{
+        color: #ffffff
+    }
+
+    h1{
+        font-size: 50px;
+        margin-top: 25
+        color: #ffffff;
+    }
 `;
+
+// background-image: url(${process.env.PUBLIC_URL +
+//     'all-the-job-sites-jumbotron-img.jpg'});

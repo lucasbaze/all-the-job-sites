@@ -1,24 +1,34 @@
-import React, { useEffect } from 'react';
-import { Header, Icon, Button, Image, Menu } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
+import {
+    Header,
+    Icon,
+    Button,
+    Image,
+    Menu,
+    Responsive,
+} from 'semantic-ui-react';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 
 //Components
 import FeaturedJob from '../../components/FeaturedJob';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
+import LoginSignupButtons from '../../components/LoginSignupButtons';
+import { LoginSignup } from '../../components/Modals';
 
 //CSS
 import {
-    StyledHomePage,
-    StyledContainer,
-    StyledValueProp,
     StyledFeaturedJobs,
     ShareButtons,
     Container,
     Jumbotron,
 } from './Styled.js';
+import { ResponsiveFlex } from '../../globals/styles';
 
 const HomePage = () => {
+    const [index, setIndex] = useState(1);
+    const [open, setOpen] = useState(false);
+
     useEffect(() => {
         window.gtag('event', 'navigate', {
             event_category: 'navigation',
@@ -29,21 +39,35 @@ const HomePage = () => {
     return (
         <Container>
             <Jumbotron>
-                <Header
-                    as="h1"
-                    content="All The Job Sites"
-                    style={{ marginBottom: 0, marginTop: 20, color: 'white' }}
-                />
-                <Header
-                    as="h3"
-                    content="Where your job search starts... and ends"
-                    style={{ marginTop: 5, color: 'white' }}
+                <Menu secondary fluid>
+                    <Menu.Item
+                        name="Contact Us"
+                        onClick={() => alert('clicked')}
+                    />
+                    <Menu.Item
+                        name="About Us"
+                        onClick={() => alert('clicked')}
+                    />
+                    <Menu.Menu position="right">
+                        <Menu.Item
+                            name="Post Jobs"
+                            onClick={() => alert('clicked')}
+                        />
+                    </Menu.Menu>
+                </Menu>
+                <h1 style={{ marginBottom: 30 }}>
+                    Where your job search starts <br /> ...and ends
+                </h1>
+                <LoginSignupButtons
+                    setOpen={setOpen}
+                    setIndex={setIndex}
+                    fluid={false}
                 />
                 <p style={{ color: 'white', marginBottom: 0, marginTop: 30 }}>
                     <Icon name="chevron left" />
                     Use the sidebar on the left to get started!
                 </p>
-                <p style={{ color: 'white', marginTop: 5 }}>
+                <p style={{ color: 'white', marginTop: 5, marginBottom: 30 }}>
                     <Icon name="linkify" />
                     Links will open in a new tab
                 </p>
@@ -70,6 +94,7 @@ const HomePage = () => {
                         />
                     </Link>
                 </div>
+
                 <FeaturedJob
                     logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
                     url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
@@ -147,6 +172,7 @@ const HomePage = () => {
                 </TwitterShareButton>
             </ShareButtons>
             <Footer />
+            <LoginSignup selectedIndex={index} open={open} setOpen={setOpen} />
         </Container>
     );
 };

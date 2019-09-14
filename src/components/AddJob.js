@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 //import axios from 'axios';
 
 //State
-import * as actions from '../actions';
+import * as jobsActions from '../reducers/jobsReducer';
 import { useStateValue } from '../state';
 
 //Components
@@ -27,7 +27,7 @@ const AddJob = () => {
     };
 
     const handleSubmit = () => {
-        actions.addNewSavedJob(dispatch, savedJobs, job, user.uid);
+        jobsActions.addNewSavedJob(dispatch, savedJobs, job, user.uid);
         setJob({
             name: '',
             link: '',

@@ -22,27 +22,16 @@ export const DELETE_SAVED_JOB = 'atjs/jobs/delete_saved_job';
 export default function jobsReducer(state, action) {
     switch (action.type) {
         case SET_USER_JOBS:
-            return {
-                ...state,
-                savedJobs: action.payload || null,
-            };
+            return action.payload;
+
         case ADD_SAVED_JOB:
-            return {
-                ...state,
-                savedJobs: action.payload || null,
-            };
+            return action.payload;
 
         case UPDATE_SAVED_JOBS:
-            return {
-                ...state,
-                savedJobs: action.payload || null,
-            };
+            return action.payload;
 
         case DELETE_SAVED_JOB:
-            return {
-                ...state,
-                savedJobs: action.payload || null,
-            };
+            return action.payload;
         default:
             return state;
     }

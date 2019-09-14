@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
+//Components
 import { Responsive, Menu } from 'semantic-ui-react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-//Components
+//Custom Components
 import HomePage from '../HomePage';
 import SideBar from '../SideBar';
 import SiteContent from '../../components/SiteContent';
@@ -10,13 +12,12 @@ import PostJob from '../PostJob';
 import ContactUs from '../ContactUs';
 import User from '../User';
 
-//State
-import * as actions from '../../actions';
+//Reducer / Actions
 import * as userActions from '../../reducers/userReducer';
-import { StateProvider, useStateValue } from '../../state';
-import { reducer } from '../../reducers';
 import { mainReducer } from '../../reducers';
 
+//State
+import { StateProvider, useStateValue } from '../../state';
 import firebase from '../../firebase';
 
 //CSS

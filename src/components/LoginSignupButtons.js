@@ -3,12 +3,12 @@ import React from 'react';
 //Components
 import { Button } from 'semantic-ui-react';
 
-const LoginSignupButtons = ({ setOpenLoginSignup, setIndex }) => {
+const LoginSignupButtons = ({ setOpen, setIndex, fluid }) => {
     return (
-        <Button.Group fluid>
+        <Button.Group style={{ width: 300 }}>
             <Button
                 onClick={() => {
-                    setOpenLoginSignup(true);
+                    setOpen(true);
                     setIndex(0);
                 }}
             >
@@ -18,7 +18,7 @@ const LoginSignupButtons = ({ setOpenLoginSignup, setIndex }) => {
             <Button
                 positive
                 onClick={() => {
-                    setOpenLoginSignup(true);
+                    setOpen(true);
                     setIndex(1);
                 }}
             >
