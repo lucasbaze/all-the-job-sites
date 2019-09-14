@@ -21,6 +21,28 @@ export const flexBoxMixin = (direction, justify, align, wrap) => {
             flex-wrap: ${wrap || 'wrap'}`;
 };
 
+export const flexBoxMixinMobile = (direction, justify, align, wrap) => {
+    return `
+            @media (max-width: 767px){
+                display: flex;
+                flex-direction: ${direction || 'row'};
+                justify-content: ${justify || 'flex-start'};
+                align-items: ${align || 'flex-start'};
+                flex-wrap: ${wrap || 'wrap'};
+            }`;
+};
+
+export const flexBoxMixinComputer = (direction, justify, align, wrap) => {
+    return `
+            @media (min-width: 768px){
+                display: flex;
+                flex-direction: ${direction || 'row'};
+                justify-content: ${justify || 'flex-start'};
+                align-items: ${align || 'flex-start'};
+                flex-wrap: ${wrap || 'wrap'};
+            }`;
+};
+
 //
 //WIP: Make a container div that is responsive and flexy and resuable
 //

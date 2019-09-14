@@ -27,13 +27,7 @@ import LinkToAccount from './components/LinkToAccount';
 //CSS
 import styled from 'styled-components';
 
-import {
-    StyledSideBar,
-    SideBarContainer,
-    StyledTopBar,
-    StyledLink,
-    StyledALink,
-} from './Styled';
+import { StyledSideBar, StyledTopBar, StyledLink, StyledALink } from './Styled';
 
 const SideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +60,7 @@ const SideBar = () => {
     };
 
     return (
-        <SideBarContainer>
+        <>
             <StyledTopBar>
                 <Logo />
                 <div
@@ -91,18 +85,12 @@ const SideBar = () => {
                     handleSearchChange={handleSearchChange}
                 />
             </StyledTopBar>
-            <StyledSideBar>
-                <JobSitesContainer
-                    searchValue={searchValue}
-                    allOpen={allOpen}
-                />
-            </StyledSideBar>
             <LoginSignup
                 selectedIndex={index}
                 open={openLoginSignup}
                 setOpen={setOpenLoginSignup}
             />
-        </SideBarContainer>
+        </>
     );
 };
 

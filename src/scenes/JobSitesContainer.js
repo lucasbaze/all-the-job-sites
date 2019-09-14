@@ -172,7 +172,7 @@ const JobSitesContainer = props => {
         })
         .reduce((prev, curr) => [prev, curr]);
 
-    return <List>{linkList}</List>;
+    return <List style={{ padding: 15 }}>{linkList}</List>;
 };
 
 export default JobSitesContainer;

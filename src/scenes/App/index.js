@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 //Components
 import { Responsive, Menu } from 'semantic-ui-react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 //Custom Components
 import HomePage from '../HomePage';
@@ -11,6 +11,8 @@ import SiteContent from '../../components/SiteContent';
 import PostJob from '../PostJob';
 import ContactUs from '../ContactUs';
 import User from '../User';
+import JobSitesContainer from '../JobSitesContainer';
+import Footer from '../../components/Footer';
 
 //Reducer / Actions
 import * as userActions from '../../reducers/userReducer';
@@ -21,7 +23,12 @@ import { StateProvider, useStateValue } from '../../state';
 import firebase from '../../firebase';
 
 //CSS
-import { MainContainer, MainContentContainer } from './Styled';
+import {
+    MainContainer,
+    MainContentContainer,
+    SideBarContainer,
+    StyledSideBar,
+} from './Styled';
 import './App.css';
 
 //
@@ -48,7 +55,7 @@ function PrivateRoute({ component: Component, ...rest }) {
 //
 const App = props => {
     //
-    const [{ user }, dispatch] = useStateValue();
+    const [{ user, searchValue }, dispatch] = useStateValue();
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -70,9 +77,20 @@ const App = props => {
 
     return (
         <BrowserRouter>
-            <MainContainer>
-                <SideBar />
-                <Responsive as={MainContentContainer} minWidth={768}>
+            {/*
+            Desktop View
+            */}
+            <Responsive as={MainContainer} minWidth={767}>
+                <SideBarContainer>
+                    <SideBar />
+                    <StyledSideBar>
+                        <JobSitesContainer
+                            searchValue={searchValue}
+                            allOpen={false}
+                        />
+                    </StyledSideBar>
+                </SideBarContainer>
+                <MainContentContainer>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/contact-us" component={ContactUs} />
                     <Route exact path="/post-job" component={PostJob} />
@@ -82,8 +100,39 @@ const App = props => {
                         path="/site/:categorySlug/:nameSlug"
                         component={SiteContent}
                     />
-                </Responsive>
-            </MainContainer>
+                </MainContentContainer>
+            </Responsive>
+
+            {/*
+                Mobile View
+            */}
+
+            <Responsive as={MainContainer} maxWidth={768}>
+                <SideBarContainer>
+                    <SideBar />
+                    <StyledSideBar>
+                        <Route exact path="/home" component={HomePage} />
+                        <Route exact path="/contact-us" component={ContactUs} />
+                        <Route exact path="/post-job" component={PostJob} />
+                        <PrivateRoute path="/me" component={User} />
+                        <Route
+                            exact
+                            path="/site/:categorySlug/:nameSlug"
+                            component={SiteContent}
+                        />
+                        <Route
+                            path="/"
+                            render={() => (
+                                <JobSitesContainer
+                                    searchValue={searchValue}
+                                    allOpen={false}
+                                />
+                            )}
+                        />
+                    </StyledSideBar>
+                    <Footer />
+                </SideBarContainer>
+            </Responsive>
         </BrowserRouter>
     );
 };
