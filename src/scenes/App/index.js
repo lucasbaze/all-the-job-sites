@@ -24,7 +24,7 @@ import firebase from '../../firebase';
 
 //CSS
 import {
-    MainContainer,
+    RootContainer,
     MainContentContainer,
     SideBarContainer,
     StyledSideBar,
@@ -78,36 +78,9 @@ const App = props => {
     return (
         <BrowserRouter>
             {/*
-            Desktop View
-            */}
-            <Responsive as={MainContainer} minWidth={767}>
-                <SideBarContainer>
-                    <SideBar />
-                    <StyledSideBar>
-                        <JobSitesContainer
-                            searchValue={searchValue}
-                            allOpen={false}
-                        />
-                    </StyledSideBar>
-                </SideBarContainer>
-                <MainContentContainer>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/contact-us" component={ContactUs} />
-                    <Route exact path="/post-job" component={PostJob} />
-                    <PrivateRoute path="/me" component={User} />
-                    <Route
-                        exact
-                        path="/site/:categorySlug/:nameSlug"
-                        component={SiteContent}
-                    />
-                </MainContentContainer>
-            </Responsive>
-
-            {/*
                 Mobile View
             */}
-
-            <Responsive as={MainContainer} maxWidth={768}>
+            <Responsive as={RootContainer} maxWidth={768}>
                 <SideBarContainer>
                     <SideBar />
                     <StyledSideBar>
@@ -121,6 +94,7 @@ const App = props => {
                             component={SiteContent}
                         />
                         <Route
+                            exact
                             path="/"
                             render={() => (
                                 <JobSitesContainer

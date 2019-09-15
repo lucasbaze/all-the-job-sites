@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { flexBoxMixin } from '../../globals/styles';
-import { computerOnly, tabletOnly } from '../../globals/constants';
+import { computerOnly, tabletOnly, minTablet } from '../../globals/constants';
 
 export const StyledHomePage = styled.div`
     display: flex;
@@ -40,14 +40,14 @@ export const ShareButtons = styled.div`
 `;
 
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: scroll;
+    ${minTablet} {
+        height: 100vh;
+        overflow: scroll;
+    }
 `;
 
 export const Jumbotron = styled.div`
-    min-height: 52vh;
+    min-height: 55vh;
     width: 100%;
     background-image: linear-gradient(rgb(255, 94, 94), rgb(255, 46, 74));
     background-repeat: no-repeat;

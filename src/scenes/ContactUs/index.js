@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 //Components
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Header, Responsive } from 'semantic-ui-react';
 import { ReactTypeformEmbed } from 'react-typeform-embed';
 import Footer from '../../components/Footer';
 
@@ -17,7 +17,7 @@ const ContactUs = () => {
     }, []);
 
     return (
-        <Container fluid style={{ height: '100vh', overflow: 'scroll' }}>
+        <Container fluid>
             <div style={{ padding: 15 }}>
                 <Header
                     as="h1"
@@ -32,7 +32,9 @@ const ContactUs = () => {
                     />
                 </StyledTypeFormContainer>
             </div>
-            <Footer />
+            <Responsive minWidth={767}>
+                <Footer />
+            </Responsive>
         </Container>
     );
 };

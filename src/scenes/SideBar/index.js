@@ -14,6 +14,9 @@ import {
     Segment,
     Image,
     Responsive,
+    Icon,
+    Menu,
+    Sidebar,
 } from 'semantic-ui-react';
 import JobSitesContainer from '../JobSitesContainer.js';
 import { Link } from 'react-router-dom';
@@ -26,14 +29,21 @@ import LinkToAccount from './components/LinkToAccount';
 
 //CSS
 import styled from 'styled-components';
-
-import { StyledSideBar, StyledTopBar, StyledLink, StyledALink } from './Styled';
+import { Row, Column, FlexBox } from '../../globals/styles';
+import {
+    StyledSideBar,
+    StyledTopBar,
+    StyledLink,
+    StyledALink,
+    MenuContainer,
+} from './Styled';
 
 const SideBar = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
+    const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [{ searchValue, user }, dispatch] = useStateValue();
 
     // If user is typing search, open all categories
@@ -60,37 +70,88 @@ const SideBar = () => {
     };
 
     return (
-        <>
-            <StyledTopBar>
-                <Logo />
-                <div
-                    style={{
-                        marginBottom: 20,
-                    }}
-                >
-                    {!user ? (
-                        <LoginSignupButtons
-                            setOpen={setOpenLoginSignup}
-                            setIndex={setIndex}
-                            fluid={true}
-                        />
-                    ) : (
-                        <LinkToAccount user={user} />
-                    )}
-                </div>
-                <SearchBar
-                    allOpen={allOpen}
-                    setAllOpen={setAllOpen}
-                    isLoading={isLoading}
-                    handleSearchChange={handleSearchChange}
+        <Sidebar.Pushable>
+            <Sidebar
+                animation="overlay"
+                visible={openMobileMenu}
+                onHide={() => setOpenMobileMenu(false)}
+                horizontal
+                direction="top"
+            >
+                <MenuContainer>
+                    <Menu
+                        secondary
+                        vertical
+                        fluid
+                        style={{
+                            textAlign: 'center',
+                        }}
+                    >
+                        <Menu.Item
+                            as={Link}
+                            to="/"
+                            onClick={() => setOpenMobileMenu(false)}
+                        >
+                            <h2>Home</h2>
+                        </Menu.Item>
+                        <Menu.Item
+                            as={Link}
+                            to="/contact-us"
+                            onClick={() => setOpenMobileMenu(false)}
+                        >
+                            <h2>Contact us</h2>
+                        </Menu.Item>
+                        <Menu.Item
+                            as={Link}
+                            to="/post-job"
+                            onClick={() => setOpenMobileMenu(false)}
+                        >
+                            <h2>Post Job</h2>
+                        </Menu.Item>
+                    </Menu>
+                </MenuContainer>
+            </Sidebar>
+            <Sidebar.Pusher>
+                <StyledTopBar>
+                    <FlexBox justify="space-between">
+                        <Logo />
+                        <Responsive {...Responsive.onlyTablet.maxWidth}>
+                            <Icon
+                                name="bars"
+                                size="large"
+                                onClick={() => setOpenMobileMenu(true)}
+                            />
+                        </Responsive>
+                    </FlexBox>
+                    <div
+                        style={{
+                            marginBottom: 20,
+                        }}
+                    >
+                        {!user ? (
+                            <LoginSignupButtons
+                                setOpen={setOpenLoginSignup}
+                                setIndex={setIndex}
+                                fluid={true}
+                            />
+                        ) : (
+                            <LinkToAccount user={user} />
+                        )}
+                    </div>
+                    <SearchBar
+                        allOpen={allOpen}
+                        setAllOpen={setAllOpen}
+                        isLoading={isLoading}
+                        handleSearchChange={handleSearchChange}
+                    />
+                </StyledTopBar>
+                <LoginSignup
+                    selectedIndex={index}
+                    open={openLoginSignup}
+                    setOpen={setOpenLoginSignup}
                 />
-            </StyledTopBar>
-            <LoginSignup
-                selectedIndex={index}
-                open={openLoginSignup}
-                setOpen={setOpenLoginSignup}
-            />
-        </>
+            </Sidebar.Pusher>
+        </Sidebar.Pushable>
     );
 };
 

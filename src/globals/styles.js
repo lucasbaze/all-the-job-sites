@@ -2,17 +2,6 @@ import styled from 'styled-components';
 import { Responsive } from 'semantic-ui-react';
 import { tabletOnly, computerOnly } from './constants';
 
-export const FlexBox = styled.div.attrs(props => ({
-    direction: props.direction || 'row',
-    justify: props.justify || 'flex-start',
-    align: props.align || 'flex-start',
-}))`
-    display: flex;
-    flex-direction: ${props => props.direction}
-    justify-content: ${props => props.justify}
-    align-items: ${props => props.align}
-`;
-
 export const flexBoxMixin = (direction, justify, align, wrap) => {
     return `display: flex;
             flex-direction: ${direction || 'row'};
@@ -32,9 +21,9 @@ export const flexBoxMixinMobile = (direction, justify, align, wrap) => {
             }`;
 };
 
-export const flexBoxMixinComputer = (direction, justify, align, wrap) => {
+export const flexBoxMixinTablet = (direction, justify, align, wrap) => {
     return `
-            @media (min-width: 768px){
+            @media (min-width: 767px) and (max-width: 991px){
                 display: flex;
                 flex-direction: ${direction || 'row'};
                 justify-content: ${justify || 'flex-start'};
@@ -42,6 +31,36 @@ export const flexBoxMixinComputer = (direction, justify, align, wrap) => {
                 flex-wrap: ${wrap || 'wrap'};
             }`;
 };
+
+export const flexBoxMixinComputer = (direction, justify, align, wrap) => {
+    return `
+            @media (min-width: 991px){
+                display: flex;
+                flex-direction: ${direction || 'row'};
+                justify-content: ${justify || 'flex-start'};
+                align-items: ${align || 'flex-start'};
+                flex-wrap: ${wrap || 'wrap'};
+            }`;
+};
+
+export const Row = styled.div`
+    ${flexBoxMixin('row', 'flex-start')}
+`;
+
+export const Column = styled.div`
+    ${flexBoxMixin('column')}
+`;
+
+export const FlexBox = styled.div.attrs(props => ({
+    direction: props.direction || 'row',
+    justify: props.justify || 'flex-start',
+    align: props.align || 'flex-start',
+}))`
+    display: flex;
+    flex-direction: ${props => props.direction}
+    justify-content: ${props => props.justify}
+    align-items: ${props => props.align}
+`;
 
 //
 //WIP: Make a container div that is responsive and flexy and resuable
