@@ -38,7 +38,7 @@ import {
     MenuContainer,
 } from './Styled';
 
-const SideBar = () => {
+const SideBar = ({ setOpen }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
@@ -70,88 +70,46 @@ const SideBar = () => {
     };
 
     return (
-        <Sidebar.Pushable>
-            <Sidebar
-                animation="overlay"
-                visible={openMobileMenu}
-                onHide={() => setOpenMobileMenu(false)}
-                horizontal
-                direction="top"
-            >
-                <MenuContainer>
-                    <Menu
-                        secondary
-                        vertical
-                        fluid
-                        style={{
-                            textAlign: 'center',
-                        }}
-                    >
-                        <Menu.Item
-                            as={Link}
-                            to="/"
-                            onClick={() => setOpenMobileMenu(false)}
-                        >
-                            <h2>Home</h2>
-                        </Menu.Item>
-                        <Menu.Item
-                            as={Link}
-                            to="/contact-us"
-                            onClick={() => setOpenMobileMenu(false)}
-                        >
-                            <h2>Contact us</h2>
-                        </Menu.Item>
-                        <Menu.Item
-                            as={Link}
-                            to="/post-job"
-                            onClick={() => setOpenMobileMenu(false)}
-                        >
-                            <h2>Post Job</h2>
-                        </Menu.Item>
-                    </Menu>
-                </MenuContainer>
-            </Sidebar>
-            <Sidebar.Pusher>
-                <StyledTopBar>
-                    <FlexBox justify="space-between">
-                        <Logo />
-                        <Responsive {...Responsive.onlyTablet.maxWidth}>
-                            <Icon
-                                name="bars"
-                                size="large"
-                                onClick={() => setOpenMobileMenu(true)}
-                            />
-                        </Responsive>
-                    </FlexBox>
-                    <div
-                        style={{
-                            marginBottom: 20,
-                        }}
-                    >
-                        {!user ? (
-                            <LoginSignupButtons
-                                setOpen={setOpenLoginSignup}
-                                setIndex={setIndex}
-                                fluid={true}
-                            />
-                        ) : (
-                            <LinkToAccount user={user} />
-                        )}
-                    </div>
-                    <SearchBar
-                        allOpen={allOpen}
-                        setAllOpen={setAllOpen}
-                        isLoading={isLoading}
-                        handleSearchChange={handleSearchChange}
-                    />
-                </StyledTopBar>
-                <LoginSignup
-                    selectedIndex={index}
-                    open={openLoginSignup}
-                    setOpen={setOpenLoginSignup}
+        <>
+            <StyledTopBar>
+                <FlexBox justify="space-between">
+                    <Logo />
+                    <Responsive {...Responsive.onlyTablet.maxWidth}>
+                        <Icon
+                            name="bars"
+                            size="large"
+                            onClick={() => setOpen(true)}
+                        />
+                    </Responsive>
+                </FlexBox>
+                <div
+                    style={{
+                        marginBottom: 20,
+                    }}
+                >
+                    {!user ? (
+                        <LoginSignupButtons
+                            setOpen={setOpenLoginSignup}
+                            setIndex={setIndex}
+                            fluid={true}
+                        />
+                    ) : (
+                        <LinkToAccount user={user} />
+                    )}
+                </div>
+                <SearchBar
+                    allOpen={allOpen}
+                    setAllOpen={setAllOpen}
+                    isLoading={isLoading}
+                    handleSearchChange={handleSearchChange}
                 />
-            </Sidebar.Pusher>
-        </Sidebar.Pushable>
+            </StyledTopBar>
+            <LoginSignup
+                selectedIndex={index}
+                open={openLoginSignup}
+                setOpen={setOpenLoginSignup}
+            />
+        </>
     );
 };
 

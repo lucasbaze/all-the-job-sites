@@ -13,6 +13,7 @@ import ContactUs from '../ContactUs';
 import User from '../User';
 import JobSitesContainer from '../JobSitesContainer';
 import Footer from '../../components/Footer';
+import { MobileMenu } from '../../components/MobileMenu';
 
 //Reducer / Actions
 import * as userActions from '../../reducers/userReducer';
@@ -82,29 +83,35 @@ const App = props => {
             */}
             <Responsive as={RootContainer} maxWidth={768}>
                 <SideBarContainer>
-                    <SideBar />
-                    <StyledSideBar>
-                        <Route exact path="/home" component={HomePage} />
-                        <Route exact path="/contact-us" component={ContactUs} />
-                        <Route exact path="/post-job" component={PostJob} />
-                        <PrivateRoute path="/me" component={User} />
-                        <Route
-                            exact
-                            path="/site/:categorySlug/:nameSlug"
-                            component={SiteContent}
-                        />
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <JobSitesContainer
-                                    searchValue={searchValue}
-                                    allOpen={false}
-                                />
-                            )}
-                        />
-                    </StyledSideBar>
-                    <Footer />
+                    <MobileMenu>
+                        <SideBar />
+                        <StyledSideBar>
+                            <Route exact path="/home" component={HomePage} />
+                            <Route
+                                exact
+                                path="/contact-us"
+                                component={ContactUs}
+                            />
+                            <Route exact path="/post-job" component={PostJob} />
+                            <PrivateRoute path="/me" component={User} />
+                            <Route
+                                exact
+                                path="/site/:categorySlug/:nameSlug"
+                                component={SiteContent}
+                            />
+                            <Route
+                                exact
+                                path="/"
+                                render={() => (
+                                    <JobSitesContainer
+                                        searchValue={searchValue}
+                                        allOpen={false}
+                                    />
+                                )}
+                            />
+                        </StyledSideBar>
+                        <Footer />
+                    </MobileMenu>
                 </SideBarContainer>
             </Responsive>
         </BrowserRouter>

@@ -6,11 +6,6 @@ export const StyledTopBar = styled.div`
     box-shadow: 0px 3px 5px #eaeaea;
 `;
 
-export const MenuContainer = styled.div`
-    background-color: red;
-    padding: 45px 0px;
-`;
-
 export const StyledLink = styled(Link)`
     margin-right: 10px;
 
