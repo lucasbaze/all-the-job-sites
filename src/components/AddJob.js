@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
-import { flexBoxMixin } from '../globals/styles';
-import { minTablet } from '../globals/constants';
 
 //State
 import * as jobsActions from '../reducers/jobsReducer';
 import { useStateValue } from '../state';
 
 //Components
-import { Header, Form, Segment, Responsive } from 'semantic-ui-react';
+import { Header, Form, Responsive } from 'semantic-ui-react';
 
 //CSS
 import styled from 'styled-components';
 
-const Container = styled.div`
-    width: 100%;
-`;
-
-const AddJob = () => {
+const AddJob = ({ display = true }) => {
     const [{ savedJobs, user }, dispatch] = useStateValue();
     const [job, setJob] = useState({
         name: '',
@@ -37,7 +31,7 @@ const AddJob = () => {
 
     return (
         <>
-            <Header as="h1" content="Add Jobs" />
+            {display ? <Header as="h1" content="Add Jobs" /> : null}
             <Form onSubmit={handleSubmit}>
                 {/*
                     Mobile

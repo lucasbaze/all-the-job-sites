@@ -2,13 +2,19 @@ import React from 'react';
 
 //State
 import * as searchActions from '../../../reducers/searchReducer';
+import * as categoryActions from '../../../reducers/categoryReducer';
 import { useStateValue } from '../../../state';
 
 //Components
 import { Header, Button, Input } from 'semantic-ui-react';
 
-const SearchBar = ({ allOpen, setAllOpen, isLoading, handleSearchChange }) => {
-    const [{ searchValue }, dispatch] = useStateValue();
+const SearchBar = ({
+    searchValue,
+    setSearchValue,
+    isLoading,
+    handleSearchChange,
+}) => {
+    const [{ category }, dispatch] = useStateValue();
 
     return (
         <div>
@@ -23,10 +29,10 @@ const SearchBar = ({ allOpen, setAllOpen, isLoading, handleSearchChange }) => {
                 }}
             >
                 <Button
-                    icon={allOpen ? 'compress' : 'expand arrows alternate'}
+                    icon={category.all ? 'compress' : 'expand arrows alternate'}
                     basic
                     onClick={() => {
-                        allOpen ? setAllOpen(false) : setAllOpen(true);
+                        categoryActions.toggleAll(dispatch);
                         window.gtag('event', 'collapse', {
                             event_category: 'navigation',
                             event_label: 'expand collapse links',
@@ -39,7 +45,8 @@ const SearchBar = ({ allOpen, setAllOpen, isLoading, handleSearchChange }) => {
                         basic: true,
                         onClick: function() {
                             searchActions.updateSearch(dispatch, '');
-                            setAllOpen(false);
+                            setSearchValue('');
+                            categoryActions.toggleAll(dispatch);
                             window.gtag('event', 'search', {
                                 event_category: 'navigation',
                                 event_label: 'clear search',

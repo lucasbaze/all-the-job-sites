@@ -47,8 +47,11 @@ const Footer = () => {
                         helping you to find the right job
                     </div>
                     <div>
-                        <Link to="/" style={{ marginRight: 10 }}>
+                        <Link to="/home" style={{ marginRight: 10 }}>
                             Home
+                        </Link>
+                        <Link to="/" style={{ marginRight: 10 }}>
+                            Site Search
                         </Link>
                         <Link to="/contact-us" style={{ marginRight: 10 }}>
                             Contact Us

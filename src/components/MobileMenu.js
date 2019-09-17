@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { flexBoxMixin } from '../globals/styles';
+import _ from 'lodash';
 
+//State
 import { useStateValue } from '../state';
+
+//Selectors
+import { TotalJobsSelector } from '../selectors';
 
 import {
     Header,
@@ -13,10 +18,12 @@ import {
     Responsive,
     Icon,
     Menu,
+    Label,
     Sidebar,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import LoginSignupButtons from './LoginSignupButtons';
+import AddJob from './AddJob';
 
 const MenuContainer = styled.div`
     ${flexBoxMixin('column', 'flex-start', 'center')}
@@ -26,7 +33,7 @@ const MenuContainer = styled.div`
 `;
 
 export const MobileMenu = ({ children, ...rest }) => {
-    const [{ user }, dispatch] = useStateValue();
+    const [{ user, savedJobs }, dispatch] = useStateValue();
     const [open, setOpen] = useState(false);
 
     let childComponents = React.Children.toArray(children);
@@ -90,7 +97,20 @@ export const MobileMenu = ({ children, ...rest }) => {
                                 to="/me"
                                 onClick={() => setOpen(false)}
                             >
-                                <h2>My Profile</h2>
+                                <h2>
+                                    My Profile
+                                    <Label
+                                        color="red"
+                                        circular
+                                        style={{
+                                            marginLeft: 8,
+                                            paddingBottom: 5,
+                                            marginBottom: 5,
+                                        }}
+                                    >
+                                        <TotalJobsSelector />
+                                    </Label>
+                                </h2>
                             </Menu.Item>
                         ) : (
                             <LoginSignupButtons />
@@ -104,6 +124,11 @@ export const MobileMenu = ({ children, ...rest }) => {
                                 Post Job
                             </Button>
                         </Menu.Item>
+                        {!_.isEmpty(user) ? (
+                            <Menu.Item>
+                                <AddJob display={false} />
+                            </Menu.Item>
+                        ) : null}
                     </Menu>
                 </MenuContainer>
             </Sidebar>

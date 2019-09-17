@@ -56,7 +56,7 @@ function PrivateRoute({ component: Component, ...rest }) {
 //
 const App = props => {
     //
-    const [{ user, searchValue }, dispatch] = useStateValue();
+    const [{ user, searchValue, category }, dispatch] = useStateValue();
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -105,7 +105,7 @@ const App = props => {
                                 render={() => (
                                     <JobSitesContainer
                                         searchValue={searchValue}
-                                        allOpen={false}
+                                        allOpen={category.all}
                                     />
                                 )}
                             />
@@ -124,6 +124,9 @@ const AppStateWrapper = props => {
         searchValue: '',
         user: null,
         savedJobs: [],
+        category: {
+            all: true,
+        },
         preferences: {},
     };
 

@@ -6,6 +6,9 @@ import { useStateValue } from '../../state';
 import * as searchActions from '../../reducers/searchReducer';
 import firebase from '../../firebase';
 
+//Hooks
+import { useDebounce } from '../../hooks';
+
 //Components
 import {
     Header,
@@ -40,30 +43,31 @@ import {
 
 const SideBar = ({ setOpen, location }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [allOpen, setAllOpen] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
+    const [value, setValue] = useState('');
     const [{ searchValue, user }, dispatch] = useStateValue();
+
+    const debouncedSearchTerm = useDebounce(value, 300);
 
     // If user is typing search, open all categories
     useEffect(() => {
-        if (searchValue.length >= 1) {
-            setAllOpen(true);
-        } else {
-            setAllOpen(false);
+        if (debouncedSearchTerm) {
+            searchActions.updateSearch(dispatch, value);
         }
-    }, [searchValue]);
+    }, [debouncedSearchTerm]);
 
     const handleSearchChange = event => {
         setIsLoading(true);
-
+        setValue(event.target.value);
         //UPDATE SEARCH VALUE
-        searchActions.updateSearch(dispatch, event.target.value);
+
+        //searchActions.updateSearch(dispatch, event.target.value);
 
         setTimeout(() => {
-            if (searchValue.length < 1) return;
+            if (searchValue.length == 0) return;
             setIsLoading(false);
-        }, 300);
+        }, 200);
 
         console.log(`${searchValue} => ${event.target.value}`);
     };
@@ -97,9 +101,9 @@ const SideBar = ({ setOpen, location }) => {
                     )}
                 </div>
                 <SearchBar
-                    allOpen={allOpen}
-                    setAllOpen={setAllOpen}
                     isLoading={isLoading}
+                    searchValue={value}
+                    setSearchValue={setValue}
                     handleSearchChange={handleSearchChange}
                 />
             </StyledTopBar>

@@ -1,13 +1,19 @@
 import React from 'react';
 
 //Components
-import { Segment, Image } from 'semantic-ui-react';
+import { Segment, Image, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { TotalJobsSelector } from '../../../selectors';
 
 const LinkToAccount = ({ user }) => {
     return (
         <Link to="/me">
-            <Segment style={{ display: 'flex', padding: 10 }}>
+            <Segment
+                style={{
+                    display: 'flex',
+                    padding: 10,
+                }}
+            >
                 <Image
                     src={user.photoURL}
                     style={{
@@ -26,7 +32,17 @@ const LinkToAccount = ({ user }) => {
                     >
                         {user.displayName}
                     </h3>
-                    <p>My Account</p>
+                    <p>
+                        Saved Jobs
+                        <Label
+                            color="red"
+                            circular
+                            size="tiny"
+                            style={{ marginLeft: 7 }}
+                        >
+                            <TotalJobsSelector />
+                        </Label>
+                    </p>
                 </div>
             </Segment>
         </Link>
