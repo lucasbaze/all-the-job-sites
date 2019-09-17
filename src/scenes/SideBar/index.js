@@ -77,7 +77,7 @@ const SideBar = ({ setOpen, location }) => {
             <StyledTopBar>
                 <FlexBox justify="space-between">
                     <Logo />
-                    <Responsive {...Responsive.onlyTablet.maxWidth}>
+                    <Responsive maxWidth={767}>
                         <Icon
                             name="bars"
                             size="large"

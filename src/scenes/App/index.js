@@ -29,6 +29,7 @@ import {
     MainContentContainer,
     SideBarContainer,
     StyledSideBar,
+    StyledJobSitesContainer,
 } from './Styled';
 import './App.css';
 
@@ -81,7 +82,7 @@ const App = props => {
             {/*
                 Mobile View
             */}
-            <Responsive as={RootContainer} maxWidth={768}>
+            <Responsive as={RootContainer} maxWidth={767}>
                 <SideBarContainer>
                     <MobileMenu>
                         <SideBar />
@@ -113,6 +114,34 @@ const App = props => {
                         <Footer />
                     </MobileMenu>
                 </SideBarContainer>
+            </Responsive>
+
+            {/*
+                Desktop View
+            */}
+            <Responsive as={RootContainer} minWidth={768}>
+                <SideBarContainer>
+                    <SideBar />
+                    <StyledJobSitesContainer>
+                        <JobSitesContainer
+                            searchValue={searchValue}
+                            allOpen={category.all}
+                        />
+                    </StyledJobSitesContainer>
+                </SideBarContainer>
+                <MainContentContainer>
+                    <StyledSideBar>
+                        <Route exact path="/" component={HomePage} />
+                        <Route exact path="/contact-us" component={ContactUs} />
+                        <Route exact path="/post-job" component={PostJob} />
+                        <PrivateRoute path="/me" component={User} />
+                        <Route
+                            exact
+                            path="/site/:categorySlug/:nameSlug"
+                            component={SiteContent}
+                        />
+                    </StyledSideBar>
+                </MainContentContainer>
             </Responsive>
         </BrowserRouter>
     );

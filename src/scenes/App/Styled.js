@@ -4,10 +4,14 @@ import { minTablet } from '../../globals/constants';
 
 export const RootContainer = styled.div`
     ${flexBoxMixin('column', 'flex-start', 'stretch')}
+    ${minTablet} {
+        ${flexBoxMixin('row')}
+    }
 `;
 
 export const MainContentContainer = styled.div`
     flex: 3;
+    height: 100vh;
     overflow: scroll;
 `;
 
@@ -16,6 +20,12 @@ export const SideBarContainer = styled.div`
     box-shadow: 3px 0px 5px rgba(112, 112, 112, 0.4);
     z-index: 999;
     min-width: 260px;
+    overflow: scroll;
+`;
+
+export const StyledJobSitesContainer = styled.div`
+    height: 70vh;
+    overflow: scroll;
 `;
 
 export const StyledSideBar = styled.div`
