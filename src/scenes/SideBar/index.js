@@ -43,7 +43,6 @@ const SideBar = ({ setOpen }) => {
     const [allOpen, setAllOpen] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
-    const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [{ searchValue, user }, dispatch] = useStateValue();
 
     // If user is typing search, open all categories

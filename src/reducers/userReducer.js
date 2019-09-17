@@ -110,3 +110,5 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
             return false;
         });
 };
+
+export const getUserPreferences = () => {};

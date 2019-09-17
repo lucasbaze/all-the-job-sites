@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 //State
 import { useStateValue } from '../../../state';
-import * as actions from '../../../actions';
+import * as userActions from '../../../reducers/userReducer';
 
 //Components
 import { Header, Segment, Label, Form, Input, Grid } from 'semantic-ui-react';
@@ -28,7 +28,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (preferences && !_.isEmpty(preferences)) {
-            actions.getUserPreferences(dispatch, user);
+            userActions.getUserPreferences(dispatch, user);
         }
     }, []);
 
