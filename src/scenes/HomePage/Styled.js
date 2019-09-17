@@ -28,12 +28,9 @@ export const StyledFeaturedJobs = styled.div`
 `;
 
 export const ShareButtons = styled.div`
-    ${computerOnly} {
-        ${flexBoxMixin('row', 'center')}
-    }
-
-    ${tabletOnly} {
-        ${flexBoxMixin('column', 'center', 'center')}
+    ${flexBoxMixin('column', 'center', 'center')};
+    ${minTablet} {
+        ${flexBoxMixin('row', 'center', 'center')};
     }
 
     margin-top: 45px;
@@ -55,13 +52,16 @@ export const Jumbotron = styled.div`
     background-size: cover;
     text-align: center;
 
-    .menu > .item{
-        color: #ffffff
+    .menu > .item {
+        color: #ffffff;
     }
 
-    h1{
-        font-size: 50px;
-        margin-top: 25
+    h1 {
+        font-size: 40px;
+        ${minTablet} {
+            font-size: 50px;
+        }
+        padding: 25px 0 30px 0;
         color: #ffffff;
     }
 `;

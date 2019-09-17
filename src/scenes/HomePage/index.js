@@ -39,7 +39,7 @@ const HomePage = () => {
     return (
         <Container>
             <Jumbotron>
-                <Menu secondary fluid>
+                <Responsive as={Menu} minWidth={767} secondary fluid>
                     <Menu.Item
                         name="Contact Us"
                         onClick={() => alert('clicked')}
@@ -54,8 +54,8 @@ const HomePage = () => {
                             onClick={() => alert('clicked')}
                         />
                     </Menu.Menu>
-                </Menu>
-                <h1 style={{ marginBottom: 30 }}>
+                </Responsive>
+                <h1>
                     Where your job search starts <br /> ...and ends
                 </h1>
                 <LoginSignupButtons
@@ -63,14 +63,35 @@ const HomePage = () => {
                     setIndex={setIndex}
                     fluid={false}
                 />
-                <p style={{ color: 'white', marginBottom: 0, marginTop: 30 }}>
-                    <Icon name="chevron left" />
-                    Use the sidebar on the left to get started!
-                </p>
-                <p style={{ color: 'white', marginTop: 5, marginBottom: 30 }}>
-                    <Icon name="linkify" />
-                    Links will open in a new tab
-                </p>
+
+                {/*
+                    Desktop Description
+                */}
+
+                <Responsive minWidth={767}>
+                    <p
+                        style={{
+                            color: 'white',
+                            marginBottom: 0,
+                            marginTop: 30,
+                        }}
+                    >
+                        <Icon name="chevron left" />
+                        Use the sidebar on the left to get started!
+                    </p>
+                    <p
+                        style={{
+                            color: 'white',
+                            marginTop: 5,
+                            marginBottom: 30,
+                        }}
+                    >
+                        <Icon name="linkify" />
+                        Links will open in a new tab
+                    </p>
+                </Responsive>
+
+                {/* */}
             </Jumbotron>
             <StyledFeaturedJobs>
                 <div
@@ -138,6 +159,7 @@ const HomePage = () => {
                         style={{
                             backgroundColor: '#1877f2',
                             color: 'white',
+                            marginTop: 10,
                         }}
                         onClick={() => {
                             window.gtag('event', 'click', {
@@ -159,6 +181,7 @@ const HomePage = () => {
                         style={{
                             backgroundColor: '#1da1f2',
                             color: 'white',
+                            marginTop: 10,
                         }}
                         onClick={() => {
                             window.gtag('event', 'click', {
@@ -172,7 +195,7 @@ const HomePage = () => {
                     </Button>
                 </TwitterShareButton>
             </ShareButtons>
-            <Responsive {...Responsive.onlyTablet.minWidth}>
+            <Responsive minWidth={767}>
                 <Footer />
             </Responsive>
             <LoginSignup selectedIndex={index} open={open} setOpen={setOpen} />
