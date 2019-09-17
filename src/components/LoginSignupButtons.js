@@ -3,9 +3,9 @@ import React from 'react';
 //Components
 import { Button } from 'semantic-ui-react';
 
-const LoginSignupButtons = ({ setOpen, setIndex, fluid }) => {
+const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
     return (
-        <Button.Group style={{ width: 300 }}>
+        <Button.Group {...props}>
             <Button
                 onClick={() => {
                     setOpen(true);

@@ -65,7 +65,7 @@ const SideBar = ({ setOpen, location }) => {
         //searchActions.updateSearch(dispatch, event.target.value);
 
         setTimeout(() => {
-            if (searchValue.length == 0) return;
+            if (searchValue.length === 0) return;
             setIsLoading(false);
         }, 200);
 
@@ -95,6 +95,7 @@ const SideBar = ({ setOpen, location }) => {
                             setOpen={setOpenLoginSignup}
                             setIndex={setIndex}
                             fluid={true}
+                            size={'small'}
                         />
                     ) : (
                         <LinkToAccount user={user} />
