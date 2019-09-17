@@ -160,6 +160,7 @@ const AppStateWrapper = props => {
             locations: [],
             roles: [],
             skills: [],
+            industrys: [],
         },
     };
 

@@ -41,6 +41,10 @@ const Profile = () => {
         { skill: '' },
         submitHandler
     );
+    const [industryValue, handleIndustryChange, handleIndustrySubmit] = useForm(
+        { industry: '' },
+        submitHandler
+    );
 
     useEffect(() => {
         //What am I doing here?
@@ -189,6 +193,52 @@ const Profile = () => {
                                                     onClick={() =>
                                                         handleDelete({
                                                             skills: item,
+                                                        })
+                                                    }
+                                                />
+                                            </Label>
+                                        );
+                                    })}
+                            </Label.Group>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid divided stackable>
+                    <Grid.Row>
+                        <Grid.Column width={6}>
+                            <Header as="h3" content="Industries" />
+                            <Form onSubmit={handleIndustrySubmit}>
+                                <Form.Group>
+                                    <Form.Field style={{ flex: 1 }}>
+                                        <input
+                                            name="industry"
+                                            placeholder="Startups, VR, Real Estate"
+                                            onChange={handleIndustryChange}
+                                            value={industryValue.industry}
+                                        />
+                                    </Form.Field>
+                                    <Form.Button
+                                        type="submit"
+                                        color="purple"
+                                        icon="plus"
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Grid.Column>
+                        <Grid.Column width={10}>
+                            <Label.Group size="medium">
+                                {preferences.industrys &&
+                                    preferences.industrys.map(item => {
+                                        return (
+                                            <Label>
+                                                {item}
+                                                <Icon
+                                                    name="delete"
+                                                    onClick={() =>
+                                                        handleDelete({
+                                                            industry: item,
                                                         })
                                                     }
                                                 />
