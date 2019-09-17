@@ -156,7 +156,11 @@ const AppStateWrapper = props => {
         category: {
             all: true,
         },
-        preferences: {},
+        preferences: {
+            locations: [],
+            roles: [],
+            skills: [],
+        },
     };
 
     return (

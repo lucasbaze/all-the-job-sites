@@ -4,6 +4,7 @@ import firebase from '../../../firebase';
 
 //State
 import { useStateValue } from '../../../state';
+import * as preferenceActions from '../../../reducers/preferencesReducer';
 import * as userActions from '../../../reducers/userReducer';
 
 //Components
@@ -13,6 +14,7 @@ import {
     Label,
     Form,
     Input,
+    Icon,
     Grid,
     Button,
 } from 'semantic-ui-react';
@@ -22,24 +24,34 @@ import { useForm } from '../../../hooks';
 
 const Profile = () => {
     const [{ user, preferences }, dispatch] = useStateValue();
+
+    const submitHandler = values => {
+        preferenceActions.addPreference(dispatch, preferences, values);
+    };
+
     const [locationValue, handleLocationChange, handleLocationSubmit] = useForm(
         { location: '' },
-        console.log
+        submitHandler
     );
     const [roleValue, handleRoleChange, handleRoleSubmit] = useForm(
         { role: '' },
-        console.log
+        submitHandler
     );
     const [skillValue, handleSkillChange, handleSkillSubmit] = useForm(
         { skill: '' },
-        console.log
+        submitHandler
     );
 
     useEffect(() => {
+        //What am I doing here?
         if (preferences && !_.isEmpty(preferences)) {
             userActions.getUserPreferences(dispatch, user);
         }
     }, []);
+
+    const handleDelete = item => {
+        preferenceActions.deletePreference(dispatch, preferences, item);
+    };
 
     return (
         <>
@@ -75,45 +87,118 @@ const Profile = () => {
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Label.Group size="medium">
-                                <Label content="Austin, TX" />
-                                <Label content="Dallas, TX" />
-                                <Label content="Seattle" />
+                                {preferences.locations &&
+                                    preferences.locations.map(item => {
+                                        return (
+                                            <Label>
+                                                {item}
+                                                <Icon
+                                                    name="delete"
+                                                    onClick={() =>
+                                                        handleDelete({
+                                                            locations: item,
+                                                        })
+                                                    }
+                                                />
+                                            </Label>
+                                        );
+                                    })}
                             </Label.Group>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
             </Segment>
             <Segment>
-                <Header as="h3" content="Roles" />
-                <Form onSubmit={handleRoleSubmit}>
-                    <Form.Group>
-                        <Form.Field style={{ flex: 1 }}>
-                            <input
-                                name="role"
-                                placeholder="Engineer, Nurse, Paralegal"
-                                onChange={handleRoleChange}
-                                value={roleValue.role}
-                            />
-                        </Form.Field>
-                        <Form.Button type="submit" color="purple" icon="plus" />
-                    </Form.Group>
-                </Form>
+                <Grid divided stackable>
+                    <Grid.Row>
+                        <Grid.Column width={6}>
+                            <Header as="h3" content="Roles" />
+                            <Form onSubmit={handleRoleSubmit}>
+                                <Form.Group>
+                                    <Form.Field style={{ flex: 1 }}>
+                                        <input
+                                            name="role"
+                                            placeholder="Engineer, Nurse, Paralegal"
+                                            onChange={handleRoleChange}
+                                            value={roleValue.role}
+                                        />
+                                    </Form.Field>
+                                    <Form.Button
+                                        type="submit"
+                                        color="purple"
+                                        icon="plus"
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Grid.Column>
+                        <Grid.Column width={10}>
+                            <Label.Group size="medium">
+                                {preferences.roles &&
+                                    preferences.roles.map(item => {
+                                        return (
+                                            <Label>
+                                                {item}
+                                                <Icon
+                                                    name="delete"
+                                                    onClick={() =>
+                                                        handleDelete({
+                                                            roles: item,
+                                                        })
+                                                    }
+                                                />
+                                            </Label>
+                                        );
+                                    })}
+                            </Label.Group>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </Segment>
             <Segment>
-                <Header as="h3" content="Skills" />
-                <Form onSubmit={handleSkillSubmit}>
-                    <Form.Group>
-                        <Form.Field style={{ flex: 1 }}>
-                            <input
-                                name="skill"
-                                placeholder="React Native, Adobe XD, Excel"
-                                onChange={handleSkillChange}
-                                value={skillValue.skill}
-                            />
-                        </Form.Field>
-                        <Form.Button type="submit" color="purple" icon="plus" />
-                    </Form.Group>
-                </Form>
+                <Grid divided stackable>
+                    <Grid.Row>
+                        <Grid.Column width={6}>
+                            <Header as="h3" content="Skills" />
+                            <Form onSubmit={handleSkillSubmit}>
+                                <Form.Group>
+                                    <Form.Field style={{ flex: 1 }}>
+                                        <input
+                                            name="skill"
+                                            placeholder="React Native, Adobe XD, Excel"
+                                            onChange={handleSkillChange}
+                                            value={skillValue.skill}
+                                        />
+                                    </Form.Field>
+                                    <Form.Button
+                                        type="submit"
+                                        color="purple"
+                                        icon="plus"
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Grid.Column>
+                        <Grid.Column width={10}>
+                            <Label.Group size="medium">
+                                {preferences.skills &&
+                                    preferences.skills.map(item => {
+                                        return (
+                                            <Label>
+                                                {item}
+                                                <Icon
+                                                    name="delete"
+                                                    onClick={() =>
+                                                        handleDelete({
+                                                            skills: item,
+                                                        })
+                                                    }
+                                                />
+                                            </Label>
+                                        );
+                                    })}
+                            </Label.Group>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </Segment>
             <Button
                 color="Logout"
