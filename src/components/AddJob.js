@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-//import axios from 'axios';
+import { flexBoxMixin } from '../globals/styles';
+import { minTablet } from '../globals/constants';
 
 //State
 import * as jobsActions from '../reducers/jobsReducer';
 import { useStateValue } from '../state';
 
 //Components
-import { Header, Form, Segment } from 'semantic-ui-react';
+import { Header, Form, Segment, Responsive } from 'semantic-ui-react';
 
 //CSS
 import styled from 'styled-components';
@@ -38,7 +39,10 @@ const AddJob = () => {
         <>
             <Header as="h1" content="Add Jobs" />
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
+                {/*
+                    Mobile
+                    */}
+                <Responsive maxWidth={767}>
                     <Form.Field style={{ flex: 1 }}>
                         <input
                             name="name"
@@ -62,7 +66,35 @@ const AddJob = () => {
                         color="green"
                         content="Save Job Link"
                     />
-                </Form.Group>
+                </Responsive>
+                {/*
+                    Desktop
+                    */}
+                <Responsive as={Form.Group} minWidth={768}>
+                    <Form.Field style={{ flex: 1 }}>
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="Job Name"
+                            value={job.name}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Form.Field style={{ flex: 2 }}>
+                        <input
+                            name="link"
+                            type="text"
+                            placeholder="Job Link"
+                            value={job.link}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Form.Button
+                        type="submit"
+                        color="green"
+                        content="Save Job Link"
+                    />
+                </Responsive>
             </Form>
         </>
     );

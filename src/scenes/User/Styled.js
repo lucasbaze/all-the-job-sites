@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { minTablet } from '../../globals/constants';
+import { flexBoxMixin } from '../../globals/styles';
 
 export const ProfileContainer = styled.div`
     padding: 20px;
-    display: flex;
-    flex-direction: column;
+    ${flexBoxMixin('column')};
     ${minTablet} {
         height: 100vh;
         overflow: scroll;

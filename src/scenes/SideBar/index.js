@@ -38,7 +38,7 @@ import {
     MenuContainer,
 } from './Styled';
 
-const SideBar = ({ setOpen }) => {
+const SideBar = ({ setOpen, location }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [allOpen, setAllOpen] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
