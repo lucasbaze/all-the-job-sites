@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Header, List, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 
-import { sites } from '../sites.js';
-import JobLink from '../components/JobLink.js';
+import { sites } from '../../sites.js';
+import JobLink from '../../components/JobLink.js';
 
 const StyledCategory = styled(Header)`
     padding-bottom: 5px;
@@ -96,7 +96,7 @@ const prepareSites = sites => {
 
 const preparedSites = prepareSites(sites);
 
-const JobSitesContainer = props => {
+const JobSites = props => {
     let searchFilter = site => {
         if (props.searchValue === '') {
             return true;
@@ -175,4 +175,4 @@ const JobSitesContainer = props => {
     return <List style={{ padding: 15 }}>{linkList}</List>;
 };
 
-export default JobSitesContainer;
+export default JobSites;

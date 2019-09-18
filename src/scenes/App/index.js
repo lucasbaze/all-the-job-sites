@@ -6,13 +6,13 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 //Custom Components
 import HomePage from '../HomePage';
-import SideBar from '../SideBar';
-import SiteContent from '../../components/SiteContent';
+import SideBarHeader from '../SideBarHeader';
 import PostJob from '../PostJob';
 import ContactUs from '../ContactUs';
 import User from '../User';
-import JobSitesContainer from '../JobSitesContainer';
+import JobSites from '../JobSites';
 import Footer from '../../components/Footer';
+import SiteContent from '../../components/SiteContent';
 import { MobileMenu } from '../../components/MobileMenu';
 
 //Reducer / Actions
@@ -85,7 +85,7 @@ const App = props => {
             <Responsive as={RootContainer} maxWidth={767}>
                 <SideBarContainer>
                     <MobileMenu>
-                        <SideBar />
+                        <SideBarHeader />
                         <StyledSideBar>
                             <Route exact path="/home" component={HomePage} />
                             <Route
@@ -104,7 +104,7 @@ const App = props => {
                                 exact
                                 path="/"
                                 render={() => (
-                                    <JobSitesContainer
+                                    <JobSites
                                         searchValue={searchValue}
                                         allOpen={category.all}
                                     />
@@ -121,9 +121,9 @@ const App = props => {
             */}
             <Responsive as={RootContainer} minWidth={768}>
                 <SideBarContainer>
-                    <SideBar />
+                    <SideBarHeader />
                     <StyledJobSitesContainer>
-                        <JobSitesContainer
+                        <JobSites
                             searchValue={searchValue}
                             allOpen={category.all}
                         />

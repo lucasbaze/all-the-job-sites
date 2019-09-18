@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const StyledTopBar = styled.div`
+export const StyledSideBarHeader = styled.div`
     padding: 15px;
     box-shadow: 0px 3px 5px #eaeaea;
 `;

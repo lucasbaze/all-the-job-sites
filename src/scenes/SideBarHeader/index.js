@@ -11,18 +11,16 @@ import { useDebounce } from '../../hooks';
 
 //Components
 import {
-    Header,
-    Input,
-    Button,
-    Segment,
-    Image,
+    // Header,
+    // Input,
+    // Button,
+    // Segment,
+    // Image,
     Responsive,
     Icon,
-    Menu,
-    Sidebar,
+    // Menu,
+    // Sidebar,
 } from 'semantic-ui-react';
-import JobSitesContainer from '../JobSitesContainer.js';
-import { Link } from 'react-router-dom';
 import { LoginSignup } from '../../components/Modals';
 
 import Logo from '../../components/Logo';
@@ -34,14 +32,14 @@ import LinkToAccount from './components/LinkToAccount';
 import styled from 'styled-components';
 import { Row, Column, FlexBox } from '../../globals/styles';
 import {
-    StyledSideBar,
-    StyledTopBar,
-    StyledLink,
-    StyledALink,
-    MenuContainer,
+    // StyledSideBar,
+    StyledSideBarHeader,
+    // StyledLink,
+    // StyledALink,
+    // MenuContainer,
 } from './Styled';
 
-const SideBar = ({ setOpen, location }) => {
+const SideBarHeader = ({ setOpen, location }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
@@ -74,7 +72,8 @@ const SideBar = ({ setOpen, location }) => {
 
     return (
         <>
-            <StyledTopBar>
+            {/* */}
+            <StyledSideBarHeader>
                 <FlexBox justify="space-between">
                     <Logo />
                     <Responsive maxWidth={767}>
@@ -107,7 +106,8 @@ const SideBar = ({ setOpen, location }) => {
                     setSearchValue={setValue}
                     handleSearchChange={handleSearchChange}
                 />
-            </StyledTopBar>
+            </StyledSideBarHeader>
+            {/* Modal */}
             <LoginSignup
                 selectedIndex={index}
                 open={openLoginSignup}
@@ -117,7 +117,7 @@ const SideBar = ({ setOpen, location }) => {
     );
 };
 
-export default SideBar;
+export default SideBarHeader;
 
 // <StyledLink to="/">Home</StyledLink>
 // <Responsive as={StyledLink} to="/contact-us" minWidth={768}>
