@@ -12,6 +12,7 @@ const LinkToAccount = ({ user }) => {
                 style={{
                     display: 'flex',
                     padding: 10,
+                    boxShadow: 'none'
                 }}
             >
                 <Image

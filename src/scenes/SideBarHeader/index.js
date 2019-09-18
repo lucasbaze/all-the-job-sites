@@ -1,43 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
+import { Responsive, Icon } from 'semantic-ui-react';
 
 //State
 import { useStateValue } from '../../state';
 import * as searchActions from '../../reducers/searchReducer';
-import firebase from '../../firebase';
-
-//Hooks
 import { useDebounce } from '../../hooks';
 
 //Components
-import {
-    // Header,
-    // Input,
-    // Button,
-    // Segment,
-    // Image,
-    Responsive,
-    Icon,
-    // Menu,
-    // Sidebar,
-} from 'semantic-ui-react';
 import { LoginSignup } from '../../components/Modals';
-
 import Logo from '../../components/Logo';
 import SearchBar from './components/SearchBar';
 import LoginSignupButtons from '../../components/LoginSignupButtons';
 import LinkToAccount from './components/LinkToAccount';
 
 //CSS
-import styled from 'styled-components';
-import { Row, Column, FlexBox } from '../../globals/styles';
-import {
-    // StyledSideBar,
-    StyledSideBarHeader,
-    // StyledLink,
-    // StyledALink,
-    // MenuContainer,
-} from './Styled';
+import { FlexBox } from '../../globals/styles';
+import { StyledSideBarHeader } from './Styled';
 
 const SideBarHeader = ({ setOpen, location }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -58,9 +37,6 @@ const SideBarHeader = ({ setOpen, location }) => {
     const handleSearchChange = event => {
         setIsLoading(true);
         setValue(event.target.value);
-        //UPDATE SEARCH VALUE
-
-        //searchActions.updateSearch(dispatch, event.target.value);
 
         setTimeout(() => {
             if (searchValue.length === 0) return;
@@ -84,11 +60,7 @@ const SideBarHeader = ({ setOpen, location }) => {
                         />
                     </Responsive>
                 </FlexBox>
-                <div
-                    style={{
-                        marginBottom: 20,
-                    }}
-                >
+                <div style={{ marginBottom: 20 }}>
                     {!user ? (
                         <LoginSignupButtons
                             setOpen={setOpenLoginSignup}
