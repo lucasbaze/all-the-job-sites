@@ -18,7 +18,8 @@ import { LoginSignup } from '../../components/Modals';
 //CSS
 import {
     StyledMenuContainer,
-    StyledFeaturedJobs,
+    StyledSection,
+    StyledSectionHeader,
     ShareButtons,
     Container,
     Jumbotron,
@@ -73,36 +74,31 @@ const HomePage = () => {
                             All The Job Sites pulls together over 200 different job boards, so you can <strong>find your next thing</strong>    .
                         </p>
                     </div>
-
-                    {/* Desktop Description*/}
-                    <div className="description">
-                        <p
-                            style={{
-                                color: 'white',
-                                marginBottom: 0,
-                                marginTop: 30,
-                            }}
-                        >
-                            <Icon name="chevron left" />
-                            Use the sidebar on the left to get started!
-                        </p>
-                        <p
-                            style={{
-                                color: 'white',
-                                marginTop: 5,
-                                marginBottom: 10,
-                            }}
-                        >
-                            <Icon name="linkify" />
-                            Links will open in a new tab
-                        </p>
-                    </div>
                 </div>
-
-                {/* */}
             </Jumbotron>
-            <StyledFeaturedJobs>
-                <div className="featured-jobs-header">
+            {/* Section 1: Instructions */}
+            <StyledSection>
+                <Header as="h2">Get started</Header>
+                <div className="description">
+                    <ul>
+                        <li>
+                            <Icon name="arrow left" />
+                            The sidebar holds all of the job sites we've indexed.
+                        </li>
+                        <li>
+                            <Icon name="search" />
+                            Enter a search term and we'll automatically search for it on each board.
+                        </li>
+                        <li>
+                            <Icon name="linkify" />
+                            Links with this icon will open in a new tab.
+                        </li>
+                    </ul>
+                </div>
+            </StyledSection>
+            {/* Section 2: Featured Jobs */}
+            <StyledSection>
+                <StyledSectionHeader>
                     <Header as="h2">Featured Jobs</Header>
                     <Link to="/post-job">
                         <Button
@@ -118,7 +114,7 @@ const HomePage = () => {
                             style={{ minWidth: 100 }}
                         />
                     </Link>
-                </div>
+                </StyledSectionHeader>
                 <Responsive minWidth={767}>
                     <FeaturedJob
                         logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
@@ -153,7 +149,7 @@ const HomePage = () => {
                         tags={['magento', 'bigcommerce', 'sales', 'smb']}
                     />
                 </Responsive>
-            </StyledFeaturedJobs>
+            </StyledSection>
             <ShareButtons>
                 <FacebookShareButton
                     url={'https://allthejobsites.com'}
