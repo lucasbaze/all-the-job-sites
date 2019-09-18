@@ -97,7 +97,7 @@ export const Jumbotron = styled.div`
         /* move text to align with menu items */
         padding-left: 50px;
         padding-right: 50px;
-        padding-top: 15px;
+        padding-top: 10px;
         padding-bottom: 15px;
     }
 
