@@ -65,12 +65,14 @@ const HomePage = () => {
                     </Menu>
                 </Responsive>
                 <div className="wrapped">
-                    <h1>
-                        Where your job search starts &mdash; and ends.
-                    </h1>
-                    <p className="subtitle">
-                        All The Job Sites pulls together over 200 different job boards, so you can <strong>find your next thing</strong>    .
-                    </p>
+                    <div className="cta">
+                        <h1>
+                            Where your job search starts &mdash; and ends.
+                        </h1>
+                        <p className="subtitle">
+                            All The Job Sites pulls together over 200 different job boards, so you can <strong>find your next thing</strong>    .
+                        </p>
+                    </div>
 
                     {/* Desktop Description*/}
                     <div className="description">
@@ -100,15 +102,11 @@ const HomePage = () => {
                 {/* */}
             </Jumbotron>
             <StyledFeaturedJobs>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <Header as="h3">Featured Jobs:</Header>
+                <div className="featured-jobs-header">
+                    <Header as="h2">Featured Jobs</Header>
                     <Link to="/post-job">
                         <Button
+                            size="small"
                             color="red"
                             onClick={() => {
                                 window.gtag('event', 'navigate', {

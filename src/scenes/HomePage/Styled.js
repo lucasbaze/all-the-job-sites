@@ -25,6 +25,16 @@ export const StyledFeaturedJobs = styled.div`
     width: 90%;
     margin: 0 auto;
     margin-top: 40px;
+
+    .featured-jobs-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        h2 {
+            margin-bottom: 0 !important;
+        }
+    }
 `;
 
 export const ShareButtons = styled.div`
@@ -66,29 +76,33 @@ export const Jumbotron = styled.div`
         /* move text to align with menu items */
         /* padding-left: 27px; */
         /* padding-right: 27px; */
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 50px;
+        padding-right: 50px;
         padding-top: 15px;
         padding-bottom: 15px;
     }
 
-    h1 {
-        font-size: 35px;
-        line-height: 54px;
-        max-width: 750px; /* enforce wrapping properly */
-        margin-bottom: 15px;
+    .cta {
+        padding-top: 15px;
+        padding-bottom: 20px;
 
-        ${minTablet} {
-            font-size: 50px;
+        h1 {
+            font-size: 35px;
+            line-height: 54px;
+            max-width: 750px; /* enforce wrapping properly */
+            margin-bottom: 15px; /* break between h1 and p */
+
+            ${minTablet} {
+                font-size: 50px;
+            }
+            /* padding: 25px 0 30px 0; */
+            color: #ffffff;
         }
-        /* padding: 25px 0 30px 0; */
-        color: #ffffff;
-    }
 
-
-    p.subtitle {
-        font-size: 17px;
-        color: #ffffff;
+        p.subtitle {
+            font-size: 17px;
+            color: #ffffff;
+        }
     }
 `;
 
