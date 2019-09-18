@@ -9,9 +9,11 @@ const StyledImage = styled.img`
 `;
 
 const StyledSegment = styled(Segment)`
+    overflow: scroll;
     :hover {
         cursor: pointer;
     }
+    .grid {}
 `;
 
 const FeaturedJob = props => {
