@@ -3,7 +3,6 @@ import {
     Header,
     Icon,
     Button,
-    Image,
     Menu,
     Responsive,
 } from 'semantic-ui-react';
@@ -13,17 +12,18 @@ import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import FeaturedJob from '../../components/FeaturedJob';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
-import LoginSignupButtons from '../../components/LoginSignupButtons';
+// import LoginSignupButtons from '../../components/LoginSignupButtons';
 import { LoginSignup } from '../../components/Modals';
 
 //CSS
 import {
+    StyledMenuContainer,
     StyledFeaturedJobs,
     ShareButtons,
     Container,
     Jumbotron,
 } from './Styled.js';
-import { ResponsiveFlex } from '../../globals/styles';
+// import { ResponsiveFlex } from '../../globals/styles';
 
 const HomePage = () => {
     const [index, setIndex] = useState(1);
@@ -36,60 +36,66 @@ const HomePage = () => {
         });
     }, []);
 
+
+    // <LoginSignupButtons
+    //     setOpen={setOpen}
+    //     setIndex={setIndex}
+    //     fluid={false}
+    // />
+
     return (
         <Container>
             <Jumbotron>
-                <Responsive as={Menu} minWidth={767} secondary fluid>
-                    <Menu.Item
-                        name="Contact Us"
-                        onClick={() => alert('clicked')}
-                    />
-                    <Menu.Item
-                        name="About Us"
-                        onClick={() => alert('clicked')}
-                    />
-                    <Menu.Menu position="right">
+                <Responsive as={StyledMenuContainer} minWidth={767}>
+                    <Menu secondary fluid>
                         <Menu.Item
-                            name="Post Jobs"
+                            name="Contact Us"
                             onClick={() => alert('clicked')}
                         />
-                    </Menu.Menu>
+                        <Menu.Item
+                            name="About Us"
+                            onClick={() => alert('clicked')}
+                        />
+                        <Menu.Menu position="right">
+                            <Menu.Item
+                                name="Post a Job"
+                                onClick={() => alert('clicked')}
+                            />
+                        </Menu.Menu>
+                    </Menu>
                 </Responsive>
-                <h1>
-                    Where your job search starts <br /> ...and ends
-                </h1>
-                <LoginSignupButtons
-                    setOpen={setOpen}
-                    setIndex={setIndex}
-                    fluid={false}
-                />
-
-                {/*
-                    Desktop Description
-                */}
-
-                <Responsive minWidth={767}>
-                    <p
-                        style={{
-                            color: 'white',
-                            marginBottom: 0,
-                            marginTop: 30,
-                        }}
-                    >
-                        <Icon name="chevron left" />
-                        Use the sidebar on the left to get started!
+                <div className="wrapped">
+                    <h1>
+                        Where your job search starts &mdash; and ends.
+                    </h1>
+                    <p className="subtitle">
+                        All The Job Sites pulls together over 200 different job boards, so you can <strong>find your next thing</strong>    .
                     </p>
-                    <p
-                        style={{
-                            color: 'white',
-                            marginTop: 5,
-                            marginBottom: 30,
-                        }}
-                    >
-                        <Icon name="linkify" />
-                        Links will open in a new tab
-                    </p>
-                </Responsive>
+
+                    {/* Desktop Description*/}
+                    <div className="description">
+                        <p
+                            style={{
+                                color: 'white',
+                                marginBottom: 0,
+                                marginTop: 30,
+                            }}
+                        >
+                            <Icon name="chevron left" />
+                            Use the sidebar on the left to get started!
+                        </p>
+                        <p
+                            style={{
+                                color: 'white',
+                                marginTop: 5,
+                                marginBottom: 10,
+                            }}
+                        >
+                            <Icon name="linkify" />
+                            Links will open in a new tab
+                        </p>
+                    </div>
+                </div>
 
                 {/* */}
             </Jumbotron>

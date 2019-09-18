@@ -44,26 +44,56 @@ export const Container = styled.div`
 `;
 
 export const Jumbotron = styled.div`
-    min-height: 55vh;
+    /* min-height: 40vh; */
     width: 100%;
-    background-image: linear-gradient(rgb(255, 94, 94), rgb(255, 46, 74));
+    background-image: linear-gradient(rgba(255, 94, 94, 1), rgba(255, 46, 74, 1));
     background-repeat: no-repeat;
     background-position: 100% 40%;
     background-size: cover;
-    text-align: center;
 
+    /* */
     .menu > .item {
         color: #ffffff;
+        text-transform: none !important;
+
+        :hover {
+            color: #ffffff !important;
+        }
+    }
+
+
+    .wrapped {
+        /* move text to align with menu items */
+        /* padding-left: 27px; */
+        /* padding-right: 27px; */
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 35px;
+        line-height: 54px;
+        max-width: 750px; /* enforce wrapping properly */
+        margin-bottom: 15px;
+
         ${minTablet} {
             font-size: 50px;
         }
-        padding: 25px 0 30px 0;
+        /* padding: 25px 0 30px 0; */
         color: #ffffff;
     }
+
+
+    p.subtitle {
+        font-size: 17px;
+        color: #ffffff;
+    }
+`;
+
+export const StyledMenuContainer = styled.div`
+    padding: 7px 15px; /* line the menu up with logo */
 `;
 
 // background-image: url(${process.env.PUBLIC_URL +
