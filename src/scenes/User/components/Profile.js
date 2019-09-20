@@ -251,7 +251,7 @@ const Profile = () => {
                 </Grid>
             </Segment>
             <Button
-                color="Logout"
+                color="red"
                 basic
                 onClick={() =>
                     firebase
