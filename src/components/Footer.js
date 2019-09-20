@@ -8,7 +8,7 @@ import {
 
 //Components
 import { Link } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
+import { Responsive } from 'semantic-ui-react';
 import Logo from './Logo';
 
 //CSS Components
@@ -53,18 +53,34 @@ const Footer = () => {
             <Row>
                 <Column>
                     <Logo />
-
                 </Column>
                 <Column className="right">
+                    <div></div>
                     <div>
-                    </div>
-                    <div>
-                        <Link to="/home" style={{ marginRight: 10 }}>
+                        <Responsive
+                            as={Link}
+                            to="/home"
+                            maxWidth={767}
+                            style={{ marginRight: 10 }}
+                        >
                             Home
-                        </Link>
-                        <Link to="/" style={{ marginRight: 10 }}>
+                        </Responsive>
+                        <Responsive
+                            as={Link}
+                            to="/"
+                            minWidth={768}
+                            style={{ marginRight: 10 }}
+                        >
+                            Home
+                        </Responsive>
+                        <Responsive
+                            as={Link}
+                            to="/"
+                            maxWidth={767}
+                            style={{ marginRight: 10 }}
+                        >
                             Site Search
-                        </Link>
+                        </Responsive>
                         <Link to="/contact-us" style={{ marginRight: 10 }}>
                             Contact Us
                         </Link>
@@ -74,8 +90,7 @@ const Footer = () => {
             </Row>
             <p className="copyright">
                 Copyright &copy; {year}, All The Job Sites, Inc. "All The Job
-                Sites" and logo are trademarks of All The Job Sites,
-                Inc.
+                Sites" and logo are trademarks of All The Job Sites, Inc.
             </p>
         </Container>
     );
