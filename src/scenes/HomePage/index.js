@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-    Header,
-    Icon,
-    Button,
-    Menu,
-    Responsive,
-} from 'semantic-ui-react';
+import { Header, Icon, Button, Menu, Responsive } from 'semantic-ui-react';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 
 //Components
@@ -37,7 +31,6 @@ const HomePage = () => {
         });
     }, []);
 
-
     // <LoginSignupButtons
     //     setOpen={setOpen}
     //     setIndex={setIndex}
@@ -50,28 +43,32 @@ const HomePage = () => {
                 <Responsive as={StyledMenuContainer} minWidth={767}>
                     <Menu secondary fluid>
                         <Menu.Item
+                            as={Link}
                             name="Contact Us"
-                            onClick={() => alert('clicked')}
+                            to="/contact-us"
                         />
+                        {/*
                         <Menu.Item
                             name="About Us"
-                            onClick={() => alert('clicked')}
+                            to=""
                         />
+                        */}
                         <Menu.Menu position="right">
                             <Menu.Item
+                                as={Link}
                                 name="Post a Job"
-                                onClick={() => alert('clicked')}
+                                to="/post-job"
                             />
                         </Menu.Menu>
                     </Menu>
                 </Responsive>
                 <div className="wrapped">
                     <div className="cta">
-                        <h1>
-                            Where your job search starts &mdash; and ends.
-                        </h1>
+                        <h1>Where your job search starts &mdash; and ends.</h1>
                         <p className="subtitle">
-                            All The Job Sites pulls together over 200 different job boards, so you can <strong>find your next thing</strong>    .
+                            All The Job Sites pulls together over 200 different
+                            job boards, so you can{' '}
+                            <strong>find your next thing</strong> .
                         </p>
                     </div>
                 </div>
@@ -83,11 +80,13 @@ const HomePage = () => {
                     <ul>
                         <li>
                             <Icon name="arrow left" />
-                            The sidebar holds all of the job sites we've indexed.
+                            The sidebar holds all of the job sites we've
+                            indexed.
                         </li>
                         <li>
                             <Icon name="search" />
-                            Enter a search term and we'll automatically search for it on each board.
+                            Enter a search term and we'll automatically search
+                            for it on each board.
                         </li>
                         <li>
                             <Icon name="linkify" />
