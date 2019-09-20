@@ -32,7 +32,7 @@ const JobLink = props => {
         <>
             <Responsive
                 as={StyledLink2}
-                maxWidth={501}
+                maxWidth={767}
                 href={
                     searchValue != ''
                         ? site.search_url.replace(/%q/g, searchValue)
