@@ -87,7 +87,12 @@ const App = props => {
                 <SideBarContainer>
                     <MobileMenu>
                         <SideBarHeader />
-                        <StyledSideBar>
+                        <StyledSideBar as={Switch}>
+                            <Route
+                                exact
+                                path="/site/:categorySlug/:nameSlug"
+                                component={SiteContent}
+                            />
                             <Route exact path="/home" component={HomePage} />
                             <Route
                                 exact
@@ -96,11 +101,7 @@ const App = props => {
                             />
                             <Route exact path="/post-job" component={PostJob} />
                             <PrivateRoute path="/me" component={User} />
-                            <Route
-                                exact
-                                path="/site/:categorySlug/:nameSlug"
-                                component={SiteContent}
-                            />
+
                             <Route
                                 exact
                                 path="/"
@@ -131,16 +132,16 @@ const App = props => {
                     </StyledJobSitesContainer>
                 </SideBarContainer>
                 <MainContentContainer>
-                    <StyledSideBar>
-                        <Route exact path="/" component={HomePage} />
-                        <Route exact path="/contact-us" component={ContactUs} />
-                        <Route exact path="/post-job" component={PostJob} />
-                        <PrivateRoute path="/me" component={User} />
+                    <StyledSideBar as={Switch}>
                         <Route
                             exact
                             path="/site/:categorySlug/:nameSlug"
                             component={SiteContent}
                         />
+                        <Route exact path="/contact-us" component={ContactUs} />
+                        <Route exact path="/post-job" component={PostJob} />
+                        <PrivateRoute path="/me" component={User} />
+                        <Route exact path="/" component={HomePage} />
                     </StyledSideBar>
                 </MainContentContainer>
             </Responsive>
