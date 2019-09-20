@@ -61,19 +61,20 @@ const App = props => {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(user) {
-            let { displayName, email, photoURL, uid, emailVerified } = user;
+            if (user) {
+                let { displayName, email, photoURL, uid, emailVerified } = user;
+                //Check if the user is already associated with a DB record
+                userActions.getOrCreateUserDBRecord(dispatch, user);
 
-            //Check if the user is already associated with a DB record
-            userActions.getOrCreateUserDBRecord(dispatch, user);
-
-            //Set user to global state
-            userActions.setUser(dispatch, {
-                displayName,
-                email,
-                photoURL,
-                uid,
-                emailVerified,
-            });
+                //Set user to global state
+                userActions.setUser(dispatch, {
+                    displayName,
+                    email,
+                    photoURL,
+                    uid,
+                    emailVerified,
+                });
+            }
         });
     }, [dispatch]);
 

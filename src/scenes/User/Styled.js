@@ -4,8 +4,9 @@ import { flexBoxMixin } from '../../globals/styles';
 
 export const ProfileContainer = styled.div`
     padding: 20px;
-    ${flexBoxMixin('column')};
+    ${flexBoxMixin('column', 'flex-start', 'stretch')};
     ${minTablet} {
+        width: 100%;
         height: 100vh;
         overflow: scroll;
     }

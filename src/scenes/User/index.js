@@ -21,7 +21,7 @@ const User = () => {
             {_.isEmpty(user) ? (
                 <Header as="h1" content="Please Login" />
             ) : (
-                <div>
+                <>
                     {/*
                             Mobile
                         */}
@@ -83,7 +83,7 @@ const User = () => {
 
                     <Route exact path="/me" component={SavedJobs} />
                     <Route exact path="/me/profile" component={Profile} />
-                </div>
+                </>
             )}
         </ProfileContainer>
     );
