@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { Responsive, Icon } from 'semantic-ui-react';
+import { withRouter } from 'react-router';
 
 //State
 import { useStateValue } from '../../state';
@@ -68,7 +69,7 @@ const SideBarHeader = ({ setOpen, location }) => {
                             fluid={true}
                             size={'small'}
                         />
-                    ) : (
+                    ) : location.pathname.includes('/me') ? null : (
                         <LinkToAccount user={user} />
                     )}
                 </div>
@@ -89,7 +90,7 @@ const SideBarHeader = ({ setOpen, location }) => {
     );
 };
 
-export default SideBarHeader;
+export default withRouter(SideBarHeader);
 
 // <StyledLink to="/">Home</StyledLink>
 // <Responsive as={StyledLink} to="/contact-us" minWidth={768}>
