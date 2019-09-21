@@ -81,7 +81,7 @@ export const addPreference = async (dispatch, preferences, value, uid) => {
     });
 };
 
-export const deletePreference = (dispatch, preferences, value) => {
+export const deletePreference = (dispatch, preferences, value, uid) => {
     console.log('Removing preference', value);
 
     let index = Object.keys(value)[0];
@@ -92,6 +92,18 @@ export const deletePreference = (dispatch, preferences, value) => {
     });
 
     console.log(preferences);
+
+    db.collection('users')
+        .doc(`${uid}`)
+        .update({
+            preferences: preferences,
+        })
+        .then(() => {
+            console.log('Successfully removed preference');
+        })
+        .catch(err => {
+            console.log('Error removing preferences');
+        });
 
     dispatch({
         type: DELETE_PREFERENCE,

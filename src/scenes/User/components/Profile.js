@@ -56,7 +56,12 @@ const Profile = () => {
     }, []);
 
     const handleDelete = item => {
-        preferenceActions.deletePreference(dispatch, preferences, item);
+        preferenceActions.deletePreference(
+            dispatch,
+            preferences,
+            item,
+            user.uid
+        );
     };
 
     return (
