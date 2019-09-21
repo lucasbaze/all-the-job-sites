@@ -26,7 +26,12 @@ const Profile = () => {
     const [{ user, preferences }, dispatch] = useStateValue();
 
     const submitHandler = values => {
-        preferenceActions.addPreference(dispatch, preferences, values);
+        preferenceActions.addPreference(
+            dispatch,
+            preferences,
+            values,
+            user.uid
+        );
     };
 
     const [locationValue, handleLocationChange, handleLocationSubmit] = useForm(
@@ -47,10 +52,7 @@ const Profile = () => {
     );
 
     useEffect(() => {
-        //What am I doing here?
-        if (preferences && !_.isEmpty(preferences)) {
-            userActions.getUserPreferences(dispatch, user);
-        }
+        console.log('line 55 profile');
     }, []);
 
     const handleDelete = item => {
@@ -91,8 +93,8 @@ const Profile = () => {
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Label.Group size="medium">
-                                {preferences.locations &&
-                                    preferences.locations.map(item => {
+                                {preferences.location &&
+                                    preferences.location.map(item => {
                                         return (
                                             <Label>
                                                 {item}
@@ -100,7 +102,7 @@ const Profile = () => {
                                                     name="delete"
                                                     onClick={() =>
                                                         handleDelete({
-                                                            locations: item,
+                                                            location: item,
                                                         })
                                                     }
                                                 />
@@ -137,8 +139,8 @@ const Profile = () => {
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Label.Group size="medium">
-                                {preferences.roles &&
-                                    preferences.roles.map(item => {
+                                {preferences.role &&
+                                    preferences.role.map(item => {
                                         return (
                                             <Label>
                                                 {item}
@@ -146,7 +148,7 @@ const Profile = () => {
                                                     name="delete"
                                                     onClick={() =>
                                                         handleDelete({
-                                                            roles: item,
+                                                            role: item,
                                                         })
                                                     }
                                                 />
@@ -183,8 +185,8 @@ const Profile = () => {
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Label.Group size="medium">
-                                {preferences.skills &&
-                                    preferences.skills.map(item => {
+                                {preferences.skill &&
+                                    preferences.skill.map(item => {
                                         return (
                                             <Label>
                                                 {item}
@@ -192,7 +194,7 @@ const Profile = () => {
                                                     name="delete"
                                                     onClick={() =>
                                                         handleDelete({
-                                                            skills: item,
+                                                            skill: item,
                                                         })
                                                     }
                                                 />
@@ -229,8 +231,8 @@ const Profile = () => {
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <Label.Group size="medium">
-                                {preferences.industrys &&
-                                    preferences.industrys.map(item => {
+                                {preferences.industry &&
+                                    preferences.industry.map(item => {
                                         return (
                                             <Label>
                                                 {item}
@@ -253,6 +255,7 @@ const Profile = () => {
             <Button
                 color="red"
                 basic
+                compact
                 onClick={() =>
                     firebase
                         .auth()

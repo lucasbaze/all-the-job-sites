@@ -87,8 +87,10 @@ export const updateSavedJob = (dispatch, uid, savedJobs, key, value) => {
     //get the savedjob
     let job = _.find(savedJobs, { key: key });
     job.status = value;
+
     console.log('update jobs', job);
     savedJobs = [...savedJobs];
+
     console.log('update jobs', savedJobs);
     dispatch({
         type: UPDATE_SAVED_JOBS,

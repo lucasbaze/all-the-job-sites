@@ -101,7 +101,6 @@ const App = props => {
                             />
                             <Route exact path="/post-job" component={PostJob} />
                             <PrivateRoute path="/me" component={User} />
-
                             <Route
                                 exact
                                 path="/"
@@ -159,10 +158,10 @@ const AppStateWrapper = props => {
             all: true,
         },
         preferences: {
-            locations: [],
-            roles: [],
-            skills: [],
-            industrys: [],
+            location: [],
+            role: [],
+            skill: [],
+            industry: [],
         },
     };
 
