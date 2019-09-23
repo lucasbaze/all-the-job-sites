@@ -59,34 +59,40 @@ const SavedJobsTable = props => {
     return (
         <>
             <Header as="h1" content="Saved Jobs" />
-            {modSavedJobs.map((category, index1) => {
-                let [name, jobs] = category;
-                let reducedJobs = jobs.map((job, index2) => {
-                    let jobLink = job.link.substring(8, 35).concat('...');
+            {modSavedJobs.length != 0 ? (
+                modSavedJobs.map((category, index1) => {
+                    let [name, jobs] = category;
+                    let reducedJobs = jobs.map((job, index2) => {
+                        let jobLink = job.link.substring(8, 35).concat('...');
+                        return (
+                            <JobRow
+                                key={job.key}
+                                job={job}
+                                index={`${index1}${index2}`}
+                                handleStatusChange={handleStatusChange}
+                                handleDelete={handleDelete}
+                            />
+                        );
+                    });
                     return (
-                        <JobRow
-                            key={job.key}
-                            job={job}
-                            index={`${index1}${index2}`}
-                            handleStatusChange={handleStatusChange}
-                            handleDelete={handleDelete}
-                        />
+                        <Table key={index1} stackable>
+                            <Table.Header>
+                                <Responsive as={Table.Row} minWidth={767}>
+                                    <Table.HeaderCell>
+                                        Job Name
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell>Link</Table.HeaderCell>
+                                    <Table.HeaderCell>Status</Table.HeaderCell>
+                                    <Table.HeaderCell>Delete</Table.HeaderCell>
+                                </Responsive>
+                            </Table.Header>
+                            <Table.Body>{reducedJobs}</Table.Body>
+                        </Table>
                     );
-                });
-                return (
-                    <Table key={index1} stackable>
-                        <Table.Header>
-                            <Responsive as={Table.Row} minWidth={767}>
-                                <Table.HeaderCell>Job Name</Table.HeaderCell>
-                                <Table.HeaderCell>Link</Table.HeaderCell>
-                                <Table.HeaderCell>Status</Table.HeaderCell>
-                                <Table.HeaderCell>Delete</Table.HeaderCell>
-                            </Responsive>
-                        </Table.Header>
-                        <Table.Body>{reducedJobs}</Table.Body>
-                    </Table>
-                );
-            })}
+                })
+            ) : (
+                <Header as="h3" content="You don't have any saved jobs!" />
+            )}
         </>
     );
 };
@@ -159,7 +165,7 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
             <Table.Cell width={1}>
                 <Button
                     basic
-                    icon="delete"
+                    icon="trash"
                     onClick={() => handleDelete(job.key)}
                 />
             </Table.Cell>

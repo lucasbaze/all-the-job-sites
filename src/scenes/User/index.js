@@ -4,7 +4,14 @@ import _ from 'lodash';
 import firebase from '../../firebase';
 
 import styled from 'styled-components';
-import { Header, Segment, Menu, Button, Responsive } from 'semantic-ui-react';
+import {
+    Header,
+    Segment,
+    Menu,
+    Button,
+    Responsive,
+    Icon,
+} from 'semantic-ui-react';
 import SavedJobs from './components/SavedJobs';
 import Profile from './components/Profile';
 
@@ -28,6 +35,10 @@ const User = () => {
                     <Responsive as={Menu} maxWidth={767}>
                         <Menu.Item as={Link} to="/me/profile">
                             <UserImage src={user.photoURL} />
+                            <Icon
+                                name="ellipsis vertical"
+                                style={{ marginLeft: 10 }}
+                            />
                         </Menu.Item>
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs
@@ -46,6 +57,10 @@ const User = () => {
                     <Responsive as={Menu} minWidth={768}>
                         <Menu.Item as={Link} to="/me/profile">
                             <UserImage src={user.photoURL} />
+                            <Icon
+                                name="ellipsis vertical"
+                                style={{ marginLeft: 10 }}
+                            />
                         </Menu.Item>
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs
