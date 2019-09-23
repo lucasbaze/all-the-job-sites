@@ -13,7 +13,7 @@ const db = firebase.firestore();
 //
 
 export const SET_USER = 'atjs/user/set_user';
-
+export const SET_ONBOARD_COMPLETE = 'atjs/user/set_onboard_complete';
 //
 //REDUCER
 //
@@ -24,6 +24,11 @@ export default function userReducer(state, action) {
         case SET_USER:
             return {
                 ...payload,
+            };
+        case SET_ONBOARD_COMPLETE:
+            return {
+                ...state,
+                onboardComplete: payload,
             };
         default:
             return state;
@@ -43,6 +48,13 @@ export const setUser = (dispatch, user) => {
     });
 };
 
+export const setOnboardComplete = (dispatch, complete) => {
+    dispatch({
+        type: SET_ONBOARD_COMPLETE,
+        payload: complete,
+    });
+};
+
 export const getOrCreateUserDBRecord = (dispatch, user) => {
     let { displayName, email, photoURL, uid, emailVerified } = user;
 
@@ -59,6 +71,7 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
                 let data = doc.data();
 
                 setPreferences(dispatch, data.preferences);
+                setOnboardComplete(dispatch, data.onboardComplete);
 
                 //Get the users saved jobs and save to global state
                 console.log('Found User. Getting Saved Jobs ');
@@ -92,7 +105,7 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
                         photoURL: photoURL,
                         uid: uid,
                         emailVerified: emailVerified,
-                        onboarding: false,
+                        onboardComplete: false,
                     })
                     .then(() => {
                         //Create new collection inside the new user
@@ -119,5 +132,22 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
         .catch(err => {
             console.log('Error getting document: ', err);
             return false;
+        });
+};
+
+export const onboardComplete = (dispatch, { uid }) => {
+    //No need to wait for DB
+    setOnboardComplete(dispatch, true);
+
+    db.collection('users')
+        .doc(`${uid}`)
+        .update({
+            onboardComplete: true,
+        })
+        .then(() => {
+            console.log('Successfully complete onboarding');
+        })
+        .catch(err => {
+            console.log('Error completing onboarding', err);
         });
 };

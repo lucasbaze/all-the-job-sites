@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 //State
 import * as jobsActions from '../reducers/jobsReducer';
+import * as userActions from '../reducers/userReducer';
 import { useStateValue } from '../state';
 
 //Components
-import { Header, Form, Responsive } from 'semantic-ui-react';
+import { Header, Form, Responsive, Message } from 'semantic-ui-react';
 
 //CSS
 import styled from 'styled-components';
@@ -32,6 +33,18 @@ const AddJob = ({ display = true }) => {
     return (
         <>
             {display ? <Header as="h1" content="Add Jobs" /> : null}
+            {!user.onboardComplete ? (
+                <Message
+                    positive
+                    onDismiss={() =>
+                        userActions.onboardComplete(dispatch, user)
+                    }
+                >
+                    <Message.Header>
+                        You can save and track as many jobs as you want here!
+                    </Message.Header>
+                </Message>
+            ) : null}
             <Form onSubmit={handleSubmit}>
                 {/*
                     Mobile
