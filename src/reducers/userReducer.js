@@ -92,6 +92,7 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
                         photoURL: photoURL,
                         uid: uid,
                         emailVerified: emailVerified,
+                        onboarding: false,
                     })
                     .then(() => {
                         //Create new collection inside the new user
@@ -102,7 +103,8 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
                             .doc(`${uid}`)
                             .collection('saved_jobs')
                             .add({
-                                link: '',
+                                link:
+                                    'https://www.notion.so/All-The-Job-Sites-f8fc1bfadda749dcaa75e4d973d0d6bc',
                                 name: 'Your First Saved Job!',
                                 createDate: new Date(),
                                 status: 'new',
