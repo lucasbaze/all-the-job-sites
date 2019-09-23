@@ -121,21 +121,22 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
                                 name: 'Your First Saved Job!',
                                 createDate: new Date(),
                                 status: 'new',
+                            })
+                            .then(docRef => {
+                                dispatch({
+                                    type: SET_USER_JOBS,
+                                    payload: [
+                                        {
+                                            key: docRef.path,
+                                            link:
+                                                'https://www.notion.so/All-The-Job-Sites-f8fc1bfadda749dcaa75e4d973d0d6bc',
+                                            name: 'Your First Saved Job!',
+                                            createDate: new Date(),
+                                            status: 'new',
+                                        },
+                                    ],
+                                });
                             });
-
-                        dispatch({
-                            type: SET_USER_JOBS,
-                            payload: [
-                                {
-                                    key: 'my-first-job',
-                                    link:
-                                        'https://www.notion.so/All-The-Job-Sites-f8fc1bfadda749dcaa75e4d973d0d6bc',
-                                    name: 'Your First Saved Job!',
-                                    createDate: new Date(),
-                                    status: 'new',
-                                },
-                            ],
-                        });
                     })
                     .catch(err => {
                         console.log('Error setting new user: ', err);
