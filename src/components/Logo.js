@@ -3,17 +3,21 @@ import React from 'react';
 //Components
 import { Header, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const Logo = () => {
+const Logo = ({ location }) => {
     return (
         <Link
             to="/"
-            onClick={() =>
+            onClick={() => {
                 window.gtag('event', 'navigate', {
                     event_category: 'navigation',
                     event_label: 'logo',
-                })
-            }
+                });
+                if (location.pathname == '/') {
+                    window.location.reload();
+                }
+            }}
         >
             <Header
                 as="h3"
@@ -37,4 +41,4 @@ const Logo = () => {
     );
 };
 
-export default Logo;
+export default withRouter(Logo);
