@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import {
-    Header,
-    Icon,
-    Button,
-    Image,
-    Menu,
-    Responsive,
-} from 'semantic-ui-react';
+import { Header, Icon, Button, Menu, Responsive } from 'semantic-ui-react';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 
 //Components
 import FeaturedJob from '../../components/FeaturedJob';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
-import LoginSignupButtons from '../../components/LoginSignupButtons';
+// import LoginSignupButtons from '../../components/LoginSignupButtons';
 import { LoginSignup } from '../../components/Modals';
 
 //CSS
 import {
-    StyledFeaturedJobs,
+    StyledMenuContainer,
+    StyledSection,
+    StyledSectionHeader,
     ShareButtons,
     Container,
     Jumbotron,
 } from './Styled.js';
-import { ResponsiveFlex } from '../../globals/styles';
+// import { ResponsiveFlex } from '../../globals/styles';
 
 const HomePage = () => {
     const [index, setIndex] = useState(1);
@@ -36,52 +31,77 @@ const HomePage = () => {
         });
     }, []);
 
+    // <LoginSignupButtons
+    //     setOpen={setOpen}
+    //     setIndex={setIndex}
+    //     fluid={false}
+    // />
+
     return (
         <Container>
             <Jumbotron>
-                <Menu secondary fluid>
-                    <Menu.Item
-                        name="Contact Us"
-                        onClick={() => alert('clicked')}
-                    />
-                    <Menu.Item
-                        name="About Us"
-                        onClick={() => alert('clicked')}
-                    />
-                    <Menu.Menu position="right">
+                <Responsive as={StyledMenuContainer} minWidth={767}>
+                    <Menu secondary fluid>
                         <Menu.Item
-                            name="Post Jobs"
-                            onClick={() => alert('clicked')}
+                            as={Link}
+                            name="Contact Us"
+                            to="/contact-us"
                         />
-                    </Menu.Menu>
-                </Menu>
-                <h1 style={{ marginBottom: 30 }}>
-                    Where your job search starts <br /> ...and ends
-                </h1>
-                <LoginSignupButtons
-                    setOpen={setOpen}
-                    setIndex={setIndex}
-                    fluid={false}
-                />
-                <p style={{ color: 'white', marginBottom: 0, marginTop: 30 }}>
-                    <Icon name="chevron left" />
-                    Use the sidebar on the left to get started!
-                </p>
-                <p style={{ color: 'white', marginTop: 5, marginBottom: 30 }}>
-                    <Icon name="linkify" />
-                    Links will open in a new tab
-                </p>
+                        {/*
+                        <Menu.Item
+                            name="About Us"
+                            to=""
+                        />
+                        */}
+                        <Menu.Menu position="right">
+                            <Menu.Item
+                                as={Link}
+                                name="Post a Job"
+                                to="/post-job"
+                            />
+                        </Menu.Menu>
+                    </Menu>
+                </Responsive>
+                <div className="wrapped">
+                    <div className="cta">
+                        <h1>Where your job search starts &mdash; and ends.</h1>
+                        <p className="subtitle">
+                            All The Job Sites pulls together over 200 different
+                            job boards, so you can{' '}
+                            <strong>find your next thing</strong> .
+                        </p>
+                    </div>
+                </div>
             </Jumbotron>
-            <StyledFeaturedJobs>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <Header as="h3">Featured Jobs:</Header>
+            {/* Section 1: Instructions */}
+            <StyledSection>
+                <Header as="h2">Get started</Header>
+                <div className="description">
+                    <ul>
+                        <li>
+                            <Icon name="arrow left" />
+                            The sidebar holds all of the job sites we've
+                            indexed.
+                        </li>
+                        <li>
+                            <Icon name="search" />
+                            Enter a search term and we'll automatically search
+                            for it on each board.
+                        </li>
+                        <li>
+                            <Icon name="linkify" />
+                            Links with this icon will open in a new tab.
+                        </li>
+                    </ul>
+                </div>
+            </StyledSection>
+            {/* Section 2: Featured Jobs */}
+            <StyledSection>
+                <StyledSectionHeader>
+                    <Header as="h2">Featured Jobs</Header>
                     <Link to="/post-job">
                         <Button
+                            size="small"
                             color="red"
                             onClick={() => {
                                 window.gtag('event', 'navigate', {
@@ -93,41 +113,42 @@ const HomePage = () => {
                             style={{ minWidth: 100 }}
                         />
                     </Link>
-                </div>
-
-                <FeaturedJob
-                    logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
-                    url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
-                    company="Udacity"
-                    location="Remote, US"
-                    title="Software Engineer, Devop"
-                    tags={['devops', 'python', 'AWS', 'postgreSQL']}
-                />
-                <FeaturedJob
-                    logo="https://storage.googleapis.com/job-listing-logos/e249a7cd-a27c-4195-8e27-79656ac8f569.jpg"
-                    url="https://cryptojobslist.com/jobs/engineering-lead-at-status-remote-only"
-                    company="Status"
-                    location="Remote, US"
-                    title="Mobile Engineering Lead"
-                    tags={['react native', 'android', 'blockchain', 'js']}
-                />
-                <FeaturedJob
-                    logo="https://cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/006/203/resized/ScaleFactor_square_RGB.png?1470933628"
-                    url="https://boards.greenhouse.io/scalefactor/jobs/1838415"
-                    company="ScaleFactor"
-                    location="Austin, TX"
-                    title="Accounting Support Lead"
-                    tags={['jira', 'confluence', 'zendesk', 'accounting']}
-                />
-                <FeaturedJob
-                    logo="https://authenticjobs.s3.amazonaws.com/uploads/logos/223c285e4b730ba3daf341d03efee7cc/Lucid%20round,%20white%20on%20red.png"
-                    url="https://authenticjobs.com/jobs/31568/ecommerce-account-manager"
-                    company="Vestwell"
-                    location="New York, NY"
-                    title="Ecommerce Account Manager"
-                    tags={['magento', 'bigcommerce', 'sales', 'smb']}
-                />
-            </StyledFeaturedJobs>
+                </StyledSectionHeader>
+                <Responsive minWidth={767}>
+                    <FeaturedJob
+                        logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
+                        url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
+                        company="Udacity"
+                        location="Remote, US"
+                        title="Software Engineer, Devop"
+                        tags={['devops', 'python', 'AWS', 'postgreSQL']}
+                    />
+                    <FeaturedJob
+                        logo="https://storage.googleapis.com/job-listing-logos/e249a7cd-a27c-4195-8e27-79656ac8f569.jpg"
+                        url="https://cryptojobslist.com/jobs/engineering-lead-at-status-remote-only"
+                        company="Status"
+                        location="Remote, US"
+                        title="Mobile Engineering Lead"
+                        tags={['react native', 'android', 'blockchain', 'js']}
+                    />
+                    <FeaturedJob
+                        logo="https://cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/006/203/resized/ScaleFactor_square_RGB.png?1470933628"
+                        url="https://boards.greenhouse.io/scalefactor/jobs/1838415"
+                        company="ScaleFactor"
+                        location="Austin, TX"
+                        title="Accounting Support Lead"
+                        tags={['jira', 'confluence', 'zendesk', 'accounting']}
+                    />
+                    <FeaturedJob
+                        logo="https://authenticjobs.s3.amazonaws.com/uploads/logos/223c285e4b730ba3daf341d03efee7cc/Lucid%20round,%20white%20on%20red.png"
+                        url="https://authenticjobs.com/jobs/31568/ecommerce-account-manager"
+                        company="Vestwell"
+                        location="New York, NY"
+                        title="Ecommerce Account Manager"
+                        tags={['magento', 'bigcommerce', 'sales', 'smb']}
+                    />
+                </Responsive>
+            </StyledSection>
             <ShareButtons>
                 <FacebookShareButton
                     url={'https://allthejobsites.com'}
@@ -137,6 +158,7 @@ const HomePage = () => {
                         style={{
                             backgroundColor: '#1877f2',
                             color: 'white',
+                            marginTop: 10,
                         }}
                         onClick={() => {
                             window.gtag('event', 'click', {
@@ -158,6 +180,7 @@ const HomePage = () => {
                         style={{
                             backgroundColor: '#1da1f2',
                             color: 'white',
+                            marginTop: 10,
                         }}
                         onClick={() => {
                             window.gtag('event', 'click', {
@@ -171,7 +194,9 @@ const HomePage = () => {
                     </Button>
                 </TwitterShareButton>
             </ShareButtons>
-            <Footer />
+            <Responsive minWidth={767}>
+                <Footer />
+            </Responsive>
             <LoginSignup selectedIndex={index} open={open} setOpen={setOpen} />
         </Container>
     );

@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-//import axios from 'axios';
 
 //State
 import * as jobsActions from '../reducers/jobsReducer';
 import { useStateValue } from '../state';
 
 //Components
-import { Header, Form, Segment } from 'semantic-ui-react';
+import { Header, Form, Responsive } from 'semantic-ui-react';
 
 //CSS
 import styled from 'styled-components';
 
-const Container = styled.div`
-    width: 100%;
-`;
-
-const AddJob = () => {
+const AddJob = ({ display = true }) => {
     const [{ savedJobs, user }, dispatch] = useStateValue();
     const [job, setJob] = useState({
         name: '',
@@ -36,9 +31,12 @@ const AddJob = () => {
 
     return (
         <>
-            <Header as="h1" content="Add Jobs" />
+            {display ? <Header as="h1" content="Add Jobs" /> : null}
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
+                {/*
+                    Mobile
+                    */}
+                <Responsive maxWidth={767}>
                     <Form.Field style={{ flex: 1 }}>
                         <input
                             name="name"
@@ -62,7 +60,35 @@ const AddJob = () => {
                         color="green"
                         content="Save Job Link"
                     />
-                </Form.Group>
+                </Responsive>
+                {/*
+                    Desktop
+                    */}
+                <Responsive as={Form.Group} minWidth={768}>
+                    <Form.Field style={{ flex: 1 }}>
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="Job Name"
+                            value={job.name}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Form.Field style={{ flex: 2 }}>
+                        <input
+                            name="link"
+                            type="text"
+                            placeholder="Job Link"
+                            value={job.link}
+                            onChange={handleChange}
+                        />
+                    </Form.Field>
+                    <Form.Button
+                        type="submit"
+                        color="green"
+                        content="Save Job Link"
+                    />
+                </Responsive>
             </Form>
         </>
     );

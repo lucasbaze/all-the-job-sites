@@ -1,5 +1,6 @@
 import firebase from '../firebase.js';
 import { SET_USER_JOBS } from './jobsReducer';
+import { setPreferences } from './preferencesReducer';
 
 //
 //CONFIG
@@ -51,8 +52,16 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
         .get()
         .then(doc => {
             if (doc.exists) {
+                console.log(
+                    'Found User. Setting Saved Preferences',
+                    doc.data()
+                );
+                let data = doc.data();
+
+                setPreferences(dispatch, data.preferences);
+
                 //Get the users saved jobs and save to global state
-                console.log('Found User. Getting Saved Jobs');
+                console.log('Found User. Getting Saved Jobs ');
                 db.collection('users')
                     .doc(`${uid}`)
                     .collection('saved_jobs')

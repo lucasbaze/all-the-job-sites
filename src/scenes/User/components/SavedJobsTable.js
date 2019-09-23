@@ -6,7 +6,14 @@ import * as jobsActions from '../../../reducers/jobsReducer';
 import { useStateValue } from '../../../state';
 
 //Components
-import { Table, Dropdown, Header, Icon, Button } from 'semantic-ui-react';
+import {
+    Table,
+    Dropdown,
+    Header,
+    Icon,
+    Button,
+    Responsive,
+} from 'semantic-ui-react';
 
 const SavedJobsTable = props => {
     const [modSavedJobs, setModSavedJobs] = useState([]);
@@ -69,12 +76,12 @@ const SavedJobsTable = props => {
                 return (
                     <Table key={index1} stackable>
                         <Table.Header>
-                            <Table.Row>
+                            <Responsive as={Table.Row} minWidth={767}>
                                 <Table.HeaderCell>Job Name</Table.HeaderCell>
                                 <Table.HeaderCell>Link</Table.HeaderCell>
                                 <Table.HeaderCell>Status</Table.HeaderCell>
                                 <Table.HeaderCell>Delete</Table.HeaderCell>
-                            </Table.Row>
+                            </Responsive>
                         </Table.Header>
                         <Table.Body>{reducedJobs}</Table.Body>
                     </Table>

@@ -4,7 +4,7 @@ import _ from 'lodash';
 import firebase from '../../firebase';
 
 import styled from 'styled-components';
-import { Header, Segment, Menu, Button } from 'semantic-ui-react';
+import { Header, Segment, Menu, Button, Responsive } from 'semantic-ui-react';
 import SavedJobs from './components/SavedJobs';
 import Profile from './components/Profile';
 
@@ -22,7 +22,28 @@ const User = () => {
                 <Header as="h1" content="Please Login" />
             ) : (
                 <div>
-                    <Menu>
+                    {/*
+                            Mobile
+                        */}
+                    <Responsive as={Menu} maxWidth={767}>
+                        <Menu.Item as={Link} to="/me/profile">
+                            <UserImage src={user.photoURL} />
+                        </Menu.Item>
+                        <Menu.Item as={Link} to="/me">
+                            Saved Jobs
+                        </Menu.Item>
+                        <Menu.Item
+                            as={Button}
+                            onClick={() => alert('clicked')}
+                            width={4}
+                        >
+                            Find Jobs For Me
+                        </Menu.Item>
+                    </Responsive>
+                    {/*
+                            Desktop
+                        */}
+                    <Responsive as={Menu} minWidth={768}>
                         <Menu.Item as={Link} to="/me/profile">
                             <UserImage src={user.photoURL} />
                         </Menu.Item>
@@ -58,7 +79,8 @@ const User = () => {
                                 </Button>
                             </Menu.Item>
                         </Menu.Menu>
-                    </Menu>
+                    </Responsive>
+
                     <Route exact path="/me" component={SavedJobs} />
                     <Route exact path="/me/profile" component={Profile} />
                 </div>

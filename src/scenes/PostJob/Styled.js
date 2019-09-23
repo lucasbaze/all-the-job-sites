@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { minTablet } from '../../globals/constants';
 
 export const StyledTypeFormContainer = styled.div`
     display: block;

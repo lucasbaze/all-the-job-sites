@@ -1,112 +1,96 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
+import { Responsive, Icon } from 'semantic-ui-react';
+import { withRouter } from 'react-router';
 
 //State
 import { useStateValue } from '../../state';
 import * as searchActions from '../../reducers/searchReducer';
-import firebase from '../../firebase';
+import { useDebounce } from '../../hooks';
 
 //Components
-import {
-    Header,
-    Input,
-    Button,
-    Segment,
-    Image,
-    Responsive,
-} from 'semantic-ui-react';
-import JobSitesContainer from '../JobSitesContainer.js';
-import { Link } from 'react-router-dom';
 import { LoginSignup } from '../../components/Modals';
-
 import Logo from '../../components/Logo';
 import SearchBar from './components/SearchBar';
 import LoginSignupButtons from '../../components/LoginSignupButtons';
 import LinkToAccount from './components/LinkToAccount';
 
 //CSS
-import styled from 'styled-components';
+import { FlexBox } from '../../globals/styles';
+import { StyledSideBarHeader } from './Styled';
 
-import {
-    StyledSideBar,
-    SideBarContainer,
-    StyledTopBar,
-    StyledLink,
-    StyledALink,
-} from './Styled';
-
-const SideBar = () => {
+const SideBarHeader = ({ setOpen, location }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [allOpen, setAllOpen] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
+    const [value, setValue] = useState('');
     const [{ searchValue, user }, dispatch] = useStateValue();
+
+    const debouncedSearchTerm = useDebounce(value, 300);
 
     // If user is typing search, open all categories
     useEffect(() => {
-        if (searchValue.length >= 1) {
-            setAllOpen(true);
-        } else {
-            setAllOpen(false);
+        if (debouncedSearchTerm) {
+            searchActions.updateSearch(dispatch, value);
         }
-    }, [searchValue]);
+    }, [debouncedSearchTerm]);
 
     const handleSearchChange = event => {
         setIsLoading(true);
-
-        //UPDATE SEARCH VALUE
-        searchActions.updateSearch(dispatch, event.target.value);
+        setValue(event.target.value);
 
         setTimeout(() => {
-            if (searchValue.length < 1) return;
+            if (searchValue.length === 0) return;
             setIsLoading(false);
-        }, 300);
+        }, 200);
 
         console.log(`${searchValue} => ${event.target.value}`);
     };
 
     return (
-        <SideBarContainer>
-            <StyledTopBar>
-                <Logo />
-                <div
-                    style={{
-                        marginBottom: 20,
-                    }}
-                >
+        <>
+            {/* */}
+            <StyledSideBarHeader>
+                <FlexBox justify="space-between">
+                    <Logo />
+                    <Responsive maxWidth={767}>
+                        <Icon
+                            name="bars"
+                            size="large"
+                            onClick={() => setOpen(true)}
+                        />
+                    </Responsive>
+                </FlexBox>
+                <div style={{ marginBottom: 20 }}>
                     {!user ? (
                         <LoginSignupButtons
                             setOpen={setOpenLoginSignup}
                             setIndex={setIndex}
                             fluid={true}
+                            size={'small'}
                         />
-                    ) : (
+                    ) : location.pathname.includes('/me') ? null : (
                         <LinkToAccount user={user} />
                     )}
                 </div>
                 <SearchBar
-                    allOpen={allOpen}
-                    setAllOpen={setAllOpen}
                     isLoading={isLoading}
+                    searchValue={value}
+                    setSearchValue={setValue}
                     handleSearchChange={handleSearchChange}
                 />
-            </StyledTopBar>
-            <StyledSideBar>
-                <JobSitesContainer
-                    searchValue={searchValue}
-                    allOpen={allOpen}
-                />
-            </StyledSideBar>
+            </StyledSideBarHeader>
+            {/* Modal */}
             <LoginSignup
                 selectedIndex={index}
                 open={openLoginSignup}
                 setOpen={setOpenLoginSignup}
             />
-        </SideBarContainer>
+        </>
     );
 };
 
-export default SideBar;
+export default withRouter(SideBarHeader);
 
 // <StyledLink to="/">Home</StyledLink>
 // <Responsive as={StyledLink} to="/contact-us" minWidth={768}>

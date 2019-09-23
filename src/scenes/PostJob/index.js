@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Header, Responsive } from 'semantic-ui-react';
 import { ReactTypeformEmbed } from 'react-typeform-embed';
 
 import FeaturedJob from '../../components/FeaturedJob';
@@ -17,7 +17,7 @@ const PostJob = () => {
     }, []);
 
     return (
-        <Container fluid style={{ height: '100vh', overflow: 'scroll' }}>
+        <Container fluid>
             <div style={{ padding: 15 }}>
                 <Header
                     as="h1"
@@ -29,14 +29,16 @@ const PostJob = () => {
                     content="How Your Job Listing Will Look"
                     style={{ marginTop: 15 }}
                 />
-                <FeaturedJob
-                    logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
-                    url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
-                    company="Udacity"
-                    location="Remote, US"
-                    title="Software Engineer, Devop"
-                    tags={['devops', 'python', 'AWS', 'postgreSQL']}
-                />
+                <Responsive minWidth={767}>
+                    <FeaturedJob
+                        logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
+                        url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
+                        company="Udacity"
+                        location="Remote, US"
+                        title="Software Engineer, Devop"
+                        tags={['devops', 'python', 'AWS', 'postgreSQL']}
+                    />
+                </Responsive>
                 <StyledTypeFormContainer>
                     <ReactTypeformEmbed
                         url="https://lucasbazemore.typeform.com/to/xu9lJZ"
@@ -45,7 +47,9 @@ const PostJob = () => {
                     />
                 </StyledTypeFormContainer>
             </div>
-            <Footer />
+            <Responsive minWidth={767}>
+                <Footer />
+            </Responsive>
         </Container>
     );
 };

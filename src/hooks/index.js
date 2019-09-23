@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useForm = (initialvalues, callback) => {
     let [formValues, setFormValues] = useState('');
@@ -27,4 +27,20 @@ export const useForm = (initialvalues, callback) => {
     };
 
     return [formValues, handleChange, handleSubmit];
+};
+
+export const useDebounce = (value, delay) => {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [value]);
+
+    return debouncedValue;
 };

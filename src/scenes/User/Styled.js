@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import { minTablet } from '../../globals/constants';
+import { flexBoxMixin } from '../../globals/styles';
 
 export const ProfileContainer = styled.div`
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: scroll;
+    ${flexBoxMixin('column', 'flex-start', 'stretch')};
+    ${minTablet} {
+        width: 100%;
+        height: 100vh;
+        overflow: scroll;
+    }
 `;
 
 export const UserImage = styled.img`
