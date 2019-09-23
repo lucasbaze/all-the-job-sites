@@ -65,25 +65,6 @@ const User = () => {
                         <Menu.Item as={Link} to="/me">
                             Saved Jobs
                         </Menu.Item>
-                        <Menu.Item
-                            as={Button}
-                            onClick={() =>
-                                firebase
-                                    .auth()
-                                    .signOut()
-                                    .then(function() {
-                                        // Sign-out successful.
-                                        window.location.reload();
-                                    })
-                                    .catch(function(error) {
-                                        console.error(error);
-                                        // An error happened.
-                                        // window.location.reload();
-                                    })
-                            }
-                        >
-                            Logout
-                        </Menu.Item>
                         <Menu.Menu position="right">
                             <Menu.Item>
                                 <Button
