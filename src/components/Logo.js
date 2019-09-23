@@ -23,6 +23,7 @@ const Logo = ({ location }) => {
                 as="h3"
                 style={{
                     display: 'flex',
+                    justifyContent: 'center',
                     marginBottom: 15,
                     fontSize: '1.5em',
                 }}

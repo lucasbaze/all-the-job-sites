@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
 
 import { Modal, Header, Tab, Button } from 'semantic-ui-react';
+import Logo from './Logo';
 
 export const AboutUs = ({ open, setOpen }) => {
     return (
@@ -76,7 +77,18 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
         {
             menuItem: 'Sign Up',
             render: () => (
-                <Tab.Pane>
+                <Tab.Pane
+                    style={{
+                        padding: 20,
+                        textAlign: 'center',
+                    }}
+                >
+                    <Logo />
+                    <Header
+                        as="h3"
+                        content="Let's get started and land that job!"
+                        style={{ marginTop: 0, marginBottom: '20px' }}
+                    />
                     <Button
                         color="google plus"
                         content="Sign Up with Google"
@@ -88,6 +100,17 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
                             });
                         }}
                     />
+                    <p
+                        style={{
+                            marginTop: 45,
+                            color: 'rgb(201, 201, 201)',
+                            fontSize: 12,
+                        }}
+                    >
+                        By clicking "Sign Up with Google" above, you acknoledge
+                        that you have read and understood and agree to All The
+                        Job Sites' Terms & Conditions and Privacy Policy
+                    </p>
                 </Tab.Pane>
             ),
         },
