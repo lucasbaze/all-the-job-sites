@@ -13,9 +13,13 @@ const LinkToAccount = ({ user }) => {
             style={{
                 padding: 10,
                 boxShadow: 'none',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
             }}
         >
-            <Link to="/me">
+            <Link to="/me" style={{ display: 'flex', flexDirection: 'row' }}>
                 <Image
                     src={user.photoURL}
                     style={{

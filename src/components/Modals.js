@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
 
+import styled from 'styled-components';
 import AddJob from './AddJob';
 import { Modal, Header, Tab, Button, Icon } from 'semantic-ui-react';
 import Logo from './Logo';
@@ -152,6 +153,12 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
     );
 };
 
+const StyledIcon = styled(Icon)`
+    :hover {
+        cursor: pointer;
+    }
+`;
+
 export const AddJobModal = () => {
     const [open, setOpen] = useState(false);
 
@@ -159,7 +166,14 @@ export const AddJobModal = () => {
         <Modal
             size="medium"
             open={open}
-            trigger={<Icon name="plus" onClick={() => setOpen(true)} />}
+            trigger={
+                <StyledIcon
+                    name="add circle"
+                    size="large"
+                    onClick={() => setOpen(true)}
+                    color="blue"
+                />
+            }
             onClose={() => {
                 setOpen(false);
                 window.gtag('event', 'add jobs', {
