@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Image, Header, Grid, Icon, Button } from 'semantic-ui-react';
+import { Segment, Image, Header, Grid, Icon, Label } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const StyledImage = styled.img`
@@ -13,7 +13,8 @@ const StyledSegment = styled(Segment)`
     :hover {
         cursor: pointer;
     }
-    .grid {}
+    .grid {
+    }
 `;
 
 const FeaturedJob = props => {
@@ -55,19 +56,24 @@ const FeaturedJob = props => {
                             display: 'flex',
                             flexFlow: 'row',
                             justifyContent: 'flex-start',
+                            alignItems: 'center',
                         }}
                     >
-                        {props.tags.map((tag, index) => {
-                            return (
-                                <Button
-                                    key={index}
-                                    compact
-                                    disabled
-                                    content={tag}
-                                    style={{ marginRight: 10, color: 'black' }}
-                                />
-                            );
-                        })}
+                        <Label.Group size="medium">
+                            {props.tags.map((tag, index) => {
+                                return (
+                                    <Label
+                                        key={index}
+                                        content={tag}
+                                        style={{
+                                            marginRight: 10,
+                                            color: 'rgb(135, 135, 135)',
+                                            padding: 12,
+                                        }}
+                                    />
+                                );
+                            })}
+                        </Label.Group>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

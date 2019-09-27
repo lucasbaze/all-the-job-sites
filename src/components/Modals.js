@@ -59,7 +59,18 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
         {
             menuItem: 'Login',
             render: () => (
-                <Tab.Pane>
+                <Tab.Pane
+                    style={{
+                        padding: 20,
+                        textAlign: 'center',
+                    }}
+                >
+                    <Logo />
+                    <Header
+                        as="h3"
+                        content="Welcome Back!"
+                        style={{ marginTop: 0, marginBottom: '20px' }}
+                    />
                     <Button
                         color="google plus"
                         content="Login with Google"
