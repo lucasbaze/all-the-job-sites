@@ -4,17 +4,18 @@ import React from 'react';
 import { Segment, Image, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { TotalJobsSelector } from '../../../selectors';
+import { Row, Column } from '../../../globals/styles';
+import { AddJobModal } from '../../../components/Modals';
 
 const LinkToAccount = ({ user }) => {
     return (
-        <Link to="/me">
-            <Segment
-                style={{
-                    display: 'flex',
-                    padding: 10,
-                    boxShadow: 'none'
-                }}
-            >
+        <Segment
+            style={{
+                padding: 10,
+                boxShadow: 'none',
+            }}
+        >
+            <Link to="/me">
                 <Image
                     src={user.photoURL}
                     style={{
@@ -45,8 +46,9 @@ const LinkToAccount = ({ user }) => {
                         </Label>
                     </p>
                 </div>
-            </Segment>
-        </Link>
+            </Link>
+            <AddJobModal />
+        </Segment>
     );
 };
 

@@ -92,6 +92,10 @@ const HomePage = () => {
                             <Icon name="linkify" />
                             Links with this icon will open in a new tab.
                         </li>
+                        <li>
+                            <Icon name="user" />
+                            Create an account to save jobs from anywhere!
+                        </li>
                     </ul>
                 </div>
             </StyledSection>

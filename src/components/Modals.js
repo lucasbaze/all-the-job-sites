@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
 
-import { Modal, Header, Tab, Button } from 'semantic-ui-react';
+import AddJob from './AddJob';
+import { Modal, Header, Tab, Button, Icon } from 'semantic-ui-react';
 import Logo from './Logo';
 
 export const AboutUs = ({ open, setOpen }) => {
@@ -146,6 +147,31 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
                     activeIndex={index}
                     onTabChange={data => setIndex(data.activeIndex)}
                 />
+            </Modal.Content>
+        </Modal>
+    );
+};
+
+export const AddJobModal = () => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <Modal
+            size="medium"
+            open={open}
+            trigger={<Icon name="plus" onClick={() => setOpen(true)} />}
+            onClose={() => {
+                setOpen(false);
+                window.gtag('event', 'add jobs', {
+                    event_category: 'actions',
+                    event_label: 'close addJob modal',
+                });
+            }}
+            closeIcon
+            closeOnDimmerClick={true}
+        >
+            <Modal.Content>
+                <AddJob setOpen={setOpen} />
             </Modal.Content>
         </Modal>
     );

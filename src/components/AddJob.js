@@ -11,7 +11,7 @@ import { Header, Form, Responsive, Message } from 'semantic-ui-react';
 //CSS
 import styled from 'styled-components';
 
-const AddJob = ({ display = true }) => {
+const AddJob = ({ display = true, setOpen }) => {
     const [{ savedJobs, user }, dispatch] = useStateValue();
     const [job, setJob] = useState({
         name: '',
@@ -28,11 +28,14 @@ const AddJob = ({ display = true }) => {
             name: '',
             link: '',
         });
+        if (setOpen) {
+            setOpen(false);
+        }
     };
 
     return (
         <>
-            {display ? <Header as="h1" content="Add Jobs" /> : null}
+            {display ? <Header as="h1" content="Add Job" /> : null}
             {!user.onboardComplete ? (
                 <Message
                     positive

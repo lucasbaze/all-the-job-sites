@@ -43,12 +43,22 @@ export const flexBoxMixinComputer = (direction, justify, align, wrap) => {
             }`;
 };
 
-export const Row = styled.div`
-    ${flexBoxMixin('row', 'flex-start')}
+export const Column = styled.div.attrs(props => ({
+    justify: props.justify || 'flex-start',
+    align: props.align || 'flex-start',
+    padding: props.padding || 0,
+}))`
+    padding: ${props => props.padding};
+    ${props => flexBoxMixin('column', props.justify, props.align)};
 `;
 
-export const Column = styled.div`
-    ${flexBoxMixin('column')}
+export const Row = styled.div.attrs(props => ({
+    justify: props.justify || 'flex-start',
+    align: props.align || 'flex-start',
+    padding: props.padding || 0,
+}))`
+    padding: ${props => props.padding};
+    ${props => flexBoxMixin('row', props.justify, props.align)}
 `;
 
 export const FlexBox = styled.div.attrs(props => ({
