@@ -15,6 +15,8 @@ import {
 import SavedJobs from './components/SavedJobs';
 import Profile from './components/Profile';
 
+import { FindJobsForMeModal } from '../../components/Modals';
+
 import { Link, Route } from 'react-router-dom';
 
 //Styles / Styled Components
@@ -67,12 +69,7 @@ const User = () => {
                         </Menu.Item>
                         <Menu.Menu position="right">
                             <Menu.Item>
-                                <Button
-                                    color="red"
-                                    onClick={() => alert('clicked')}
-                                >
-                                    Find Jobs For Me
-                                </Button>
+                                <FindJobsForMeModal />
                             </Menu.Item>
                         </Menu.Menu>
                     </Responsive>

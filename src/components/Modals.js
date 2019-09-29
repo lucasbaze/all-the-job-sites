@@ -190,3 +190,63 @@ export const AddJobModal = () => {
         </Modal>
     );
 };
+
+const CloseLink = styled.span`
+    color: red;
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+export const FindJobsForMeModal = () => {
+    const [open, setOpen] = useState();
+
+    return (
+        <Modal
+            size="tiny"
+            open={open}
+            trigger={
+                <Button
+                    content="Find Jobs For Me"
+                    onClick={() => {
+                        setOpen(true);
+                        window.gtag('event', 'Clicked', {
+                            event_category: 'user',
+                            event_label: 'open findJobsForMe',
+                        });
+                    }}
+                    color="red"
+                />
+            }
+            onClose={() => {
+                setOpen(false);
+                window.gtag('event', 'Clicked', {
+                    event_category: 'user',
+                    event_label: 'close findJobsForMe',
+                });
+            }}
+            closeIcon
+            closeOnDimmerClick={true}
+        >
+            <Modal.Header content="Looking for jobs sucks" />
+            <Modal.Content>
+                <h4>Let us search for jobs for you.</h4>
+                <div style={{ marginBottom: 10 }}>
+                    For $29 we'll find you 49 jobs that match your preferences
+                    in your profile.
+                </div>
+                <div style={{ marginBottom: 10 }}>
+                    By clicking "Let's do it!" we'll get started finding you
+                    jobs, add the jobs to your account, and only afterward will
+                    you pay.
+                </div>
+            </Modal.Content>
+            <Modal.Actions>
+                <CloseLink onClick={() => setOpen(false)}>
+                    Nah, I'll spend hours looking myself
+                </CloseLink>
+                <Button content="Let's do it!" color="green" />
+            </Modal.Actions>
+        </Modal>
+    );
+};
