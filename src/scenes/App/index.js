@@ -74,6 +74,7 @@ const App = props => {
                     uid,
                     emailVerified,
                 });
+                userActions.setLoading(false);
             }
         });
     }, [dispatch]);

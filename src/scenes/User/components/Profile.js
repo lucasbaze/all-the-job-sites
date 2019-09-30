@@ -267,6 +267,7 @@ const Profile = () => {
                         .signOut()
                         .then(function() {
                             // Sign-out successful.
+                            window.localStorage.removeItem('loading');
                             window.location.reload();
                         })
                         .catch(function(error) {

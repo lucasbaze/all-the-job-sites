@@ -14,6 +14,7 @@ const db = firebase.firestore();
 
 export const SET_USER = 'atjs/user/set_user';
 export const SET_ONBOARD_COMPLETE = 'atjs/user/set_onboard_complete';
+export const SET_LOADING = 'atjs/user/set_loading';
 //
 //REDUCER
 //
@@ -23,12 +24,18 @@ export default function userReducer(state, action) {
     switch (action.type) {
         case SET_USER:
             return {
+                ...state,
                 ...payload,
             };
         case SET_ONBOARD_COMPLETE:
             return {
                 ...state,
                 onboardComplete: payload,
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: payload,
             };
         default:
             return state;
@@ -53,6 +60,10 @@ export const setOnboardComplete = (dispatch, complete) => {
         type: SET_ONBOARD_COMPLETE,
         payload: complete,
     });
+};
+
+export const setLoading = loading => {
+    window.localStorage.setItem('loading', loading);
 };
 
 export const getOrCreateUserDBRecord = (dispatch, user) => {

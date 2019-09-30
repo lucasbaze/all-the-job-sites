@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
 
+import { useStateValue } from '../state';
+import * as userActions from '../reducers/userReducer';
+
 import styled from 'styled-components';
 import AddJob from './AddJob';
 import { Modal, Header, Tab, Button, Icon } from 'semantic-ui-react';
@@ -47,14 +50,20 @@ export const AboutUs = ({ open, setOpen }) => {
 
 export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
     const [index, setIndex] = useState(1);
+    const [state, dispatch] = useStateValue();
 
     useEffect(() => {
         setIndex(selectedIndex);
     }, [selectedIndex]);
 
     const authLogin = () => {
+        userActions.setLoading(true);
+
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithRedirect(provider);
+        firebase
+            .auth()
+            .signInWithRedirect(provider)
+            .then(result => console.log(result));
     };
 
     const panes = [
