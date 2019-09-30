@@ -38,7 +38,7 @@ export const StyledSectionHeader = styled.div`
     h2 {
         margin-bottom: 0 !important;
     }
-`
+`;
 
 /* Section */
 export const StyledSection = styled.div`
@@ -77,7 +77,7 @@ export const ShareButtons = styled.div`
 export const Jumbotron = styled.div`
     /* min-height: 40vh; */
     width: 100%;
-    background-image: linear-gradient(rgba(255, 94, 94, 1), rgba(255, 46, 74, 1));
+    background-image: url('./all-the-job-sites-header.jpg');
     background-repeat: no-repeat;
     background-position: 100% 40%;
     background-size: cover;
@@ -92,24 +92,21 @@ export const Jumbotron = styled.div`
         }
     }
 
-
     .wrapped {
         /* move text to align with menu items */
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-top: 10px;
-        padding-bottom: 15px;
+        text-align: center;
     }
 
     .cta {
-        padding-top: 15px;
+        padding-top: 55px;
         padding-bottom: 30px;
 
         h1 {
-            font-size: 35px;
+            font-size: 40px;
             line-height: 54px;
             max-width: 750px; /* enforce wrapping properly */
             margin-bottom: 15px; /* break between h1 and p */
+            margin: 0 auto;
 
             ${minTablet} {
                 font-size: 50px;
@@ -120,9 +117,15 @@ export const Jumbotron = styled.div`
         p.subtitle {
             font-size: 17px;
             color: #ffffff;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 5px 0 20px 0;
+
+            ${minTablet} {
+                max-width: 400px;
+            }
         }
     }
-
 `;
 
 export const StyledMenuContainer = styled.div`

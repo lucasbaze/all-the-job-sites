@@ -18,7 +18,7 @@ import {
     Container,
     Jumbotron,
 } from './Styled.js';
-// import { ResponsiveFlex } from '../../globals/styles';
+import { Row } from '../../globals/styles';
 
 const HomePage = () => {
     const [index, setIndex] = useState(1);
@@ -64,16 +64,30 @@ const HomePage = () => {
                 </Responsive>
                 <div className="wrapped">
                     <div className="cta">
-                        <h1>Where your job search starts &mdash; and ends.</h1>
+                        <h1>Where your job search starts &mdash;</h1>
+                        <h1 style={{ margin: 0, padding: 0 }}> and ends.</h1>
                         <p className="subtitle">
                             All The Job Sites pulls together over 200 different
                             job boards, so you can{' '}
                             <strong>find your next thing</strong> .
                         </p>
+                        <Row justify="center">
+                            <Button
+                                color="green"
+                                content="Create Account"
+                                style={{ marginTop: 10, width: 200 }}
+                            />
+                            <Button
+                                color="red"
+                                content="Post Job"
+                                style={{ marginTop: 10, width: 200 }}
+                            />
+                        </Row>
                     </div>
                 </div>
             </Jumbotron>
             {/* Section 1: Instructions */}
+            {/*
             <StyledSection>
                 <Header as="h2">Get started</Header>
                 <div className="description">
@@ -99,6 +113,7 @@ const HomePage = () => {
                     </ul>
                 </div>
             </StyledSection>
+            */}
             {/* Section 2: Featured Jobs */}
             <StyledSection>
                 <StyledSectionHeader>

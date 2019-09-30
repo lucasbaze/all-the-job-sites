@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Responsive } from 'semantic-ui-react';
-import { tabletOnly, computerOnly } from './constants';
+import { phoneOnly, tabletOnly, computerOnly, minTablet } from './constants';
 
 export const flexBoxMixin = (direction, justify, align, wrap) => {
     return `display: flex;
@@ -59,6 +59,9 @@ export const Row = styled.div.attrs(props => ({
 }))`
     padding: ${props => props.padding};
     ${props => flexBoxMixin('row', props.justify, props.align)}
+    ${phoneOnly} {
+        ${props => flexBoxMixin('column', 'stretch', 'center')}
+    }
 `;
 
 export const FlexBox = styled.div.attrs(props => ({
