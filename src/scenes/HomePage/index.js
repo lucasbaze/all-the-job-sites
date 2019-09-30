@@ -152,19 +152,19 @@ const HomePage = () => {
                     />
                     <FeaturedJob
                         logo="https://cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/006/203/resized/ScaleFactor_square_RGB.png?1470933628"
-                        url="https://boards.greenhouse.io/scalefactor/jobs/1838415"
+                        url="https://boards.greenhouse.io/scalefactor/jobs/1813813"
                         company="ScaleFactor"
-                        location="Austin, TX"
-                        title="Accounting Support Lead"
+                        location="Denver, CO"
+                        title="Accounting Manager"
                         tags={['jira', 'confluence', 'zendesk', 'accounting']}
                     />
                     <FeaturedJob
-                        logo="https://authenticjobs.s3.amazonaws.com/uploads/logos/223c285e4b730ba3daf341d03efee7cc/Lucid%20round,%20white%20on%20red.png"
-                        url="https://authenticjobs.com/jobs/31568/ecommerce-account-manager"
-                        company="Vestwell"
-                        location="New York, NY"
-                        title="Ecommerce Account Manager"
-                        tags={['magento', 'bigcommerce', 'sales', 'smb']}
+                        logo="https://authenticjobs.s3.amazonaws.com/uploads/logos/4ff225e06377853c6ed5bfc2765093f3/EasternStandard_outline%20black.jpg"
+                        url="https://authenticjobs.com/jobs/31656/senior-web-developer"
+                        company="Eastern Standard"
+                        location="Philadelphia, PA"
+                        title="Senior Web Developer"
+                        tags={['PHP', 'Javascript', 'Drupal', 'MySQL']}
                     />
                 </Responsive>
             </StyledSection>

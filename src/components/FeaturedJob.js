@@ -31,7 +31,7 @@ const FeaturedJob = props => {
             }}
         >
             <StyledImage src={props.logo} />
-            <Grid columns={3} divided stackable>
+            <Grid columns={3} divided stackable style={{ width: '100%' }}>
                 <Grid.Row>
                     <Grid.Column width={5}>
                         <Header
@@ -55,11 +55,11 @@ const FeaturedJob = props => {
                         style={{
                             display: 'flex',
                             flexFlow: 'row',
-                            justifyContent: 'flex-start',
+                            justifyContent: 'stretch',
                             alignItems: 'center',
                         }}
                     >
-                        <Label.Group size="medium">
+                        <Label.Group size="medium" style={{ width: '100%' }}>
                             {props.tags.map((tag, index) => {
                                 return (
                                     <Label

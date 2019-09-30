@@ -131,7 +131,14 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
                     >
                         By clicking "Sign Up with Google" above, you acknoledge
                         that you have read and understood and agree to All The
-                        Job Sites' Terms & Conditions and Privacy Policy
+                        Job Sites'{' '}
+                        <a href="https://www.notion.so/Terms-of-Use-215f40bb48b04a55b4478fadd59433a4">
+                            Terms of Use
+                        </a>{' '}
+                        and{' '}
+                        <a href="https://www.notion.so/Privacy-and-Cookie-Policy-3f89cd6501f84044861b7152449f866f">
+                            Privacy Policy
+                        </a>
                     </p>
                 </Tab.Pane>
             ),
