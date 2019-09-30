@@ -65,7 +65,10 @@ const HomePage = () => {
                 <div className="wrapped">
                     <div className="cta">
                         <h1>Where your job search starts &mdash;</h1>
-                        <h1 style={{ margin: 0, padding: 0 }}> and ends.</h1>
+                        <h1 style={{ margin: '0 auto', padding: 0 }}>
+                            {' '}
+                            and ends.
+                        </h1>
                         <p className="subtitle">
                             All The Job Sites pulls together over 200 different
                             job boards, so you can{' '}
@@ -76,8 +79,11 @@ const HomePage = () => {
                                 color="green"
                                 content="Create Account"
                                 style={{ marginTop: 10, width: 200 }}
+                                onClick={() => setOpen(true)}
                             />
                             <Button
+                                as={Link}
+                                to="/post-job"
                                 color="red"
                                 content="Post Job"
                                 style={{ marginTop: 10, width: 200 }}
