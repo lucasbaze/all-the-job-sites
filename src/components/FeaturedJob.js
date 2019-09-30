@@ -31,7 +31,7 @@ const FeaturedJob = props => {
             }}
         >
             <StyledImage src={props.logo} />
-            <Grid columns={3} divided>
+            <Grid columns={3} divided stackable>
                 <Grid.Row>
                     <Grid.Column width={5}>
                         <Header
