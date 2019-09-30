@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../state';
 
 //Components
-import { Button } from 'semantic-ui-react';
+import { Button, Loader, Segment } from 'semantic-ui-react';
 
 const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
     const [{ user }, dispatch] = useStateValue();
@@ -18,7 +18,10 @@ const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
     return (
         <>
             {loading ? (
-                <p>loading</p>
+                <Segment>
+                    <Loader active inline style={{ marginRight: 15 }} /> Logging
+                    In
+                </Segment>
             ) : (
                 <Button.Group {...props}>
                     <Button
