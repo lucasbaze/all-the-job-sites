@@ -46,11 +46,14 @@ const User = () => {
                             Saved Jobs
                         </Menu.Item>
                         <Menu.Item
-                            as={Button}
-                            onClick={() => alert('clicked')}
-                            width={4}
+                            onClick={() => {
+                                window.gtag('event', 'Find Jobs', {
+                                    event_category: 'user',
+                                    event_label: 'Opened Find Jobs',
+                                });
+                            }}
                         >
-                            Find Jobs For Me
+                            <FindJobsForMeModal />
                         </Menu.Item>
                     </Responsive>
                     {/*
@@ -68,7 +71,14 @@ const User = () => {
                             Saved Jobs
                         </Menu.Item>
                         <Menu.Menu position="right">
-                            <Menu.Item>
+                            <Menu.Item
+                                onClick={() => {
+                                    window.gtag('event', 'Find Jobs', {
+                                        event_category: 'user',
+                                        event_label: 'Opened Find Jobs',
+                                    });
+                                }}
+                            >
                                 <FindJobsForMeModal />
                             </Menu.Item>
                         </Menu.Menu>

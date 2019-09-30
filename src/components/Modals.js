@@ -267,7 +267,16 @@ export const FindJobsForMeModal = () => {
                 <CloseLink onClick={() => setOpen(false)}>
                     Nah, I'll spend hours looking myself
                 </CloseLink>
-                <Button content="Let's do it!" color="green" />
+                <Button
+                    content="Let's do it!"
+                    color="green"
+                    onClick={() => {
+                        window.gtag('event', 'Find Jobs', {
+                            event_category: 'user',
+                            event_label: 'Clicked Lets Do It!',
+                        });
+                    }}
+                />
             </Modal.Actions>
         </Modal>
     );
