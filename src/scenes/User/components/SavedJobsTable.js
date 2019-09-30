@@ -150,7 +150,16 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
         <Table.Row {...rowStatus}>
             <Table.Cell content={job.name} width={4} />
             <Table.Cell width={8}>
-                <a href={job.link} target="_blank">
+                <a
+                    href={job.link}
+                    target="_blank"
+                    onClick={() => {
+                        window.gtag('event', 'open saved job', {
+                            event_category: 'user',
+                            event_label: 'open saved job',
+                        });
+                    }}
+                >
                     {jobLink}
                 </a>
             </Table.Cell>
@@ -166,7 +175,13 @@ const JobRow = ({ job, index, handleStatusChange, handleDelete }) => {
                 <Button
                     basic
                     icon="trash"
-                    onClick={() => handleDelete(job.key)}
+                    onClick={() => {
+                        handleDelete(job.key);
+                        window.gtag('event', 'delete job', {
+                            event_category: 'user',
+                            event_label: 'delete job',
+                        });
+                    }}
                 />
             </Table.Cell>
         </Table.Row>

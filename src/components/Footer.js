@@ -62,6 +62,12 @@ const Footer = () => {
                             to="/home"
                             maxWidth={767}
                             style={{ marginRight: 10 }}
+                            onClick={() => {
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'footer home',
+                                });
+                            }}
                         >
                             Home
                         </Responsive>
@@ -70,6 +76,12 @@ const Footer = () => {
                             to="/"
                             minWidth={768}
                             style={{ marginRight: 10 }}
+                            onClick={() => {
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'footer home',
+                                });
+                            }}
                         >
                             Home
                         </Responsive>
@@ -78,13 +90,38 @@ const Footer = () => {
                             to="/"
                             maxWidth={767}
                             style={{ marginRight: 10 }}
+                            onClick={() => {
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'footer contact us',
+                                });
+                            }}
                         >
                             Site Search
                         </Responsive>
-                        <Link to="/contact-us" style={{ marginRight: 10 }}>
+                        <Link
+                            to="/contact-us"
+                            onClick={() => {
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'footer contact us',
+                                });
+                            }}
+                            style={{ marginRight: 10 }}
+                        >
                             Contact Us
                         </Link>
-                        <Link to="/post-job">Post a Job</Link>
+                        <Link
+                            to="/post-job"
+                            onClick={() => {
+                                window.gtag('event', 'navigate', {
+                                    event_category: 'navigation',
+                                    event_label: 'footer post job',
+                                });
+                            }}
+                        >
+                            Post a Job
+                        </Link>
                     </div>
                 </Column>
             </Row>

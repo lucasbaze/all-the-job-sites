@@ -58,6 +58,12 @@ const HomePage = () => {
                                 as={Link}
                                 name="Post a Job"
                                 to="/post-job"
+                                onClick={() => {
+                                    window.gtag('event', 'navigate', {
+                                        event_category: 'navigation',
+                                        event_label: 'menu post job',
+                                    });
+                                }}
                             />
                         </Menu.Menu>
                     </Menu>
@@ -79,7 +85,13 @@ const HomePage = () => {
                                 color="green"
                                 content="Create Account"
                                 style={{ marginTop: 10, width: 200 }}
-                                onClick={() => setOpen(true)}
+                                onClick={() => {
+                                    setOpen(true);
+                                    window.gtag('event', 'create account', {
+                                        event_category: 'navigation',
+                                        event_label: 'cta create account',
+                                    });
+                                }}
                             />
                             <Button
                                 as={Link}
@@ -87,6 +99,12 @@ const HomePage = () => {
                                 color="red"
                                 content="Post Job"
                                 style={{ marginTop: 10, width: 200 }}
+                                onClick={() => {
+                                    window.gtag('event', 'navigate', {
+                                        event_category: 'navigation',
+                                        event_label: 'cta post job',
+                                    });
+                                }}
                             />
                         </Row>
                     </div>

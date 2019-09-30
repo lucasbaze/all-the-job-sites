@@ -39,9 +39,14 @@ const AddJob = ({ display = true, setOpen }) => {
             {!user.onboardComplete ? (
                 <Message
                     positive
-                    onDismiss={() =>
-                        userActions.onboardComplete(dispatch, user)
-                    }
+                    onDismiss={() => {
+                        userActions.onboardComplete(dispatch, user);
+
+                        window.gtag('event', 'dismiss', {
+                            event_category: 'user',
+                            event_label: 'onobarding complete',
+                        });
+                    }}
                 >
                     <Message.Header>
                         You can save and track as many jobs as you want here!
@@ -75,6 +80,12 @@ const AddJob = ({ display = true, setOpen }) => {
                         type="submit"
                         color="green"
                         content="Save Job Link"
+                        onClick={() => {
+                            window.gtag('event', 'save job', {
+                                event_category: 'user',
+                                event_label: 'save job mobile',
+                            });
+                        }}
                     />
                 </Responsive>
                 {/*
@@ -103,6 +114,12 @@ const AddJob = ({ display = true, setOpen }) => {
                         type="submit"
                         color="green"
                         content="Save Job Link"
+                        onClick={() => {
+                            window.gtag('event', 'save job', {
+                                event_category: 'user',
+                                event_label: 'save job desktop',
+                            });
+                        }}
                     />
                 </Responsive>
             </Form>

@@ -186,7 +186,13 @@ export const AddJobModal = () => {
                 <StyledIcon
                     name="add circle"
                     size="large"
-                    onClick={() => setOpen(true)}
+                    onClick={() => {
+                        setOpen(true);
+                        window.gtag('event', 'add job', {
+                            event_category: 'user',
+                            event_label: 'open sidebar add job',
+                        });
+                    }}
                     color="blue"
                 />
             }

@@ -32,6 +32,10 @@ const Profile = () => {
             values,
             user.uid
         );
+        window.gtag('event', 'save preference', {
+            event_category: 'user',
+            event_label: 'save perference',
+        });
     };
 
     const [locationValue, handleLocationChange, handleLocationSubmit] = useForm(
@@ -62,6 +66,10 @@ const Profile = () => {
             item,
             user.uid
         );
+        window.gtag('event', 'delete preference', {
+            event_category: 'user',
+            event_label: 'delete preference',
+        });
     };
 
     return (
@@ -261,7 +269,11 @@ const Profile = () => {
                 color="red"
                 basic
                 compact
-                onClick={() =>
+                onClick={() => {
+                    window.gtag('event', 'logout', {
+                        event_category: 'user',
+                        event_label: 'profile logout',
+                    });
                     firebase
                         .auth()
                         .signOut()
@@ -274,8 +286,8 @@ const Profile = () => {
                             console.error(error);
                             // An error happened.
                             // window.location.reload();
-                        })
-                }
+                        });
+                }}
             >
                 Logout
             </Button>

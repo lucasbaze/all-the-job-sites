@@ -28,6 +28,10 @@ const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
                         onClick={() => {
                             setOpen(true);
                             setIndex(0);
+                            window.gtag('event', 'login', {
+                                event_category: 'navigation',
+                                event_label: 'Sidebar Login',
+                            });
                         }}
                     >
                         Login
@@ -38,6 +42,10 @@ const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
                         onClick={() => {
                             setOpen(true);
                             setIndex(1);
+                            window.gtag('event', 'signup', {
+                                event_category: 'navigation',
+                                event_label: 'Sidebar Signup',
+                            });
                         }}
                     >
                         Sign Up
