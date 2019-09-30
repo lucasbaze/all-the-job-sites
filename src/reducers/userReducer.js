@@ -128,7 +128,7 @@ export const getOrCreateUserDBRecord = (dispatch, user) => {
                             .collection('saved_jobs')
                             .add({
                                 link:
-                                    'https://www.notion.so/All-The-Job-Sites-f8fc1bfadda749dcaa75e4d973d0d6bc',
+                                    'https://www.notion.so/Getting-The-Most-0cad7f9c1b44432aacd94b2cd03e1033',
                                 name: 'Your First Saved Job!',
                                 createDate: new Date(),
                                 status: 'new',
