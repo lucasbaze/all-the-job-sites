@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../state';
 
 //Components
-import { Button, Loader, Segment } from 'semantic-ui-react';
+import { Button, Loader, Segment, Icon } from 'semantic-ui-react';
 
 const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
     const [{ user }, dispatch] = useStateValue();
@@ -23,37 +23,41 @@ const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
                     In
                 </Segment>
             ) : (
-                <Button.Group {...props}>
-                    <Button
-                        onClick={() => {
-                            setOpen(true);
-                            setIndex(0);
-                            window.gtag('event', 'login', {
-                                event_category: 'navigation',
-                                event_label: 'Sidebar Login',
-                            });
-                        }}
-                    >
-                        Login
-                    </Button>
-                    <Button.Or />
-                    <Button
-                        positive
-                        onClick={() => {
-                            setOpen(true);
-                            setIndex(1);
-                            window.gtag('event', 'signup', {
-                                event_category: 'navigation',
-                                event_label: 'Sidebar Signup',
-                            });
-                        }}
-                    >
-                        Sign Up
-                    </Button>
-                </Button.Group>
+                <Button
+                    compact
+                    positive
+                    onClick={() => {
+                        setOpen(true);
+                        setIndex(1);
+                        window.gtag('event', 'signup', {
+                            event_category: 'navigation',
+                            event_label: 'Sidebar Signup',
+                        });
+                    }}
+                    style={{
+                        minWidth: '100%',
+                    }}
+                >
+                    <Icon name="heart outline" /> Sign Up to Save Jobs
+                </Button>
             )}
         </>
     );
 };
 
 export default LoginSignupButtons;
+
+// <Button.Group {...props}>
+//     <Button
+//         onClick={() => {
+//             setOpen(true);
+//             setIndex(0);
+//             window.gtag('event', 'login', {
+//                 event_category: 'navigation',
+//                 event_label: 'Sidebar Login',
+//             });
+//         }}
+//     >
+//         Login
+//     </Button>
+//     <Button.Or />

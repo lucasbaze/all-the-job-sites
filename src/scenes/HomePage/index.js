@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Icon, Button, Menu, Responsive } from 'semantic-ui-react';
+import {
+    Header,
+    Icon,
+    Button,
+    Menu,
+    Responsive,
+    Input,
+} from 'semantic-ui-react';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 
 //Components
@@ -8,6 +15,11 @@ import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 // import LoginSignupButtons from '../../components/LoginSignupButtons';
 import { LoginSignup } from '../../components/Modals';
+
+//State
+import { useStateValue } from '../../state';
+import * as searchActions from '../../reducers/searchReducer';
+import { useDebounce } from '../../hooks';
 
 //CSS
 import {
@@ -23,6 +35,10 @@ import { Row } from '../../globals/styles';
 const HomePage = () => {
     const [index, setIndex] = useState(1);
     const [open, setOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [value, setValue] = useState(false);
+
+    const [{ searchValue }, dispatch] = useStateValue();
 
     useEffect(() => {
         window.gtag('event', 'navigate', {
@@ -30,6 +46,18 @@ const HomePage = () => {
             event_label: 'home page',
         });
     }, []);
+
+    const handleSearchChange = event => {
+        setIsLoading(true);
+        setValue(event.target.value);
+
+        setTimeout(() => {
+            if (searchValue.length === 0) return;
+            setIsLoading(false);
+        }, 200);
+
+        console.log(`${searchValue} => ${event.target.value}`);
+    };
 
     // <LoginSignupButtons
     //     setOpen={setOpen}
@@ -81,30 +109,20 @@ const HomePage = () => {
                             <strong>find your next thing</strong> .
                         </p>
                         <Row justify="center">
-                            <Button
-                                color="green"
-                                content="Create Account"
-                                style={{ marginTop: 10, width: 200 }}
-                                onClick={() => {
-                                    setOpen(true);
-                                    window.gtag('event', 'create account', {
+                            <Input
+                                actionPosition="left"
+                                loading={isLoading}
+                                onChange={e => {
+                                    handleSearchChange(e);
+                                    window.gtag('event', 'search', {
                                         event_category: 'navigation',
-                                        event_label: 'cta create account',
+                                        event_label: 'searching',
                                     });
                                 }}
-                            />
-                            <Button
-                                as={Link}
-                                to="/post-job"
-                                color="red"
-                                content="Post Job"
-                                style={{ marginTop: 10, width: 200 }}
-                                onClick={() => {
-                                    window.gtag('event', 'navigate', {
-                                        event_category: 'navigation',
-                                        event_label: 'cta post job',
-                                    });
-                                }}
+                                icon="search"
+                                value={searchValue}
+                                placeholder="Sales, React, Military..."
+                                style={{ width: 200 /* use full width */ }}
                             />
                         </Row>
                     </div>
