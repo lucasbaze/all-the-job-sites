@@ -11,7 +11,7 @@ import { useDebounce } from '../../hooks';
 //Components
 import { LoginSignup } from '../../components/Modals';
 import Logo from '../../components/Logo';
-import SearchBar from './components/SearchBar';
+import SearchBar from '../../components/SearchBar';
 import LoginSignupButtons from '../../components/LoginSignupButtons';
 import LinkToAccount from './components/LinkToAccount';
 
@@ -25,27 +25,6 @@ const SideBarHeader = ({ setOpen, location }) => {
     const [index, setIndex] = useState(0);
     const [value, setValue] = useState('');
     const [{ searchValue, user }, dispatch] = useStateValue();
-
-    const debouncedSearchTerm = useDebounce(value, 300);
-
-    // If user is typing search, open all categories
-    useEffect(() => {
-        if (debouncedSearchTerm) {
-            searchActions.updateSearch(dispatch, value);
-        }
-    }, [debouncedSearchTerm]);
-
-    const handleSearchChange = event => {
-        setIsLoading(true);
-        setValue(event.target.value);
-
-        setTimeout(() => {
-            if (searchValue.length === 0) return;
-            setIsLoading(false);
-        }, 200);
-
-        console.log(`${searchValue} => ${event.target.value}`);
-    };
 
     return (
         <>
@@ -73,12 +52,7 @@ const SideBarHeader = ({ setOpen, location }) => {
                         <LinkToAccount user={user} />
                     )}
                 </div>
-                <SearchBar
-                    isLoading={isLoading}
-                    searchValue={value}
-                    setSearchValue={setValue}
-                    handleSearchChange={handleSearchChange}
-                />
+                <SearchBar />
             </StyledSideBarHeader>
             {/* Modal */}
             <LoginSignup
