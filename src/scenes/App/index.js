@@ -156,7 +156,7 @@ const AppStateWrapper = props => {
         user: null,
         savedJobs: [],
         category: {
-            all: true,
+            all: false,
         },
         preferences: {
             location: [],

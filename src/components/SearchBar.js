@@ -26,6 +26,9 @@ const SearchBar = ({ flex, width, basic = true }) => {
         if (debouncedSearchTerm) {
             searchActions.updateSearch(dispatch, value);
             setIsLoading(false);
+            if (value && value.length > 0) {
+                categoryActions.openCloseAll(dispatch, true);
+            }
         }
     }, [debouncedSearchTerm]);
 

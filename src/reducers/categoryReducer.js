@@ -3,6 +3,8 @@
 //
 
 export const TOGGLE_ALL = 'atjs/category/toggle_all';
+export const OPEN_ALL = 'atjs/category/open_all';
+export const CLOSE_ALL = 'atjs/category/close_all';
 
 //
 //REDUCER
@@ -14,6 +16,16 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 all: !state.all,
+            };
+        case OPEN_ALL:
+            return {
+                ...state,
+                all: true,
+            };
+        case CLOSE_ALL:
+            return {
+                ...state,
+                all: false,
             };
         default:
             return state;
@@ -30,4 +42,16 @@ export const toggleAll = dispatch => {
     dispatch({
         type: TOGGLE_ALL,
     });
+};
+
+export const openCloseAll = (dispatch, open) => {
+    if (open) {
+        dispatch({
+            type: OPEN_ALL,
+        });
+    } else {
+        dispatch({
+            type: CLOSE_ALL,
+        });
+    }
 };
