@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 // import LoginSignupButtons from '../../components/LoginSignupButtons';
 import { LoginSignup } from '../../components/Modals';
+import SearchBar from '../../components/SearchBar';
 
 //State
 import { useStateValue } from '../../state';
@@ -35,10 +36,6 @@ import { Row } from '../../globals/styles';
 const HomePage = () => {
     const [index, setIndex] = useState(1);
     const [open, setOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [value, setValue] = useState(false);
-
-    const [{ searchValue }, dispatch] = useStateValue();
 
     useEffect(() => {
         window.gtag('event', 'navigate', {
@@ -46,24 +43,6 @@ const HomePage = () => {
             event_label: 'home page',
         });
     }, []);
-
-    const handleSearchChange = event => {
-        setIsLoading(true);
-        setValue(event.target.value);
-
-        setTimeout(() => {
-            if (searchValue.length === 0) return;
-            setIsLoading(false);
-        }, 200);
-
-        console.log(`${searchValue} => ${event.target.value}`);
-    };
-
-    // <LoginSignupButtons
-    //     setOpen={setOpen}
-    //     setIndex={setIndex}
-    //     fluid={false}
-    // />
 
     return (
         <Container>
@@ -109,21 +88,7 @@ const HomePage = () => {
                             <strong>find your next thing</strong> .
                         </p>
                         <Row justify="center">
-                            <Input
-                                actionPosition="left"
-                                loading={isLoading}
-                                onChange={e => {
-                                    handleSearchChange(e);
-                                    window.gtag('event', 'search', {
-                                        event_category: 'navigation',
-                                        event_label: 'searching',
-                                    });
-                                }}
-                                icon="search"
-                                value={searchValue}
-                                placeholder="Sales, React, Military..."
-                                style={{ width: 200 /* use full width */ }}
-                            />
+                            <SearchBar width={'400px'} basic={false} />
                         </Row>
                     </div>
                 </div>
@@ -264,102 +229,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-// <StyledHomePage>
-//     <StyledContainer>
-//         <StyledValueProp>
-//             <Header as="h1" style={{ marginBottom: 0, marginTop: 20 }}>
-//                 All The Job Sites Development Branch
-//             </Header>
-//             <Header as="h3" style={{ marginTop: 10 }}>
-//                 Where all the stuff will probably break
-//             </Header>
-//             <p>
-//                 <Icon name="chevron left" />
-//                 Use the sidebar on the left to get started!
-//             </p>
-//             <p>
-//                 <Icon name="linkify" />
-//                 Links will open in a new tab
-//             </p>
-//         </StyledValueProp>
-//         <StyledFeaturedJobs>
-//             <Header as="h3">Featured Jobs:</Header>
-//             <FeaturedJob
-//                 logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
-//                 url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
-//                 company="Udacity"
-//                 location="Remote, US"
-//                 title="Software Engineer, Devop"
-//                 tags={['devops', 'python', 'AWS', 'postgreSQL']}
-//             />
-//             <FeaturedJob
-//                 logo="https://storage.googleapis.com/job-listing-logos/e249a7cd-a27c-4195-8e27-79656ac8f569.jpg"
-//                 url="https://cryptojobslist.com/jobs/engineering-lead-at-status-remote-only"
-//                 company="Status"
-//                 location="Remote, US"
-//                 title="Mobile Engineering Lead"
-//                 tags={['react native', 'android', 'blockchain', 'js']}
-//             />
-//             <FeaturedJob
-//                 logo="https://cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/006/203/resized/ScaleFactor_square_RGB.png?1470933628"
-//                 url="https://boards.greenhouse.io/scalefactor/jobs/1838415"
-//                 company="ScaleFactor"
-//                 location="Austin, TX"
-//                 title="Accounting Support Lead"
-//                 tags={['jira', 'confluence', 'zendesk', 'accounting']}
-//             />
-//             <FeaturedJob
-//                 logo="https://authenticjobs.s3.amazonaws.com/uploads/logos/223c285e4b730ba3daf341d03efee7cc/Lucid%20round,%20white%20on%20red.png"
-//                 url="https://authenticjobs.com/jobs/31568/ecommerce-account-manager"
-//                 company="Vestwell"
-//                 location="New York, NY"
-//                 title="Ecommerce Account Manager"
-//                 tags={['magento', 'bigcommerce', 'sales', 'smb']}
-//             />
-//         </StyledFeaturedJobs>
-//         <ShareButtons>
-//             <FacebookShareButton
-//                 url={'https://allthejobsites.com'}
-//                 quote="The only site I need to go to find jobs"
-//             >
-//                 <Button
-//                     style={{
-//                         backgroundColor: '#1877f2',
-//                         color: 'white',
-//                     }}
-//                     onClick={() => {
-//                         window.gtag('event', 'click', {
-//                             event_category: 'share',
-//                             event_label: 'facebook share',
-//                         });
-//                     }}
-//                 >
-//                     <Icon name="facebook" />
-//                     Share on Facebook
-//                 </Button>
-//             </FacebookShareButton>
-//             <TwitterShareButton
-//                 url={'https://allthejobsites.com'}
-//                 title="All The Jobs Sites. Where your job search starts... and ends."
-//                 hashtags={['jobs', 'hiring']}
-//             >
-//                 <Button
-//                     style={{
-//                         backgroundColor: '#1da1f2',
-//                         color: 'white',
-//                     }}
-//                     onClick={() => {
-//                         window.gtag('event', 'click', {
-//                             event_category: 'share',
-//                             event_label: 'twitter share',
-//                         });
-//                     }}
-//                 >
-//                     <Icon name="twitter square" />
-//                     Share on Twitter
-//                 </Button>
-//             </TwitterShareButton>
-//         </ShareButtons>
-//     </StyledContainer>
-// </StyledHomePage>

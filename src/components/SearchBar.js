@@ -11,7 +11,7 @@ import { useDebounce } from '../hooks';
 //Components
 import { Header, Input } from 'semantic-ui-react';
 
-const SearchBar = ({}) => {
+const SearchBar = ({ flex, width, basic = true }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('');
     const [{ searchValue }, dispatch] = useStateValue();
@@ -43,11 +43,17 @@ const SearchBar = ({}) => {
         console.log(`${value} => ${event.target.value}`);
     };
 
+    const styles = {
+        display: 'flex',
+        flex: flex || 1,
+        maxWidth: width || '100%',
+    };
+
     return (
         <Input
             action={{
                 icon: 'close',
-                basic: true,
+                basic: basic,
                 onClick: function() {
                     searchActions.updateSearch(dispatch, '');
                     setValue('');
@@ -71,7 +77,7 @@ const SearchBar = ({}) => {
             icon="search"
             value={value}
             placeholder="Sales, React, Military..."
-            style={{ flex: 1 /* use full width */ }}
+            style={styles}
         />
     );
 };
