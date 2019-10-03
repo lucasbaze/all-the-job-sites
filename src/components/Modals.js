@@ -6,8 +6,21 @@ import * as userActions from '../reducers/userReducer';
 
 import styled from 'styled-components';
 import AddJob from './AddJob';
-import { Modal, Header, Tab, Button, Icon } from 'semantic-ui-react';
+import {
+    Modal,
+    Header,
+    Tab,
+    Button,
+    Icon,
+    Input,
+    Image,
+    Form,
+} from 'semantic-ui-react';
 import Logo from './Logo';
+import { flexBoxMixin, Row } from '../globals/styles';
+import { phoneOnly } from '../globals/constants';
+
+import { useForm } from '../hooks';
 
 export const AboutUs = ({ open, setOpen }) => {
     return (
@@ -248,23 +261,54 @@ const CloseLink = styled.span`
 `;
 
 const FastLink = styled.p`
-    color: red;
+    color: rgb(242, 79, 79);
     text-align: center;
     padding-top: 7px;
+    font-size: 12px;
     :hover {
         cursor: pointer;
+    }
+`;
+
+const ModalContainer = styled.div`
+    display: flex;
+    ${flexBoxMixin('row', 'flex-start', 'stretch')}
+    ${phoneOnly} {
+        ${flexBoxMixin('column', 'flex-start', 'stretch')}
+    }
+
+    background-color: pink;
+
+    .rightContainer {
+        padding-left: 30px;
+
+        ${phoneOnly} {
+            padding: 0px;
+        }
     }
 `;
 
 export const FindJobsForMeModal = ({ trigger }) => {
     const [open, setOpen] = useState();
 
+    const submitHandler = values => {
+        setOpen(false);
+    };
+
+    const [value, handleChange, handleSubmit] = useForm(
+        {
+            name: '',
+            email: '',
+        },
+        submitHandler
+    );
+
     const triggers = () => {
         switch (trigger) {
             case 'link':
                 return (
                     <FastLink onClick={() => setOpen(true)}>
-                        Need a job fast? Click Here!
+                        Need a job fast? Click here!
                     </FastLink>
                 );
             default:
@@ -286,7 +330,7 @@ export const FindJobsForMeModal = ({ trigger }) => {
 
     return (
         <Modal
-            size="tiny"
+            size="small"
             open={open}
             trigger={triggers()}
             onClose={() => {
@@ -299,34 +343,81 @@ export const FindJobsForMeModal = ({ trigger }) => {
             closeIcon
             closeOnDimmerClick={true}
         >
-            <Modal.Header content="Looking for jobs sucks" />
-            <Modal.Content>
-                <h4>Let us search for jobs for you.</h4>
-                <div style={{ marginBottom: 10 }}>
-                    For $29 we'll find you 49 jobs that match your preferences
-                    in your profile.
-                </div>
-                <div style={{ marginBottom: 10 }}>
-                    By clicking "Let's do it!" we'll get started finding you
-                    jobs, add the jobs to your account, and only afterward will
-                    you pay.
-                </div>
+            <Modal.Content image>
+                <Image wrapper size="medium" src="findJobs.svg" />
+                <Modal.Description>
+                    <h1 style={{ margin: 0 }}>Searching for Jobs Sucks</h1>
+                    <h2 style={{ margin: 0 }}> Let us Search for You.</h2>
+
+                    <div style={{ margin: '20px 0 20px 0' }}>
+                        <h3 style={{ color: 'red' }}>
+                            For $29 we'll find you 39 jobs that match your
+                            preferences in your profile.
+                        </h3>
+                    </div>
+                    <div style={{ marginBottom: 10 }}>
+                        <ul style={{ fontSize: '1.1em' }}>
+                            <li>We find jobs</li>
+                            <li>We add them to your account</li>
+                            <li>Then you pay</li>
+                        </ul>
+                    </div>
+                    <h4>Please confirm your account email!</h4>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Field style={{ flex: 1 }}>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="First Name"
+                                onChange={handleChange}
+                                value={value.name}
+                            />
+                        </Form.Field>
+                        <Form.Field style={{ flex: 1 }}>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                onChange={handleChange}
+                                value={value.email}
+                            />
+                        </Form.Field>
+                        <p style={{ fontSize: 10 }}>
+                            By clicking "Let's Go" you agree to our{' '}
+                            <a href="https://www.notion.so/Terms-of-Use-215f40bb48b04a55b4478fadd59433a4">
+                                Terms of Use
+                            </a>{' '}
+                            and{' '}
+                            <a href="https://www.notion.so/Privacy-and-Cookie-Policy-3f89cd6501f84044861b7152449f866f">
+                                Privacy Policy
+                            </a>
+                            .
+                        </p>
+                        <Form.Button
+                            type="submit"
+                            color="red"
+                            icon="rocket"
+                            content="Let's Go!"
+                        />
+                    </Form>
+                </Modal.Description>
             </Modal.Content>
-            <Modal.Actions>
-                <CloseLink onClick={() => setOpen(false)}>
-                    Nah, I'll spend hours looking myself
-                </CloseLink>
-                <Button
-                    content="Let's do it!"
-                    color="green"
-                    onClick={() => {
-                        window.gtag('event', 'Find Jobs', {
-                            event_category: 'user',
-                            event_label: 'Clicked Lets Do It!',
-                        });
-                    }}
-                />
-            </Modal.Actions>
         </Modal>
     );
 };
+
+// <Modal.Actions>
+//     <CloseLink onClick={() => setOpen(false)}>
+//         Nah, I'll spend hours looking myself
+//     </CloseLink>
+//     <Button
+//         content="Let's do it!"
+//         color="green"
+//         onClick={() => {
+//             window.gtag('event', 'Find Jobs', {
+//                 event_category: 'user',
+//                 event_label: 'Clicked Lets Do It!',
+//             });
+//         }}
+//     />
+// </Modal.Actions>
