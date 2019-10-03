@@ -91,7 +91,11 @@ const HomePage = () => {
                             <strong>find your next thing</strong> .
                         </p>
                         <Row justify="center">
-                            <SearchBar width={'400px'} basic={false} />
+                            <SearchBar
+                                showCollapse={false}
+                                width={'400px'}
+                                basic={false}
+                            />
                         </Row>
                     </div>
                 </div>

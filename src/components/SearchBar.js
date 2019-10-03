@@ -9,12 +9,12 @@ import { useStateValue } from '../state';
 import { useDebounce } from '../hooks';
 
 //Components
-import { Header, Input } from 'semantic-ui-react';
+import { Input, Button } from 'semantic-ui-react';
 
-const SearchBar = ({ flex, width, basic = true }) => {
+const SearchBar = ({ showCollapse = true, flex, width, basic = true }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('');
-    const [{ searchValue }, dispatch] = useStateValue();
+    const [{ searchValue, category }, dispatch] = useStateValue();
 
     //
     //Debouncer
@@ -53,48 +53,51 @@ const SearchBar = ({ flex, width, basic = true }) => {
     };
 
     return (
-        <Input
-            action={{
-                icon: 'close',
-                basic: basic,
-                onClick: function() {
-                    searchActions.updateSearch(dispatch, '');
-                    setValue('');
-                    categoryActions.toggleAll(dispatch);
+        <>
+            {showCollapse ? (
+                <Button
+                    icon={category.all ? 'compress' : 'expand arrows alternate'}
+                    basic
+                    onClick={() => {
+                        categoryActions.toggleAll(dispatch);
+                        window.gtag('event', 'collapse', {
+                            event_category: 'navigation',
+                            event_label: 'expand collapse links',
+                        });
+                    }}
+                />
+            ) : null}
+            <Input
+                action={{
+                    icon: 'close',
+                    basic: basic,
+                    onClick: function() {
+                        searchActions.updateSearch(dispatch, '');
+                        setValue('');
+                        categoryActions.toggleAll(dispatch);
+                        window.gtag('event', 'search', {
+                            event_category: 'navigation',
+                            event_label: 'clear search',
+                        });
+                    },
+                }}
+                actionPosition="left"
+                loading={isLoading}
+                onChange={e => {
+                    handleSearchChange(e);
                     window.gtag('event', 'search', {
                         event_category: 'navigation',
-                        event_label: 'clear search',
+                        event_label: 'searching',
                     });
-                },
-            }}
-            actionPosition="left"
-            loading={isLoading}
-            onChange={e => {
-                handleSearchChange(e);
-                window.gtag('event', 'search', {
-                    event_category: 'navigation',
-                    event_label: 'searching',
-                });
-            }}
-            fluid
-            icon="search"
-            value={value}
-            placeholder="Sales, React, Military..."
-            style={styles}
-        />
+                }}
+                fluid
+                icon="search"
+                value={value}
+                placeholder="Sales, React, Military..."
+                style={styles}
+            />
+        </>
     );
 };
 
 export default SearchBar;
-
-// <Button
-//     icon={category.all ? 'compress' : 'expand arrows alternate'}
-//     basic
-//     onClick={() => {
-//         categoryActions.toggleAll(dispatch);
-//         window.gtag('event', 'collapse', {
-//             event_category: 'navigation',
-//             event_label: 'expand collapse links',
-//         });
-//     }}
-// />

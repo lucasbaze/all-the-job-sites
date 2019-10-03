@@ -6,7 +6,7 @@ import { useStateValue } from '../state';
 import { Button, Loader, Segment, Icon } from 'semantic-ui-react';
 import { LoginSignup } from './Modals';
 
-const LoginSignupButtons = ({ setOpen, setIndex, ...props }) => {
+const LoginSignupButtons = () => {
     const [{ user }, dispatch] = useStateValue();
     const [loading, setLoading] = useState();
 
