@@ -4,7 +4,7 @@ import { useStateValue } from '../state';
 
 //Components
 import { Button, Loader, Segment, Icon } from 'semantic-ui-react';
-import { LoginSignup } from './Modals';
+import { LoginSignup, FindJobsForMeModal } from './Modals';
 
 const LoginSignupButtons = () => {
     const [{ user }, dispatch] = useStateValue();
@@ -24,7 +24,10 @@ const LoginSignupButtons = () => {
                     In
                 </Segment>
             ) : (
-                <LoginSignup trigger="button" />
+                <>
+                    <LoginSignup trigger="button" />
+                    <FindJobsForMeModal trigger="link" />
+                </>
             )}
         </>
     );

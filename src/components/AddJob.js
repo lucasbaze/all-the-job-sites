@@ -48,9 +48,9 @@ const AddJob = ({ display = true, setOpen }) => {
                         });
                     }}
                 >
-                    <Message.Header>
-                        You can save and track as many jobs as you want here!
-                    </Message.Header>
+                    <strong>Copy and Paste</strong> the Link of{' '}
+                    <strong>ANY job</strong> on <strong>ANY site</strong> and{' '}
+                    <strong>Save it here!</strong>
                 </Message>
             ) : null}
             <Form onSubmit={handleSubmit}>

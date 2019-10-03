@@ -247,26 +247,48 @@ const CloseLink = styled.span`
     }
 `;
 
-export const FindJobsForMeModal = () => {
+const FastLink = styled.p`
+    color: red;
+    text-align: center;
+    padding-top: 7px;
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+export const FindJobsForMeModal = ({ trigger }) => {
     const [open, setOpen] = useState();
+
+    const triggers = () => {
+        switch (trigger) {
+            case 'link':
+                return (
+                    <FastLink onClick={() => setOpen(true)}>
+                        Need a job fast? Click Here!
+                    </FastLink>
+                );
+            default:
+                return (
+                    <Button
+                        content="Find Jobs For Me"
+                        onClick={() => {
+                            setOpen(true);
+                            window.gtag('event', 'Clicked', {
+                                event_category: 'user',
+                                event_label: 'open findJobsForMe',
+                            });
+                        }}
+                        color="red"
+                    />
+                );
+        }
+    };
 
     return (
         <Modal
             size="tiny"
             open={open}
-            trigger={
-                <Button
-                    content="Find Jobs For Me"
-                    onClick={() => {
-                        setOpen(true);
-                        window.gtag('event', 'Clicked', {
-                            event_category: 'user',
-                            event_label: 'open findJobsForMe',
-                        });
-                    }}
-                    color="red"
-                />
-            }
+            trigger={triggers()}
             onClose={() => {
                 setOpen(false);
                 window.gtag('event', 'Clicked', {

@@ -40,9 +40,9 @@ const SideBarHeader = ({ setOpen, location }) => {
                         <LinkToAccount user={user} />
                     )}
                 </div>
-                <Row align="stretch">
+                <FlexBox direction="row" align="stretch">
                     <SearchBar />
-                </Row>
+                </FlexBox>
             </StyledSideBarHeader>
             {/* Modal */}
         </>

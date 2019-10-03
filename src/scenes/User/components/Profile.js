@@ -13,10 +13,10 @@ import {
     Segment,
     Label,
     Form,
-    Input,
     Icon,
     Grid,
     Button,
+    Message,
 } from 'semantic-ui-react';
 
 //Hooks
@@ -74,13 +74,10 @@ const Profile = () => {
 
     return (
         <>
-            <Header as="h1" content={user.displayName} />
-            <p>{user.email}</p>
             <Header as="h1" content="Preferences" />
-            <p>
-                This helps us and recruiters find you. The more you include, the
-                better the results.
-            </p>
+            <Message positive>
+                Save preferences so we can match you with better jobs!
+            </Message>
             <Segment>
                 <Grid divided stackable>
                     <Grid.Row>
@@ -265,6 +262,8 @@ const Profile = () => {
                     </Grid.Row>
                 </Grid>
             </Segment>
+            <Header as="h1" content={user.displayName} />
+            <p>{user.email}</p>
             <Button
                 color="red"
                 basic
