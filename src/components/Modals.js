@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
+import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
 import { useStateValue } from '../state';
 import * as userActions from '../reducers/userReducer';
@@ -288,20 +289,103 @@ const ModalContainer = styled.div`
     }
 `;
 
-export const FindJobsForMeModal = ({ trigger }) => {
-    const [open, setOpen] = useState();
+const FindJobsForm = ({ status, subscribe }) => {
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
 
     const submitHandler = values => {
-        setOpen(false);
+        subscribe(values);
     };
 
     const [value, handleChange, handleSubmit] = useForm(
         {
-            name: '',
-            email: '',
+            NAME: '',
+            EMAIL: '',
         },
         submitHandler
     );
+
+    useEffect(() => {
+        switch (status) {
+            case 'sending':
+                setMessage(<p>Sending...</p>);
+                setLoading(true);
+                break;
+            case 'success':
+                setMessage(
+                    <p style={{ color: 'green' }}>
+                        Success! We will reach out shortly to get some more
+                        information from you and then get started!
+                    </p>
+                );
+                setLoading(false);
+                break;
+            case 'error':
+                setMessage(
+                    <p style={{ color: 'red' }}>
+                        Uh oh! Looks like there was an issue. Please try again
+                        or email us at lucas@allthejobsites.com
+                    </p>
+                );
+                setLoading(false);
+                break;
+            default:
+                setMessage('');
+                setLoading(false);
+                break;
+        }
+    }, [status]);
+
+    console.log(status);
+    console.log(message);
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            {message}
+            <Form.Field style={{ flex: 1 }}>
+                <input
+                    type="text"
+                    name="NAME"
+                    placeholder="First Name"
+                    onChange={handleChange}
+                    value={value.NAME}
+                    required
+                />
+            </Form.Field>
+            <Form.Field style={{ flex: 1 }}>
+                <input
+                    type="email"
+                    name="EMAIL"
+                    placeholder="Email"
+                    onChange={handleChange}
+                    value={value.EMAIL}
+                    required
+                />
+            </Form.Field>
+            <p style={{ fontSize: 10 }}>
+                By clicking "Let's Go" you agree to our{' '}
+                <a href="https://www.notion.so/Terms-of-Use-215f40bb48b04a55b4478fadd59433a4">
+                    Terms of Use
+                </a>{' '}
+                and{' '}
+                <a href="https://www.notion.so/Privacy-and-Cookie-Policy-3f89cd6501f84044861b7152449f866f">
+                    Privacy Policy
+                </a>
+                .
+            </p>
+            <Form.Button
+                type="submit"
+                color="red"
+                icon="rocket"
+                loading={loading}
+                content="Let's Go!"
+            />
+        </Form>
+    );
+};
+
+export const FindJobsForMeModal = ({ trigger }) => {
+    const [open, setOpen] = useState();
 
     const triggers = () => {
         switch (trigger) {
@@ -364,43 +448,17 @@ export const FindJobsForMeModal = ({ trigger }) => {
                         </ul>
                     </div>
                     <h4>Please confirm your account email!</h4>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Field style={{ flex: 1 }}>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="First Name"
-                                onChange={handleChange}
-                                value={value.name}
+                    <MailchimpSubscribe
+                        url={
+                            'https://allthejobsites.us20.list-manage.com/subscribe/post?u=569927e9b229a06474273ecb0&amp;id=9adcb4e5dc'
+                        }
+                        render={({ subscribe, status, message }) => (
+                            <FindJobsForm
+                                status={status}
+                                subscribe={subscribe}
                             />
-                        </Form.Field>
-                        <Form.Field style={{ flex: 1 }}>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                onChange={handleChange}
-                                value={value.email}
-                            />
-                        </Form.Field>
-                        <p style={{ fontSize: 10 }}>
-                            By clicking "Let's Go" you agree to our{' '}
-                            <a href="https://www.notion.so/Terms-of-Use-215f40bb48b04a55b4478fadd59433a4">
-                                Terms of Use
-                            </a>{' '}
-                            and{' '}
-                            <a href="https://www.notion.so/Privacy-and-Cookie-Policy-3f89cd6501f84044861b7152449f866f">
-                                Privacy Policy
-                            </a>
-                            .
-                        </p>
-                        <Form.Button
-                            type="submit"
-                            color="red"
-                            icon="rocket"
-                            content="Let's Go!"
-                        />
-                    </Form>
+                        )}
+                    />
                 </Modal.Description>
             </Modal.Content>
         </Modal>
