@@ -72,6 +72,9 @@ const HomePage = () => {
                                     });
                                 }}
                             />
+                            <Menu.Item>
+                                <LoginSignup selectedIndex={0} trigger="link" />
+                            </Menu.Item>
                         </Menu.Menu>
                     </Menu>
                 </Responsive>
@@ -223,7 +226,6 @@ const HomePage = () => {
             <Responsive minWidth={767}>
                 <Footer />
             </Responsive>
-            <LoginSignup selectedIndex={index} open={open} setOpen={setOpen} />
         </Container>
     );
 };

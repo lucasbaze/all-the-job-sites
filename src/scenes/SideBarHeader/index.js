@@ -20,10 +20,8 @@ import { FlexBox } from '../../globals/styles';
 import { StyledSideBarHeader } from './Styled';
 
 const SideBarHeader = ({ setOpen, location }) => {
-    const [isLoading, setIsLoading] = useState(false);
     const [openLoginSignup, setOpenLoginSignup] = useState(false);
     const [index, setIndex] = useState(0);
-    const [value, setValue] = useState('');
     const [{ searchValue, user }, dispatch] = useStateValue();
 
     return (
@@ -55,11 +53,6 @@ const SideBarHeader = ({ setOpen, location }) => {
                 <SearchBar />
             </StyledSideBarHeader>
             {/* Modal */}
-            <LoginSignup
-                selectedIndex={index}
-                open={openLoginSignup}
-                setOpen={setOpenLoginSignup}
-            />
         </>
     );
 };

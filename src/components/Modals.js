@@ -48,9 +48,9 @@ export const AboutUs = ({ open, setOpen }) => {
     );
 };
 
-export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
-    const [index, setIndex] = useState(1);
-    const [state, dispatch] = useStateValue();
+export const LoginSignup = ({ selectedIndex = 1, trigger }) => {
+    const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         setIndex(selectedIndex);
@@ -145,8 +145,35 @@ export const LoginSignup = ({ open, setOpen, selectedIndex }) => {
         },
     ];
 
+    const triggers = () => {
+        switch (trigger) {
+            case 'button':
+                return (
+                    <Button
+                        compact
+                        positive
+                        style={{ width: '100%' }}
+                        onClick={() => setOpen(true)}
+                    >
+                        <Icon name="heart outline" /> Sign Up to Save Jobs
+                    </Button>
+                );
+            case 'link':
+                return (
+                    <Button basic onClick={() => setOpen(true)} inverted>
+                        Sign In{' '}
+                    </Button>
+                );
+            default:
+                return (
+                    <Button onClick={() => setOpen(true)} content="Sign Up" />
+                );
+        }
+    };
+
     return (
         <Modal
+            trigger={triggers()}
             size="tiny"
             open={open}
             onClose={() => {
