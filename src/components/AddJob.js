@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 //State
 import * as jobsActions from '../reducers/jobsReducer';
@@ -12,7 +12,10 @@ import { Header, Form, Responsive, Message } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const AddJob = ({ display = true, setOpen }) => {
+    const [isSaving, setIsSaving] = useState(false);
     const [{ savedJobs, user }, dispatch] = useStateValue();
+    const jobs = useRef(savedJobs);
+
     const [job, setJob] = useState({
         name: '',
         link: '',
@@ -23,6 +26,7 @@ const AddJob = ({ display = true, setOpen }) => {
     };
 
     const handleSubmit = () => {
+        setIsSaving(true);
         jobsActions.addNewSavedJob(dispatch, savedJobs, job, user.uid);
         setJob({
             name: '',
@@ -32,6 +36,10 @@ const AddJob = ({ display = true, setOpen }) => {
             setOpen(false);
         }
     };
+
+    useEffect(() => {
+        setIsSaving(false);
+    }, [savedJobs.length]);
 
     return (
         <>
@@ -65,6 +73,7 @@ const AddJob = ({ display = true, setOpen }) => {
                             placeholder="Job Name"
                             value={job.name}
                             onChange={handleChange}
+                            required
                         />
                     </Form.Field>
                     <Form.Field style={{ flex: 2 }}>
@@ -74,11 +83,13 @@ const AddJob = ({ display = true, setOpen }) => {
                             placeholder="Job Link"
                             value={job.link}
                             onChange={handleChange}
+                            required
                         />
                     </Form.Field>
                     <Form.Button
                         type="submit"
                         color="green"
+                        loading={isSaving}
                         content="Save Job Link"
                         onClick={() => {
                             window.gtag('event', 'save job', {
@@ -99,6 +110,7 @@ const AddJob = ({ display = true, setOpen }) => {
                             placeholder="Job Name"
                             value={job.name}
                             onChange={handleChange}
+                            required
                         />
                     </Form.Field>
                     <Form.Field style={{ flex: 2 }}>
@@ -108,11 +120,13 @@ const AddJob = ({ display = true, setOpen }) => {
                             placeholder="Job Link"
                             value={job.link}
                             onChange={handleChange}
+                            required
                         />
                     </Form.Field>
                     <Form.Button
                         type="submit"
                         color="green"
+                        loading={isSaving}
                         content="Save Job Link"
                         onClick={() => {
                             window.gtag('event', 'save job', {

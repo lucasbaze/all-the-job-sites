@@ -344,7 +344,7 @@ export const FindJobsForMeModal = ({ trigger }) => {
             closeOnDimmerClick={true}
         >
             <Modal.Content image>
-                <Image wrapper size="medium" src="findJobs.svg" />
+                <Image wrapper size="medium" src="/findJobs.svg" />
                 <Modal.Description>
                     <h1 style={{ margin: 0 }}>Searching for Jobs Sucks</h1>
                     <h2 style={{ margin: 0 }}> Let us Search for You.</h2>
@@ -357,9 +357,10 @@ export const FindJobsForMeModal = ({ trigger }) => {
                     </div>
                     <div style={{ marginBottom: 10 }}>
                         <ul style={{ fontSize: '1.1em' }}>
-                            <li>We find jobs</li>
-                            <li>We add them to your account</li>
-                            <li>Then you pay</li>
+                            <li>We find jobs.</li>
+                            <li>We add them to your account.</li>
+                            <li>Then you pay.</li>
+                            <li>Save yourself countless hours.</li>
                         </ul>
                     </div>
                     <h4>Please confirm your account email!</h4>
