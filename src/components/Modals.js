@@ -315,7 +315,7 @@ const FindJobsForm = ({ status, subscribe }) => {
                 setMessage(
                     <p style={{ color: 'green' }}>
                         Success! We will reach out shortly to get some more
-                        information from you and then get started!
+                        information and then get started!
                     </p>
                 );
                 setLoading(false);

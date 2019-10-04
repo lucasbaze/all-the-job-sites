@@ -63,7 +63,7 @@ const CategoryList = props => {
 
 // sort site objects alphabetically by key (main_category)
 const sortCategories = (a, b) => {
-    return a[0].toUpperCase() < b[0].toUpperCase() ? 1 : -1;
+    return a[0].toUpperCase() < b[0].toUpperCase() ? -1 : 1;
 };
 const sortSites = (a, b) => {
     return a.site_name.toUpperCase() < b.site_name.toUpperCase() ? -1 : 1;
@@ -101,32 +101,39 @@ const JobSites = props => {
         if (props.searchValue === '') {
             return true;
         } else {
-            //Check if the search value is in the site_name
-            //return true if true
+            // //Check if the search value is in the site_name
+            // //return true if true
+            //
+            // let query = props.searchValue.toLowerCase();
+            // let siteNameIndex = site.site_name.toLowerCase().search(query);
+            // let siteNameFilter = siteNameIndex >= 0; // ? true : false is redundant
+            //
+            // //Check if the search value is in the tags
+            // //return true if one of the tags has the search term and then provide an icon with the tag_icon
+            // /*let siteTagIndex = site.tags.filter(tag => {
+            //     return tag
+            //         .toLowerCase()
+            //         .search(props.searchValue.toLowerCase()) >= 0
+            //         ? true
+            //         : false;
+            // });*/
+            // // let siteTagFilter = siteTagIndex.length >= 1 ? true : false;
+            //
+            // let siteTagFilter = site.tags.includes(query);
+            //
+            // //Check if the site is searchable
+            // //return true and then run a .map over just those specific true ones
+            // let siteSearchable = site.searchable;
+            //
+            // return siteNameFilter || siteTagFilter || siteSearchable;
+            // // return siteNameFilter || siteTagFilter;
 
-            let query = props.searchValue.toLowerCase();
-            let siteNameIndex = site.site_name.toLowerCase().search(query);
-            let siteNameFilter = siteNameIndex >= 0; // ? true : false is redundant
+            //Test
+            //Returning everything because it's confusing to only return sites that are searchable.
+            //All sites should be returned, but only the ones that are queryable get the text
+            //next to it.
 
-            //Check if the search value is in the tags
-            //return true if one of the tags has the search term and then provide an icon with the tag_icon
-            /*let siteTagIndex = site.tags.filter(tag => {
-                return tag
-                    .toLowerCase()
-                    .search(props.searchValue.toLowerCase()) >= 0
-                    ? true
-                    : false;
-            });*/
-            // let siteTagFilter = siteTagIndex.length >= 1 ? true : false;
-
-            let siteTagFilter = site.tags.includes(query);
-
-            //Check if the site is searchable
-            //return true and then run a .map over just those specific true ones
-            let siteSearchable = site.searchable;
-
-            return siteNameFilter || siteTagFilter || siteSearchable;
-            // return siteNameFilter || siteTagFilter;
+            return true;
         }
     };
 
