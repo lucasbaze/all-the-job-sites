@@ -149,14 +149,6 @@ const HomePage = () => {
                 </StyledSectionHeader>
                 <Responsive>
                     <FeaturedJob
-                        logo="https://t0jnhu9fw1-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/12743742_799537270151613_7802811979984674555_n1.png"
-                        url="https://jobspresso.co/job/data-science-subject-matter-expert-3-2/"
-                        company="Udacity"
-                        location="Remote, US"
-                        title="Software Engineer, Devop"
-                        tags={['devops', 'python', 'AWS', 'postgreSQL']}
-                    />
-                    <FeaturedJob
                         logo="https://storage.googleapis.com/job-listing-logos/e249a7cd-a27c-4195-8e27-79656ac8f569.jpg"
                         url="https://cryptojobslist.com/jobs/engineering-lead-at-status-remote-only"
                         company="Status"

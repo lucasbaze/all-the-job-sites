@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import LogRocket from 'logrocket';
 
 //
 import './index.css';
@@ -8,6 +9,8 @@ import App from './scenes/App';
 //
 import * as serviceWorker from './serviceWorker';
 import './firebase';
+
+LogRocket.init('egocmy/all-the-job-sites-dev');
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

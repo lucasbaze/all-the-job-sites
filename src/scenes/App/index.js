@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LogRocket from 'logrocket';
 
 //Components
 import { Responsive, Menu } from 'semantic-ui-react';
@@ -75,6 +76,10 @@ const App = props => {
                     emailVerified,
                 });
                 userActions.setLoading(false);
+                LogRocket.identify(`${user.uid}`, {
+                    name: `${user.displayName}`,
+                    email: `${user.email}`,
+                });
             }
         });
     }, [dispatch]);
